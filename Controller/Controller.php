@@ -31,8 +31,19 @@ class Controller{
     function createProduct(){
         var_dump($_POST);
         $this->productModel->addProduct($_POST['name'], $_POST['description'], $_POST['price'], $_POST['categoryId']);
+        $this->showProducts();
     }
     function removeProduct($id){
         $this->productModel->deleteProductFromDB($id);
+        $this->showProducts();
+    }
+    function showEditProductForm($id){
+        $product = $this->productModel->getProduct($id);
+        $this->productView->showEditProductForm($product);
+       
+    }
+    function editProduct($id){
+        $this->productModel->updateProductFromDB($id,$_POST['name'], $_POST['description'], $_POST['price'], $_POST['categoryId']);
+        $this->showProducts();
     }
 }
