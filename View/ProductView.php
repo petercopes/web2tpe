@@ -35,9 +35,8 @@ class ProductView
             <h2>Formulario de edicion</h2>
             <form class="form-alta" action="'.BASE_URL.'/edit-product/'.$product->id_product.'" method="post">
                 <input placeholder="Nombre del producto" type="text" value="'.$product->name.'" name="name" id="name" required>
-                <textarea placeholder="descripcion" type="text" value="'.$product->description.'" name="description" id="description" required> </textarea>
+                <textarea placeholder="descripcion" type="text"  name="description" id="description" required>'.$product->description.' </textarea>
                 <input placeholder="precio" type="number" value="'.$product->price.'"name="price" id="price" required>
-                <select name="categoryId" value="'.$product->id_category.'" id="categoryId" required>
                 <input type="submit" class="btn btn-primary" value="Guardar">
             </form>
             ';

@@ -28,7 +28,7 @@ switch ($params[0]) {
         $controller->createProduct();
     break;
     case "edit-product-form":
-        $controller->editProduct($params[1]);
+        $controller->showEditProductForm($params[1]);
     break;
     case "edit-product":
         $controller->editProduct($params[1]);

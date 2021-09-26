@@ -43,7 +43,7 @@ class Controller{
        
     }
     function editProduct($id){
-        $this->productModel->updateProductFromDB($id,$_POST['name'], $_POST['description'], $_POST['price'], $_POST['categoryId']);
+        $this->productModel->updateProductFromDB($id,$_POST['name'], $_POST['description'], $_POST['price']);
         $this->showProducts();
     }
 }
