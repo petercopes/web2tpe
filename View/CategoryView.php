@@ -10,8 +10,9 @@ class CategoryView
         foreach ($categories as $category) {
             echo "
                 <li> 
-                    <p style='display:inline;'>$category->name</p>
-                    <a href='deleteCategory/$category->id_category'>X</a>
+                    <p>$category->name</p>
+                    <span><a href='deleteCategory/$category->id_category'>X</a></span>
+                    <span><a href='editCategoryForm/$category->id_category'>Editar</a></span>
                 </li>
             ";
         }
@@ -25,6 +26,17 @@ class CategoryView
         <form class="form-alta" action="addCategory" method="post">
             <input placeholder="nombre" type="text" name="name" id="name" required>
             <textarea placeholder="descripcion" type="text" name="description" id="description"> </textarea>
+            <input type="submit" value="Guardar">
+        </form>
+        ';
+    }
+
+    function showEditCategoryForm($category) {
+        echo '
+        <h2>Edit Categoria</h2>
+        <form class="form-alta" action="'.BASE_URL.'/editCategory/'.$category->id_category.'" method="post">
+            <input type="text" name="name" id="name" value="'.$category->name.'" required>
+            <textarea type="text" name="description" id="description" value="'.$category->description.'"> </textarea>
             <input type="submit" value="Guardar">
         </form>
         ';

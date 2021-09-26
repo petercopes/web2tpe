@@ -1,4 +1,5 @@
 <?php
+define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 require_once "./Controller/Controller.php";
 if (!empty($_GET["action"])) {
@@ -26,6 +27,12 @@ switch ($params[0]) {
     break;
     case "deleteCategory":
         $controller->deleteCategory($params[1]);
+    break;
+    case "editCategoryForm":
+        $controller->showEditCategoryForm($params[1]);
+    break;
+    case "editCategory":
+        $controller->editCategory($params[1]);
     break;
     // case "products":
     //     showProducts();

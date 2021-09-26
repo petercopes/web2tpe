@@ -23,4 +23,16 @@ class CategoryModel{
         $sentencia = $this->db->prepare("DELETE FROM category WHERE id_category=?");
         $sentencia->execute(array($id));
     }
+
+    function getCategory($id){
+        $sentencia = $this->db->prepare("SELECT * FROM category WHERE id_category=?");
+        $sentencia->execute(array($id));
+        $category = $sentencia->fetch(PDO::FETCH_OBJ);
+        return $category;
+    }
+
+    function editCategory($id, $name, $description){
+        $sentencia = $this->db->prepare("UPDATE category SET name=?, description=? WHERE id_category=?");
+        $sentencia->execute(array($name, $description, $id));
+    }
 }

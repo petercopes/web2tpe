@@ -33,9 +33,22 @@ class Controller{
 
     function addCategory() {
         $this->categoryModel->addCategory($_POST['name'], $_POST['description']);
+        $this->showCategories();
     }
 
     function deleteCategory($id) {
         $this->categoryModel->deleteCategory($id);
+        $this->showCategories();
+    }
+
+    function showEditCategoryForm($id) {
+        $category = $this->categoryModel->getCategory($id);
+        $this->categoryView->showEditCategoryForm($category);
+    }
+
+    function editCategory($id) {
+        var_dump($id);
+        $this->categoryModel->editCategory($id, $_POST['name'], $_POST['description']);
+        $this->showCategories();
     }
 }
