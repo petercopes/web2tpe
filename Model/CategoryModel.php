@@ -18,4 +18,9 @@ class CategoryModel{
         $sentencia = $this->db->prepare("INSERT INTO category(name, description) VALUES(?, ?)");
         $sentencia->execute(array($name,$description));
     }
+
+    function deleteCategory($id){
+        $sentencia = $this->db->prepare("DELETE FROM category WHERE id_category=?");
+        $sentencia->execute(array($id));
+    }
 }

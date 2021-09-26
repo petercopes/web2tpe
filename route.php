@@ -24,6 +24,9 @@ switch ($params[0]) {
     case "addCategory":
         $controller->addCategory();
     break;
+    case "deleteCategory":
+        $controller->deleteCategory($params[1]);
+    break;
     // case "products":
     //     showProducts();
     //     break;

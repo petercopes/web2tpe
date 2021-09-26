@@ -32,7 +32,10 @@ class Controller{
     }
 
     function addCategory() {
-        var_dump($_POST);
         $this->categoryModel->addCategory($_POST['name'], $_POST['description']);
+    }
+
+    function deleteCategory($id) {
+        $this->categoryModel->deleteCategory($id);
     }
 }
