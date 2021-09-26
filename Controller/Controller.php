@@ -30,6 +30,6 @@ class Controller{
     }
     function createProduct(){
         var_dump($_POST);
-        $this->productModel->addProduct($_POST['name'], $_POST['description'], $_POST['price'], $_POST['id']);
+        $this->productModel->addProduct($_POST['name'], $_POST['description'], $_POST['price'], $_POST['categoryId']);
     }
 }
