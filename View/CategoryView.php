@@ -36,7 +36,7 @@ class CategoryView
         <h2>Edit Categoria</h2>
         <form class="form-alta" action="'.BASE_URL.'/editCategory/'.$category->id_category.'" method="post">
             <input type="text" name="name" id="name" value="'.$category->name.'" required>
-            <textarea type="text" name="description" id="description" value="'.$category->description.'"> </textarea>
+            <textarea type="text" name="description" id="description">'.$category->description.'</textarea>
             <input type="submit" value="Guardar">
         </form>
         ';
