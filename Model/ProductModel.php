@@ -13,4 +13,33 @@ class ProductModel{
         $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $products;
     } 
+    function getProduct($id){
+        $sentencia = $this->db->prepare( "select * from product WHERE id_product=?");
+        $sentencia->execute(array($id));
+        $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $products;
+    }
+    function addProduct($name, $description, $price,$categoryId){
+        $sentencia = $this->db->prepare("INSERT INTO product(name, description, price,id_category) VALUES(?, ?, ?, ?)");
+        $sentencia->execute(array($name,$description,$price, $categoryId));
+    }
+    function deleteProductFromDB($id){
+        $sentencia = $this->db->prepare("DELETE FROM product WHERE id_product=?");
+        $sentencia->execute(array($id));
+    }
+
+    function updateProductFromDB($id,$name,$description,$price){
+        if((isset($name)&&(!empty($name)))){
+            $sentencia = $this->db->prepare("UPDATE product SET name=? WHERE id_product=?");
+            $sentencia->execute(array($name,$id));
+        }
+        if((isset($description)&&(!empty($description)))){
+            $sentencia = $this->db->prepare("UPDATE product SET description=? WHERE id_product=?");
+            $sentencia->execute(array($description,$id));
+        }
+        if((isset($price)&&(!empty($price)))){
+            $sentencia = $this->db->prepare("UPDATE product SET price=? WHERE id_product=?");
+            $sentencia->execute(array($price,$id));
+        }
+    }
 }
