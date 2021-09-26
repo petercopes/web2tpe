@@ -8,7 +8,7 @@ class ProductView
         echo "<h1>Productos</h1>";
         echo "<ul>";
         foreach ($products as $product) {
-            echo "<li> $product->name </li>";
+            echo "<li><p>$product->name</p> <a href='remove-product/$product->id_product>X</a> </li>";
         }
         echo "</ul>";
     }

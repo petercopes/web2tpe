@@ -18,8 +18,11 @@ switch ($params[0]) {
     case "categories":
         $controller->showCategories();
     break;
-    case "product-form":
+    case "product-add-form":
         $controller->showAddProduct();
+    break;
+    case "remove-product":
+        $controller->removeProduct($params[1]);
     break;
     case "add-product":
         $controller->createProduct();
