@@ -1,6 +1,6 @@
 <?php
 
-class CategoriesModel{
+class CategoryModel{
 
     private $db;
     function __construct(){
@@ -13,4 +13,9 @@ class CategoriesModel{
         $categories = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $categories;
     } 
+
+    function addCategory($name, $description){
+        $sentencia = $this->db->prepare("INSERT INTO category(name, description) VALUES(?, ?)");
+        $sentencia->execute(array($name,$description));
+    }
 }

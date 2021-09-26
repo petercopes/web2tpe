@@ -18,6 +18,12 @@ switch ($params[0]) {
     case "categories":
         $controller->showCategories();
     break;
+    case "showAddCategory":
+        $controller->showAddCategoryForm();
+    break;
+    case "addCategory":
+        $controller->addCategory();
+    break;
     // case "products":
     //     showProducts();
     //     break;
