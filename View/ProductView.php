@@ -16,7 +16,7 @@ class ProductView
     }
     function showAddProductForm($categories){
         echo '  
-            <form class="form-alta" action="add-product" method="post">
+            <form class="form-alta" action="'.BASE_URL.'/add-product" method="post">
                 <input placeholder="Nombre del producto" type="text" name="name" id="name" required>
                 <textarea placeholder="descripcion" type="text" name="description" id="description" required> </textarea>
                 <input placeholder="precio" type="number" name="price" id="price" required>
@@ -33,7 +33,7 @@ class ProductView
     function showEditProductForm($product){
         echo '  
             <h2>Formulario de edicion</h2>
-            <form class="form-alta" action="edit-product/'.$product->id_product.'" method="post">
+            <form class="form-alta" action="'.BASE_URL.'/edit-product/'.$product->id_product.'" method="post">
                 <input placeholder="Nombre del producto" type="text" value="'.$product->name.'" name="name" id="name" required>
                 <textarea placeholder="descripcion" type="text" value="'.$product->description.'" name="description" id="description" required> </textarea>
                 <input placeholder="precio" type="number" value="'.$product->price.'"name="price" id="price" required>
