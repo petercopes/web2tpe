@@ -1,9 +1,6 @@
 <?php
-// require_once "categoriesList.php";
-// require_once "productsList.php";
-// require_once "home.php";
-require_once "Controller/ProductController.php";
 
+require_once "./Controller/Controller.php";
 if (!empty($_GET["action"])) {
     $action = $_GET["action"];
 } else {
@@ -12,12 +9,15 @@ if (!empty($_GET["action"])) {
 
 $params = explode('/', $action);
 
-$productController = new ProductController();
+$controller = new Controller();
 
 switch ($params[0]) {
-    case "home":
-        $productController->showHome();
-        break;
+    case "products":
+        $controller->showProducts();
+    break;
+    case "categories":
+        $controller->showCategories();
+    break;
     // case "products":
     //     showProducts();
     //     break;
