@@ -24,9 +24,11 @@ class Controller{
         $categories = $this->categoryModel->getCategories();
         $this->categoryView->showCategories($categories);
     }
-    function createProduct(){
+    function showAddProduct(){
         $categoriesAvailable = $this->categoryModel->getCategories();
         $this->productView->showAddProductForm($categoriesAvailable);
+    }
+    function createProduct(){
         var_dump($_POST);
         $this->productModel->addProduct($_POST['name'], $_POST['description'], $_POST['price'], $_POST['id']);
     }
