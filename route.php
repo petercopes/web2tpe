@@ -18,6 +18,21 @@ switch ($params[0]) {
     case "categories":
         $controller->showCategories();
     break;
+    case "showAddCategory":
+        $controller->showAddCategoryForm();
+    break;
+    case "addCategory":
+        $controller->addCategory();
+    break;
+    case "deleteCategory":
+        $controller->deleteCategory($params[1]);
+    break;
+    case "editCategoryForm":
+        $controller->showEditCategoryForm($params[1]);
+    break;
+    case "editCategory":
+        $controller->editCategory($params[1]);
+    break;
     case "product-add-form":
         $controller->showAddProduct();
     break;
