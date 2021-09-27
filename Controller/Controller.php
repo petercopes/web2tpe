@@ -47,8 +47,29 @@ class Controller{
     }
 
     function editCategory($id) {
-        var_dump($id);
         $this->categoryModel->editCategory($id, $_POST['name'], $_POST['description']);
         $this->showCategories();
+    }
+
+    function showAddProduct(){
+        $categoriesAvailable = $this->categoryModel->getCategories();
+        $this->productView->showAddProductForm($categoriesAvailable);
+    }
+    function createProduct(){
+        $this->productModel->addProduct($_POST['name'], $_POST['description'], $_POST['price'], $_POST['categoryId']);
+        $this->showProducts();
+    }
+    function removeProduct($id){
+        $this->productModel->deleteProductFromDB($id);
+        $this->showProducts();
+    }
+    function showEditProductForm($id){
+        $product = $this->productModel->getProduct($id);
+        $this->productView->showEditProductForm($product);
+       
+    }
+    function editProduct($id){
+        $this->productModel->updateProductFromDB($id,$_POST['name'], $_POST['description'], $_POST['price']);
+        $this->showProducts();
     }
 }
