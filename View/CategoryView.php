@@ -23,25 +23,20 @@ class CategoryView
     }
 
     function showAddCategoryForm() {
-        echo '
-        <h2>Crear Categoria</h2>
-        <form class="form-alta" action="addCategory" method="post">
-            <input placeholder="nombre" type="text" name="name" id="name" required>
-            <textarea placeholder="descripcion" type="text" name="description" id="description"> </textarea>
-            <input type="submit" value="Guardar">
-        </form>
-        ';
+        $this->smarty->assign('tituloPagina','Añadir Categoria');
+        $this->smarty->assign('base',BASE_URL);
+        $this->smarty->assign('titulo','Agregar Categoria');
+        $this->smarty->assign('action','add');
+        $this->smarty->display('templates/categoryForm.tpl');  
     }
 
     function showEditCategoryForm($category) {
-        echo '
-        <h2>Edit Categoria</h2>
-        <form class="form-alta" action="'.BASE_URL.'/editCategory/'.$category->id_category.'" method="post">
-            <input type="text" name="name" id="name" value="'.$category->name.'" required>
-            <textarea type="text" name="description" id="description">'.$category->description.'</textarea>
-            <input type="submit" value="Guardar">
-        </form>
-        ';
+        $this->smarty->assign('tituloPagina','Editar Categoria');
+        $this->smarty->assign('base',BASE_URL);
+        $this->smarty->assign('titulo','Editar Categoria');
+        $this->smarty->assign('action','edit');
+        $this->smarty->assign('category',$category);
+        $this->smarty->display('templates/categoryForm.tpl');  
     }
 
 }

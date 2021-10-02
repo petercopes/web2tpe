@@ -1,7 +1,7 @@
 <?php
 require_once "./Controller/CategoryController.php";
 require_once "./Controller/ProductController.php";
-require_once "./Controller/LoginController.php";
+require_once "./Controller/UserController.php";
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -15,11 +15,14 @@ $params = explode('/', $action);
 
 $categoryController = new CategoryController();
 $productController = new ProductController();
-$loginController = new LoginController();
+$userController = new UserController();
 
 switch ($params[0]) {
     case "login":
-        $loginController->showLogin();
+        $userController->showLogin();
+    break;
+    case "admin-actions":
+        $userController->showAdminActions();
     break;
     case "products":
         $productController->showProducts();
@@ -27,10 +30,10 @@ switch ($params[0]) {
     case "categories":
         $categoryController->showCategories();
     break;
-    case "showAddCategory":
+    case "category-add-form":
         $categoryController->showAddCategoryForm();
     break;
-    case "addCategory":
+    case "add-category":
         $categoryController->addCategory();
     break;
     case "remove-category":
@@ -39,7 +42,7 @@ switch ($params[0]) {
     case "edit-category-form":
         $categoryController->showEditCategoryForm($params[1]);
     break;
-    case "editCategory":
+    case "edit-category":
         $categoryController->editCategory($params[1]);
     break;
     case "product-add-form":
@@ -59,5 +62,5 @@ switch ($params[0]) {
     break;
     default:
         echo ('not found');
-        break;
+    break;
 }
