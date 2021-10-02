@@ -1,19 +1,23 @@
 <?php
-
+require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
 class ProductView
-{
+{  
+    private $smarty;
+
+    function __construct()
+    {
+        $this->smarty = new Smarty();
+    }
 
     function showProducts($products)
     {
-        echo "<h1>Productos</h1>";
-        echo "<ul>";
-        foreach ($products as $product) {
-            echo "<li>
-            <p>$product->name <span><a href='remove-product/$product->id_product'>X</a><a href='edit-product-form/$product->id_product'> Editar</a> </span></p>
-            </li>";
-        }
-        echo "</ul>";
+        $this->smarty->assign('tituloPagina','Productos');
+        $this->smarty->assign('base',BASE_URL);
+        $this->smarty->assign('titulo','Productos');
+        $this->smarty->assign('products',$products);
+        $this->smarty->display('templates/productList.tpl');        
     }
+    
     function showAddProductForm($categories){
         echo '  
             <form class="form-alta" action="'.BASE_URL.'/add-product" method="post">

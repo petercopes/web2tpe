@@ -33,6 +33,13 @@ CREATE TABLE `category` (
   `description` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `category`
+--
+
+INSERT INTO `category` (`id_category`, `name`, `description`) VALUES
+(1, 'pantalon', ' Jeans, pantalones sastreros, shorts, etc');
+
 -- --------------------------------------------------------
 
 --
