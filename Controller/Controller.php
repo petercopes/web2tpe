@@ -26,16 +26,19 @@ class Controller{
     }
     function showAddProduct(){
         $categoriesAvailable = $this->categoryModel->getCategories();
+        var_dump($categoriesAvailable);
         $this->productView->showAddProductForm($categoriesAvailable);
     }
     function createProduct(){
         var_dump($_POST);
         $this->productModel->addProduct($_POST['name'], $_POST['description'], $_POST['price'], $_POST['categoryId']);
-        $this->showProducts();
+        header("Location: ".BASE_URL."products");
+        //$this->showProducts();
     }
     function removeProduct($id){
         $this->productModel->deleteProductFromDB($id);
-        $this->showProducts();
+        header("Location: ".BASE_URL."products");
+        //$this->showProducts();
     }
     function showEditProductForm($id){
         $product = $this->productModel->getProduct($id);
@@ -44,6 +47,7 @@ class Controller{
     }
     function editProduct($id){
         $this->productModel->updateProductFromDB($id,$_POST['name'], $_POST['description'], $_POST['price']);
-        $this->showProducts();
+        header("Location: ".BASE_URL."products");
+        //$this->showProducts();
     }
 }
