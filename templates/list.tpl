@@ -5,10 +5,10 @@
         <div class="col-md-8">
             <h1>{$titulo}</h1>
             <ul class="list-group">
-                {foreach from=$products item=$product}
+                {foreach from=$elements item=$element}
                     <li class="
                         list-group-item">
-                            <p>{$product->name} <span><a href='remove-product/{$product->id_product}'>X</a><a href='edit-product-form/{$product->id_product}'> Editar</a> </span></p>
+                            <p>{$element->name} <span><a href="remove-{$elemType}/{$element->{$idKey}}">X</a><a href="edit-{$elemType}-form/{$element->{$idKey}}"> Editar</a> </span></p>
                     </li>
                 {/foreach}
             </ul>

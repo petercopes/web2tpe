@@ -1,23 +1,25 @@
 <?php
 
+require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
+
 class CategoryView
-{
+{ 
+    private $smarty;
+
+    function __construct()
+    {
+        $this->smarty = new Smarty();
+    }
 
     function showCategories($categories)
     {
-        echo "<h1>Categorias</h1>";
-        echo "<ul>";
-        foreach ($categories as $category) {
-            echo "
-                <li> 
-                    <p>$category->name</p>
-                    <span><a href='deleteCategory/$category->id_category'>X</a></span>
-                    <span><a href='editCategoryForm/$category->id_category'>Editar</a></span>
-                </li>
-            ";
-        }
-        echo "</ul>";
-        echo "<a href='showAddCategory'> Agregar Categoria </a>";
+        $this->smarty->assign('tituloPagina','Categorias');
+        $this->smarty->assign('base',BASE_URL);
+        $this->smarty->assign('titulo','Categorias');
+        $this->smarty->assign('elements',$categories);
+        $this->smarty->assign('idKey','id_category');
+        $this->smarty->assign('elemType','category');
+        $this->smarty->display('templates/list.tpl');  
     }
 
     function showAddCategoryForm() {

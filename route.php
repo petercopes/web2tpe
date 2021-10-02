@@ -33,10 +33,10 @@ switch ($params[0]) {
     case "addCategory":
         $categoryController->addCategory();
     break;
-    case "deleteCategory":
+    case "remove-category":
         $categoryController->deleteCategory($params[1]);
     break;
-    case "editCategoryForm":
+    case "edit-category-form":
         $categoryController->showEditCategoryForm($params[1]);
     break;
     case "editCategory":
