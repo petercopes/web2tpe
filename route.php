@@ -59,5 +59,5 @@ switch ($params[0]) {
     break;
     default:
         echo ('not found');
-        break;
+    break;
 }
