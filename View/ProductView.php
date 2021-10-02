@@ -14,8 +14,10 @@ class ProductView
         $this->smarty->assign('tituloPagina','Productos');
         $this->smarty->assign('base',BASE_URL);
         $this->smarty->assign('titulo','Productos');
-        $this->smarty->assign('products',$products);
-        $this->smarty->display('templates/productList.tpl');        
+        $this->smarty->assign('elements',$products);
+        $this->smarty->assign('idKey','id_product');
+        $this->smarty->assign('elemType','product');
+        $this->smarty->display('templates/list.tpl');        
     }
     
     function showAddProductForm($categories){

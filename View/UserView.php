@@ -1,7 +1,15 @@
 <?php
 
-class LoginView
+require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
+
+class UserView
 {
+    private $smarty;
+
+    function __construct()
+    {
+        $this->smarty = new Smarty();
+    }
 
     function showLogin() {
         echo '
@@ -14,4 +22,9 @@ class LoginView
         ';
     }
 
+    function showAdminActions() {
+        $this->smarty->assign('tituloPagina','Administrador');
+        $this->smarty->assign('base',BASE_URL);
+        $this->smarty->display('templates/adminActions.tpl'); 
+    }
 }
