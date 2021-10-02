@@ -1,44 +1,34 @@
 <?php
 require_once "./Model/ProductModel.php";
-require_once './Model/CategoriesModel.php';
 require_once "./View/ProductView.php";
-require_once "./View/CategoryView.php";
 
-class Controller{
-    private $categoryModel;
+class ProductController{
     private $productModel;
     private $productView;
-    private $categoryView;
+    private $categoryModel;
 
     function __construct(){
-        $this->categoryModel = new categoriesModel();
         $this->productModel = new ProductModel();
         $this->productView = new ProductView();
-        $this->categoryView = new CategoryView();
+        $this->categoryModel = new CategoryModel();
     }
+
     function showProducts(){
         $products = $this->productModel->getProducts();
         $this->productView->showProducts($products);
     }
-    function showCategories(){
-        $categories = $this->categoryModel->getCategories();
-        $this->categoryView->showCategories($categories);
-    }
+
     function showAddProduct(){
         $categoriesAvailable = $this->categoryModel->getCategories();
-        var_dump($categoriesAvailable);
         $this->productView->showAddProductForm($categoriesAvailable);
     }
     function createProduct(){
-        var_dump($_POST);
         $this->productModel->addProduct($_POST['name'], $_POST['description'], $_POST['price'], $_POST['categoryId']);
-        header("Location: ".BASE_URL."products");
-        //$this->showProducts();
+        $this->showProducts();
     }
     function removeProduct($id){
         $this->productModel->deleteProductFromDB($id);
-        header("Location: ".BASE_URL."products");
-        //$this->showProducts();
+        $this->showProducts();
     }
     function showEditProductForm($id){
         $product = $this->productModel->getProduct($id);
@@ -47,7 +37,6 @@ class Controller{
     }
     function editProduct($id){
         $this->productModel->updateProductFromDB($id,$_POST['name'], $_POST['description'], $_POST['price']);
-        header("Location: ".BASE_URL."products");
-        //$this->showProducts();
+        $this->showProducts();
     }
 }

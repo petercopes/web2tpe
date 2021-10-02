@@ -1,6 +1,10 @@
 <?php
+require_once "./Controller/CategoryController.php";
+require_once "./Controller/ProductController.php";
+require_once "./Controller/LoginController.php";
+
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
-require_once "./Controller/Controller.php";
+
 if (!empty($_GET["action"])) {
     $action = $_GET["action"];
 } else {
@@ -9,36 +13,50 @@ if (!empty($_GET["action"])) {
 
 $params = explode('/', $action);
 
-$controller = new Controller();
+$categoryController = new CategoryController();
+$productController = new ProductController();
+$loginController = new LoginController();
 
 switch ($params[0]) {
+    case "login":
+        $loginController->showLogin();
+    break;
     case "products":
-        $controller->showProducts();
+        $productController->showProducts();
     break;
     case "categories":
-        $controller->showCategories();
+        $categoryController->showCategories();
     break;
-    case "add-product-form":
-        $controller->showAddProduct();
+    case "showAddCategory":
+        $categoryController->showAddCategoryForm();
+    break;
+    case "addCategory":
+        $categoryController->addCategory();
+    break;
+    case "deleteCategory":
+        $categoryController->deleteCategory($params[1]);
+    break;
+    case "editCategoryForm":
+        $categoryController->showEditCategoryForm($params[1]);
+    break;
+    case "editCategory":
+        $categoryController->editCategory($params[1]);
+    break;
+    case "product-add-form":
+        $productController->showAddProduct();
     break;
     case "remove-product":
-        $controller->removeProduct($params[1]);
+        $productController->removeProduct($params[1]);
     break;
     case "add-product":
-        $controller->createProduct();
+        $productController->createProduct();
     break;
     case "edit-product-form":
-        $controller->showEditProductForm($params[1]);
+        $productController->showEditProductForm($params[1]);
     break;
     case "edit-product":
-        $controller->editProduct($params[1]);
+        $productController->editProduct($params[1]);
     break;
-    // case "products":
-    //     showProducts();
-    //     break;
-    // case "categories":
-    //     showCategories();
-    //     break;
     default:
         echo ('not found');
         break;

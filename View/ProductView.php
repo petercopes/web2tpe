@@ -17,6 +17,7 @@ class ProductView
         $this->smarty->assign('products',$products);
         $this->smarty->display('templates/productList.tpl');        
     }
+    
     function showAddProductForm($categories){
         echo '  
             <form class="form-alta" action="'.BASE_URL.'/add-product" method="post">
