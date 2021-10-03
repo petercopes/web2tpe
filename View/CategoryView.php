@@ -15,11 +15,11 @@ class CategoryView
     {
         $this->smarty->assign('tituloPagina','Categorias');
         $this->smarty->assign('base',BASE_URL);
-        $this->smarty->assign('titulo','Categorias');
+        $this->smarty->assign('title','Categorias');
         $this->smarty->assign('elements',$categories);
         $this->smarty->assign('idKey','id_category');
         $this->smarty->assign('elemType','category');
-        $this->smarty->display('templates/list.tpl');  
+        $this->smarty->display('templates/categoryList.tpl');  
     }
 
     function showAddCategoryForm() {
@@ -37,6 +37,16 @@ class CategoryView
         $this->smarty->assign('action','edit');
         $this->smarty->assign('category',$category);
         $this->smarty->display('templates/categoryForm.tpl');  
+    }
+    function showCategory($category,$products){
+        $this->smarty->assign('category',$category);
+        $this->smarty->assign('elements',$products);
+        $this->smarty->assign('tituloPagina',"Categorias | $category->name ");
+        $this->smarty->assign('base',BASE_URL);
+        $this->smarty->assign('title','Productos en esta categoria: ');
+        $this->smarty->assign('idKey','id_product');
+        $this->smarty->assign('elemType','product');
+        $this->smarty->display('templates/categoryDetail.tpl');
     }
 
 }
