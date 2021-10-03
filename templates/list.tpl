@@ -8,7 +8,12 @@
                 {foreach from=$elements item=$element}
                     <li class="
                         list-group-item">
-                            <p>{$element->name} <span><a href="remove-{$elemType}/{$element->{$idKey}}">X</a><a href="edit-{$elemType}-form/{$element->{$idKey}}"> Editar</a> </span></p>
+                        <p>{$element->name}
+                            {if $isUserLogged eq true}
+                                <span><a href="remove-{$elemType}/{$element->{$idKey}}">X</a>
+                                    <a href="edit-{$elemType}-form/{$element->{$idKey}}"> Editar</a> </span>
+                            {/if}
+                        </p>
                     </li>
                 {/foreach}
             </ul>

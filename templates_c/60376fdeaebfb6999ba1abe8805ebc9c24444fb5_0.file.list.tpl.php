@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-03 00:14:40
+/* Smarty version 3.1.39, created on 2021-10-03 02:46:07
   from '/opt/lampp/htdocs/web2tpe/templates/list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6158d9d09985b4_06134272',
+  'unifunc' => 'content_6158fd4f7cd687_63749277',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '60376fdeaebfb6999ba1abe8805ebc9c24444fb5' => 
     array (
       0 => '/opt/lampp/htdocs/web2tpe/templates/list.tpl',
-      1 => 1633212854,
+      1 => 1633221962,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_6158d9d09985b4_06134272 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6158fd4f7cd687_63749277 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 $_smarty_tpl->_subTemplateRender('file:templates/nav.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -41,12 +41,17 @@ $_smarty_tpl->tpl_vars['element']->do_else = false;
 ?>
                     <li class="
                         list-group-item">
-                            <p><?php echo $_smarty_tpl->tpl_vars['element']->value->name;?>
- <span><a href="remove-<?php echo $_smarty_tpl->tpl_vars['elemType']->value;?>
+                        <p><?php echo $_smarty_tpl->tpl_vars['element']->value->name;?>
+
+                            <?php if ($_smarty_tpl->tpl_vars['isUserLogged']->value == true) {?>
+                                <span><a href="remove-<?php echo $_smarty_tpl->tpl_vars['elemType']->value;?>
 /<?php echo $_smarty_tpl->tpl_vars['element']->value->{$_smarty_tpl->tpl_vars['idKey']->value};?>
-">X</a><a href="edit-<?php echo $_smarty_tpl->tpl_vars['elemType']->value;?>
+">X</a>
+                                    <a href="edit-<?php echo $_smarty_tpl->tpl_vars['elemType']->value;?>
 -form/<?php echo $_smarty_tpl->tpl_vars['element']->value->{$_smarty_tpl->tpl_vars['idKey']->value};?>
-"> Editar</a> </span></p>
+"> Editar</a> </span>
+                            <?php }?>
+                        </p>
                     </li>
                 <?php
 }

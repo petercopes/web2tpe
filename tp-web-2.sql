@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 27-09-2021 a las 00:30:46
+-- Tiempo de generación: 03-10-2021 a las 01:23:26
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 7.4.23
 
@@ -38,7 +38,9 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id_category`, `name`, `description`) VALUES
-(1, 'pantalon', ' Jeans, pantalones sastreros, shorts, etc');
+(1, 'pantalon edit 2', ' Jeans, pantalones sastreros, shorts, etc'),
+(8, 'test edit', 'test '),
+(9, 'test 2', ' test 2');
 
 -- --------------------------------------------------------
 
@@ -52,6 +54,25 @@ CREATE TABLE `product` (
   `description` varchar(50) NOT NULL,
   `price` int(11) NOT NULL,
   `id_category` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `product`
+--
+
+INSERT INTO `product` (`id_product`, `name`, `description`, `price`, `id_category`) VALUES
+(1, 'Jean Ana Paula ', ' Jean mom celeste con roturas  ', 3500, 1),
+(7, 'test prod', 'test ', 1500, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user`
+--
+
+CREATE TABLE `user` (
+  `email` varchar(50) NOT NULL,
+  `password` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -72,6 +93,12 @@ ALTER TABLE `product`
   ADD KEY `category` (`id_category`);
 
 --
+-- Indices de la tabla `user`
+--
+ALTER TABLE `user`
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -79,13 +106,13 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT de la tabla `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `product`
 --
 ALTER TABLE `product`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

@@ -1,4 +1,5 @@
 {include file='templates/header.tpl'}
+{include file='templates/nav.tpl'}
 <div class="container">
     <h1>Administrador</h1>
     <nav>

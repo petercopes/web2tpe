@@ -11,7 +11,7 @@ class CategoryView
         $this->smarty = new Smarty();
     }
 
-    function showCategories($categories)
+    function showCategories($categories, $isUserLogged)
     {
         $this->smarty->assign('tituloPagina','Categorias');
         $this->smarty->assign('base',BASE_URL);
@@ -19,6 +19,7 @@ class CategoryView
         $this->smarty->assign('elements',$categories);
         $this->smarty->assign('idKey','id_category');
         $this->smarty->assign('elemType','category');
+        $this->smarty->assign('isUserLogged', $isUserLogged);
         $this->smarty->display('templates/list.tpl');  
     }
 
@@ -27,6 +28,7 @@ class CategoryView
         $this->smarty->assign('base',BASE_URL);
         $this->smarty->assign('titulo','Agregar Categoria');
         $this->smarty->assign('action','add');
+        $this->smarty->assign('isUserLogged', true);
         $this->smarty->display('templates/categoryForm.tpl');  
     }
 
@@ -36,6 +38,7 @@ class CategoryView
         $this->smarty->assign('titulo','Editar Categoria');
         $this->smarty->assign('action','edit');
         $this->smarty->assign('category',$category);
+        $this->smarty->assign('isUserLogged', true);
         $this->smarty->display('templates/categoryForm.tpl');  
     }
 
