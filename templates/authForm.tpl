@@ -4,13 +4,13 @@
 {if $action === 'create-user'}
     <form class="form-login" action="create-user" method="post">
         <input placeholder="usuario" type="text" name="email" id="email" required>
-        <input placeholder="contraseña" type="text" name="password" id="password" required>
+        <input placeholder="contraseña" type="password" name="password" id="password" required>
         <input type="submit" value="Crear">
     </form>
 {else}
     <form class="form-login" action="verify-user" method="post">
         <input placeholder="usuario" type="text" name="email" id="email" required>
-        <input placeholder="contraseña" type="text" name="password" id="password" required>
+        <input placeholder="contraseña" type="password" name="password" id="password" required>
         <input type="submit" value="Log in">
     </form>
 
