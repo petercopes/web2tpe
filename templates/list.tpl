@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row mt-4">
         <div class="col-md-8">
-            <h1>{$title}</h1>
+            <h1>{$titulo}</h1>
             <ul class="list-group">
                 {foreach from=$elements item=$element}
                     <li class="

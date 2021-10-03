@@ -12,7 +12,7 @@ class AuthHelper
         header("Location: " . BASE_URL . $path);
     }
 
-    function returnIfUserLogged()
+    function checkIfUserIsLogged()
     {
         session_start();
         if (!isset($_SESSION["email"])) {

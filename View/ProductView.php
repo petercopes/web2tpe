@@ -13,7 +13,7 @@ class ProductView
     {
         $this->smarty->assign('tituloPagina','Productos');
         $this->smarty->assign('base',BASE_URL);
-        $this->smarty->assign('title','Productos');
+        $this->smarty->assign('titulo','Productos');
         $this->smarty->assign('elements',$products);
         $this->smarty->assign('idKey','id_product');
         $this->smarty->assign('elemType','product');
@@ -39,8 +39,9 @@ class ProductView
         $this->smarty->assign('isUserLogged',true);
         $this->smarty->display('templates/productsForm.tpl'); 
     }
-    function showProduct($product){
+    function showProduct($product, $isUserLogged){
         $this->smarty->assign('product',$product);
+        $this->smarty->assign('isUserLogged',$isUserLogged);
         $this->smarty->display('templates/productDetail.tpl');
     }
 

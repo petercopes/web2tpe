@@ -15,7 +15,7 @@ class CategoryView
     {
         $this->smarty->assign('tituloPagina','Categorias');
         $this->smarty->assign('base',BASE_URL);
-        $this->smarty->assign('title','Categorias');
+        $this->smarty->assign('titulo','Categorias');
         $this->smarty->assign('elements',$categories);
         $this->smarty->assign('idKey','id_category');
         $this->smarty->assign('elemType','category');
@@ -41,14 +41,15 @@ class CategoryView
         $this->smarty->assign('isUserLogged', true);
         $this->smarty->display('templates/categoryForm.tpl');  
     }
-    function showCategory($category,$products){
+    function showCategory($category,$products, $isUserLogged){
         $this->smarty->assign('category',$category);
         $this->smarty->assign('elements',$products);
         $this->smarty->assign('tituloPagina',"Categorias | $category->name ");
         $this->smarty->assign('base',BASE_URL);
-        $this->smarty->assign('title','Productos en esta categoria: ');
+        $this->smarty->assign('titulo','Productos en esta categoria: ');
         $this->smarty->assign('idKey','id_product');
         $this->smarty->assign('elemType','product');
+        $this->smarty->assign('isUserLogged',$isUserLogged);
         $this->smarty->display('templates/categoryDetail.tpl');
     }
 

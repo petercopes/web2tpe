@@ -20,14 +20,14 @@ class ProductController
 
     function showProducts()
     {
-        $isUserLogged = $this->authHelper->returnIfUserLogged();
+        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
         $products = $this->productModel->getProducts();
         $this->productView->showProducts($products, $isUserLogged);
     }
 
     function showAddProduct()
     {
-        $isUserLogged = $this->authHelper->returnIfUserLogged();
+        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
         if (!$isUserLogged) {
             $this->authHelper->redirect('login');
         }
@@ -41,7 +41,7 @@ class ProductController
     }
     function removeProduct($id)
     {
-        $isUserLogged = $this->authHelper->returnIfUserLogged();
+        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
         if ($isUserLogged) {
             $this->productModel->deleteProductFromDB($id);
             $this->showProducts();
@@ -49,7 +49,7 @@ class ProductController
     }
     function showEditProductForm($id)
     {
-        $isUserLogged = $this->authHelper->returnIfUserLogged();
+        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
         if (!$isUserLogged) {
             $this->authHelper->redirect('login');
         }
@@ -62,7 +62,8 @@ class ProductController
         $this->showProducts();
     }
     function showProduct($id){
+        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
         $product= $this->productModel->getProduct($id);
-        $this->productView->showProduct($product);
+        $this->productView->showProduct($product, $isUserLogged);
     }
 }

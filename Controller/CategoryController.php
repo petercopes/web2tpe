@@ -16,13 +16,13 @@ class CategoryController{
     }
 
     function showCategories(){
-        $isUserLogged = $this->authHelper->returnIfUserLogged();
+        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
         $categories = $this->categoryModel->getCategories();
         $this->categoryView->showCategories($categories, $isUserLogged);
     }
 
     function showAddCategoryForm(){
-        $isUserLogged = $this->authHelper->returnIfUserLogged();
+        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
         if(!$isUserLogged) {
             $this->authHelper->redirect('login');
         }
@@ -35,7 +35,7 @@ class CategoryController{
     }
 
     function deleteCategory($id) {
-        $isUserLogged = $this->authHelper->returnIfUserLogged();
+        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
         if($isUserLogged) {
             $this->categoryModel->deleteCategory($id);
             $this->showCategories();
@@ -43,7 +43,7 @@ class CategoryController{
     }
 
     function showEditCategoryForm($id) {
-        $isUserLogged = $this->authHelper->returnIfUserLogged();
+        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
         if(!$isUserLogged) {
             $this->authHelper->redirect('login');
         }
@@ -56,8 +56,9 @@ class CategoryController{
         $this->showCategories();
     }
     function showCategory($id){
+        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
         $category= $this->categoryModel->getCategory($id);
         $products = $this->categoryModel->getCategoryProducts($id);
-        $this->categoryView->showCategory($category,$products);
+        $this->categoryView->showCategory($category,$products, $isUserLogged);
     }
 }
