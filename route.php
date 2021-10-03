@@ -30,6 +30,12 @@ switch ($params[0]) {
     case "categories":
         $categoryController->showCategories();
     break;
+    case "category":
+        $categoryController->showCategory($params[1]);
+    break;
+    case "product":
+        $productController->showProduct($params[1]);
+    break;
     case "category-add-form":
         $categoryController->showAddCategoryForm();
     break;

@@ -39,4 +39,9 @@ class CategoryController{
         $this->categoryModel->editCategory($id, $_POST['name'], $_POST['description']);
         $this->showCategories();
     }
+    function showCategory($id){
+        $category= $this->categoryModel->getCategory($id);
+        $products = $this->categoryModel->getCategoryProducts($id);
+        $this->categoryView->showCategory($category,$products);
+    }
 }
