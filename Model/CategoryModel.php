@@ -23,6 +23,12 @@ class CategoryModel{
         $sentencia = $this->db->prepare("DELETE FROM category WHERE id_category=?");
         $sentencia->execute(array($id));
     }
+    function getCategoryProducts($id){
+        $sentencia = $this->db->prepare("select * from product WHERE id_category=?");
+        $sentencia->execute(array($id));
+        $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $products;
+    }
 
     function getCategory($id){
         $sentencia = $this->db->prepare("SELECT * FROM category WHERE id_category=?");

@@ -61,4 +61,8 @@ class ProductController
         $this->productModel->updateProductFromDB($id, $_POST['name'], $_POST['description'], $_POST['price']);
         $this->showProducts();
     }
+    function showProduct($id){
+        $product= $this->productModel->getProduct($id);
+        $this->productView->showProduct($product);
+    }
 }
