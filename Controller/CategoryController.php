@@ -31,14 +31,14 @@ class CategoryController{
 
     function addCategory() { 
         $this->categoryModel->addCategory($_POST['name'], $_POST['description']);
-        $this->showCategories();
+        $this->authHelper->redirect('categories');
     }
 
     function deleteCategory($id) {
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();
         if($isUserLogged) {
             $this->categoryModel->deleteCategory($id);
-            $this->showCategories();
+            $this->authHelper->redirect('categories');
         }
     }
 
@@ -53,7 +53,7 @@ class CategoryController{
 
     function editCategory($id) {
         $this->categoryModel->editCategory($id, $_POST['name'], $_POST['description']);
-        $this->showCategories();
+        $this->authHelper->redirect('categories');
     }
     function showCategory($id){
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();

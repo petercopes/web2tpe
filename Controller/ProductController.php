@@ -37,14 +37,14 @@ class ProductController
     function createProduct()
     {
         $this->productModel->addProduct($_POST['name'], $_POST['description'], $_POST['price'], $_POST['categoryId']);
-        $this->showProducts();
+        $this->authHelper->redirect('products');
     }
     function removeProduct($id)
     {
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();
         if ($isUserLogged) {
             $this->productModel->deleteProductFromDB($id);
-            $this->showProducts();
+            $this->authHelper->redirect('products');
         }
     }
     function showEditProductForm($id)
@@ -59,7 +59,7 @@ class ProductController
     function editProduct($id)
     {
         $this->productModel->updateProductFromDB($id, $_POST['name'], $_POST['description'], $_POST['price']);
-        $this->showProducts();
+        $this->authHelper->redirect('products');
     }
     function showProduct($id){
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();
