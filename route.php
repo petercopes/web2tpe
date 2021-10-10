@@ -18,6 +18,9 @@ $productController = new ProductController();
 $userController = new UserController();
 
 switch ($params[0]) {
+    case 'home':
+        $userController->showHome();
+        break;
     case "login":
         $userController->showLoginForm();
         break;
@@ -79,6 +82,6 @@ switch ($params[0]) {
         $productController->editProduct($params[1]);
         break;
     default:
-        echo ('not found');
+        echo 'not found';
         break;
 }

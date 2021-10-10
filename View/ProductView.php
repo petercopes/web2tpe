@@ -40,7 +40,9 @@ class ProductView
         $this->smarty->display('templates/productsForm.tpl'); 
     }
     function showProduct($product, $isUserLogged){
+        $this->smarty->assign('tituloPagina',$product->name);
         $this->smarty->assign('product',$product);
+        $this->smarty->assign('base',BASE_URL);
         $this->smarty->assign('isUserLogged',$isUserLogged);
         $this->smarty->display('templates/productDetail.tpl');
     }

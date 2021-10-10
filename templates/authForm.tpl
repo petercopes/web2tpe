@@ -14,7 +14,7 @@
         <input type="submit" value="Log in">
     </form>
 
-    <li><a href="{$base}create-user-form">Crear usuario</a></li>
+    <a href="{$base}create-user-form">Crear usuario</a>
 {/if}
 
 <h4>{$message}</h4>

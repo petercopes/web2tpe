@@ -1,13 +1,13 @@
-<nav>
-    <ul>
-        <li><a href="{$base}home">Home</a></li>
-        <li><a href="{$base}products">Productos</a></li>
-        <li><a href="{$base}categories">Categorias</a></li>
+<nav class="navbar  navbar-dark bg-dark justify-content-end">
+    <ul class=' navbar-nav flex-row '>
+        <li class='nav-item m-2'><a class='nav-link' href="{$base}home">Home</a></li>
+        <li class='nav-item m-2'><a class='nav-link' href="{$base}products">Productos</a></li>
+        <li class='nav-item m-2'><a class='nav-link' href="{$base}categories">Categorias</a></li>
         {if $isUserLogged eq true}
-            <li><a href="{$base}admin-actions">Admin actions</a></li>
-            <li><a href="{$base}logout">Log Out</a></li>
+            <li class='nav-item m-2'><a class='nav-link' href="{$base}admin-actions">BackOffice</a></li>
+            <li class='nav-item m-2'><a class='nav-link' href="{$base}logout">Log Out</a></li>
         {else}
-            <li><a href="{$base}login">Log In</a></li>
+            <li class='nav-item m-2'><a class='nav-link' href="{$base}login">Log In</a></li>
         {/if}
     </ul>
 </nav>

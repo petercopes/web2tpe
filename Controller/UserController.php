@@ -5,10 +5,12 @@ require_once "./View/UserView.php";
 class UserController{
     private $userModel;
     private $userView;
+    private $authHelper;
 
     function __construct(){
         $this->userModel = new UserModel();
         $this->userView = new UserView();
+        $this->authHelper = new AuthHelper();
     }
 
     function showAdminActions(){
@@ -61,6 +63,9 @@ class UserController{
             $this->userView->showLoginForm("Por favor complete los campos");
         }
     }
-
+    function showHome(){
+        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
+        $this->userView->showHome($isUserLogged);
+    }
 }
 
