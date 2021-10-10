@@ -37,4 +37,10 @@ class UserView
         $this->smarty->assign('isUserLogged', true);    
         $this->smarty->display('templates/adminActions.tpl'); 
     }
+    function showHome($isUserLogged){
+        $this->smarty->assign('tituloPagina','Home');
+        $this->smarty->assign('base',BASE_URL);
+        $this->smarty->assign('isUserLogged',$isUserLogged);    
+        $this->smarty->display(('templates/home.tpl'));
+    }
 }
