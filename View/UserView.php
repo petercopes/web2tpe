@@ -23,10 +23,12 @@ class UserView
         $this->smarty->display('templates/authForm.tpl'); 
     }
 
-    function showCreateUserForm($message = "") {
+    function showCreateUserForm($showAlert = false, $alertMessage = "", $result = "") {
         $this->smarty->assign('tituloPagina','Crear Usuario');
         $this->smarty->assign('base',BASE_URL);
-        $this->smarty->assign('message', $message);      
+        $this->smarty->assign('showAlert',$showAlert);    
+        $this->smarty->assign('alertMessage',$alertMessage);    
+        $this->smarty->assign('result',$result);          
         $this->smarty->assign('action', 'create-user');   
         $this->smarty->assign('titulo', 'Crear Usuario');    
         $this->smarty->assign('isUserLogged', false);         

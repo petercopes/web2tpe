@@ -21,7 +21,7 @@ class ProductController
     function showProducts()
     {
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        $products = $this->productModel->getProducts();
+        $products = $this->productModel->getProductsWithCategory();
         $this->productView->showProducts($products, $isUserLogged);
     }
 
