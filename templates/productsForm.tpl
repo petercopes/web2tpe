@@ -1,7 +1,7 @@
 {include file='templates/header.tpl'}
 {include file='templates/nav.tpl'}
 <main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column">
-    <h2>{$titulo}</h2>
+    <h1>{$titulo}</h1>
     <div class="card container-fluid d-flex justify-content-evenly p-4" >
         {if $act eq 'add'}
             <form class="form-alta" action="{$base}add-product" method="post">

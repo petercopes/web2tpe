@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-08 19:15:08
+/* Smarty version 3.1.39, created on 2021-10-13 20:22:22
   from '/opt/lampp/htdocs/web2tpe/templates/footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61607c9cb35e59_85521836',
+  'unifunc' => 'content_616723dea3ca55_74541605',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bb3512e0bddebc32f1e09eb59152484ab28ce515' => 
     array (
       0 => '/opt/lampp/htdocs/web2tpe/templates/footer.tpl',
-      1 => 1633712332,
+      1 => 1634149340,
       2 => 'file',
     ),
   ),
@@ -20,11 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61607c9cb35e59_85521836 (Smarty_Internal_Template $_smarty_tpl) {
-echo '<script'; ?>
- src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"><?php echo '</script'; ?>
->
-    
-</body>
-</html><?php }
+function content_616723dea3ca55_74541605 (Smarty_Internal_Template $_smarty_tpl) {
+?><div class="bg-dark d-flex justify-content-evenly align-items-center p-5 w-100 position-absolute bottom-0">
+    <div class="text-light">Tel: +541147567879</div>
+    <div class="text-light">Correo: contacto@lafemme.com.ar</div>
+    <div class="text-light">Oficina: Honduras 4543, CABA.</div>
+</div><?php }
 }

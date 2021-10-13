@@ -26,7 +26,7 @@ class CategoryView
     function showAddCategoryForm() {
         $this->smarty->assign('tituloPagina','Añadir Categoria');
         $this->smarty->assign('base',BASE_URL);
-        $this->smarty->assign('titulo','Agregar Categoria');
+        $this->smarty->assign('titulo','Añadir una Categoria');
         $this->smarty->assign('action','add');
         $this->smarty->assign('isUserLogged', true);
         $this->smarty->display('templates/categoryForm.tpl');  

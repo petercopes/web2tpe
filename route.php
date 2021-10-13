@@ -36,9 +36,6 @@ switch ($params[0]) {
     case 'verify-user':
         $userController->verifyLogin();
         break;
-    case "admin-actions":
-        $userController->showAdminActions();
-        break;
     case "products":
         $productController->showProducts();
         break;
