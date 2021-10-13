@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-08 23:24:24
+/* Smarty version 3.1.39, created on 2021-10-13 20:04:34
   from '/opt/lampp/htdocs/web2tpe/templates/productsForm.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6160b7082bbd61_15122246',
+  'unifunc' => 'content_61671fb2b70cc2_34180336',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '707587810a4d1f11bf85412b693ae2de1d9465b4' => 
     array (
       0 => '/opt/lampp/htdocs/web2tpe/templates/productsForm.tpl',
-      1 => 1633728263,
+      1 => 1634147522,
       2 => 'file',
     ),
   ),
@@ -23,13 +23,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_6160b7082bbd61_15122246 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61671fb2b70cc2_34180336 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 $_smarty_tpl->_subTemplateRender('file:templates/nav.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column">
-    <h2><?php echo $_smarty_tpl->tpl_vars['titulo']->value;?>
-</h2>
+    <h1><?php echo $_smarty_tpl->tpl_vars['titulo']->value;?>
+</h1>
     <div class="card container-fluid d-flex justify-content-evenly p-4" >
         <?php if ($_smarty_tpl->tpl_vars['act']->value == 'add') {?>
             <form class="form-alta" action="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
