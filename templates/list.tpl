@@ -51,6 +51,8 @@
         </div>
     {/if}
     {if $isUserLogged eq true}
-        <a class="mt-3 text-secondary text-decoration-none" href="{$base}{$elemType}-add-form">Agregar Nuevo</a>
+        <div class="btn btn-light">
+            <a class="mt-3 text-secondary text-decoration-none" href="{$base}{$elemType}-add-form">{$addText}</a>
+        </div>
     {/if}
 </div>

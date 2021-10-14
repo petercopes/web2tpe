@@ -19,6 +19,7 @@ class CategoryView
         $this->smarty->assign('elements',$categories);
         $this->smarty->assign('idKey','id_category');
         $this->smarty->assign('elemType','category');
+        $this->smarty->assign('addText','Agregar Nueva');
         $this->smarty->assign('isUserLogged', $isUserLogged);
         $this->smarty->display('templates/categoryList.tpl');  
     }
@@ -49,6 +50,7 @@ class CategoryView
         $this->smarty->assign('titulo','Productos en esta categoria: ');
         $this->smarty->assign('idKey','id_product');
         $this->smarty->assign('elemType','product');
+        $this->smarty->assign('addText','Agregar Nuevo');
         $this->smarty->assign('isUserLogged',$isUserLogged);
         $this->smarty->display('templates/categoryDetail.tpl');
     }

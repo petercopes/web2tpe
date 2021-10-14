@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-14 01:50:47
+/* Smarty version 3.1.39, created on 2021-10-14 02:27:21
   from '/opt/lampp/htdocs/web2tpe/templates/list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_616770d741d047_14875542',
+  'unifunc' => 'content_61677969e5b4e5_92742665',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '60376fdeaebfb6999ba1abe8805ebc9c24444fb5' => 
     array (
       0 => '/opt/lampp/htdocs/web2tpe/templates/list.tpl',
-      1 => 1634169042,
+      1 => 1634171175,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_616770d741d047_14875542 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61677969e5b4e5_92742665 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="container mt-5">
     <h1><?php echo $_smarty_tpl->tpl_vars['titulo']->value;?>
 </h1>
@@ -91,9 +91,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </div>
     <?php }?>
     <?php if ($_smarty_tpl->tpl_vars['isUserLogged']->value == true) {?>
-        <a class="mt-3 text-secondary text-decoration-none" href="<?php echo $_smarty_tpl->tpl_vars['base']->value;
+        <div class="btn btn-light">
+            <a class="mt-3 text-secondary text-decoration-none" href="<?php echo $_smarty_tpl->tpl_vars['base']->value;
 echo $_smarty_tpl->tpl_vars['elemType']->value;?>
--add-form">Agregar Nuevo</a>
+-add-form"><?php echo $_smarty_tpl->tpl_vars['addText']->value;?>
+</a>
+        </div>
     <?php }?>
 </div><?php }
 }
