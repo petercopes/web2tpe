@@ -20,7 +20,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="category" class="form-label">Categoria</label>
-                    <select name="categoryId" id="categoryId">';
+                    <select name="categoryId" id="categoryId"  class="form-control">';
                         {foreach from=$categories item=$category}
                             <option value={$category->id_category}>{$category->name}</option>;
                         {/foreach}

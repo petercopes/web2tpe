@@ -13,12 +13,21 @@ class ProductModel{
         $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $products;
     } 
+
     function getProduct($id){
         $sentencia = $this->db->prepare( "select * from product WHERE id_product=?");
         $sentencia->execute(array($id));
         $product = $sentencia->fetch(PDO::FETCH_OBJ);
         return $product;
     }
+
+    function getProductsWithCategory(){
+        $sentencia = $this->db->prepare( 'select p.*, c.name as "category_name" from product p join category c on (p.id_category = c.id_category)');
+        $sentencia->execute();
+        $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $products;
+    }
+
     function addProduct($name, $description, $price,$categoryId){
         $sentencia = $this->db->prepare("INSERT INTO product(name, description, price,id_category) VALUES(?, ?, ?, ?)");
         $sentencia->execute(array($name,$description,$price, $categoryId));
