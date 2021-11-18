@@ -1,5 +1,5 @@
 <?php
-require_once "./Model/ProductModel.php.php";
+require_once "./Model/ProductModel.php";
 require_once "./View/ApiView.php";
 
 class ApiProductController
