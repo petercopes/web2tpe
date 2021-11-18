@@ -4,6 +4,7 @@ require_once "./Controller/ProductController.php";
 require_once "./Controller/UserController.php";
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
+define('BASE_API_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/api/');
 
 if (!empty($_GET["action"])) {
     $action = $_GET["action"];
@@ -41,13 +42,13 @@ switch ($params[0]) {
         break;
     case "categories":
         $categoryController->showCategories();
-    break;
+        break;
     case "category":
         $categoryController->showCategory($params[1]);
-    break;
+        break;
     case "product":
         $productController->showProduct($params[1]);
-    break;
+        break;
     case "category-add-form":
         $categoryController->showAddCategoryForm();
         break;

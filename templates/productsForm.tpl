@@ -4,7 +4,7 @@
     <h1>{$titulo}</h1>
     <div class="card container-fluid d-flex justify-content-evenly p-4" >
         {if $act eq 'add'}
-            <form class="form-alta" action="{$base}add-product" method="post">
+            <form class="form-alta" id="productForm" action="{$base}add-product" method="post">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nombre del Producto</label>
                     <input  type="text" class="form-control" name="name" id="name" required>
@@ -30,7 +30,7 @@
             </form>
 
         {else}
-            <form class="form-alta" action="{$base}edit-product/{$product->id_product}" method="post">
+            <form class="form-alta" id="productForm" action="{$base}edit-product/{$product->id_product}" method="post">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nombre del Producto</label>
                     <input class="form-control" placeholder="Nombre del producto" type="text" value="{$product->name}" name="name" id="name" required>      
