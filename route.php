@@ -52,6 +52,12 @@ switch ($params[0]) {
     case "add-category":
         $categoryController->showAddCategoryForm();
         break;
+    case "users":
+        $userController->showUsersTab();
+        break;
+    case "remove-user":
+        $userController->removeUser($params[1]);
+        break;
         /* case "add-category":
         $categoryController->addCategory();
         break; */
