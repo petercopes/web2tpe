@@ -14,11 +14,9 @@ async function getProducts() {
 }
 
 async function addProduct(e) {
-    console.log("as");
-    e.preventDefault();
-    alert("Si te animás hace el POST via fetch ;)");
+    
 }
 async function removeProduct(e){
-    
+
 }
 getTareas();

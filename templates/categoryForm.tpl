@@ -17,7 +17,7 @@
                 <input class="btn btn-primary" type="submit" value="Guardar">
             </form>
         {else}
-            <form class="form-alta"  id="categoryForm" action="{$baseApi}categories/{$category->id_category}" method="post">
+            <form class="form-alta"  id="categoryForm" action="{$baseApi}categories/{$category->id_category}" method="put">
             <div class="mb-3">
                 <label for="name" class="form-label">Nombre de la Categoria</label>
                 <input placeholder="Nombre" type="text" name="name" id="name" class="form-control"

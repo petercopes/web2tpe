@@ -30,7 +30,7 @@
             </form>
 
         {else}
-            <form class="form-alta" id="productForm" action="{$base}edit-product/{$product->id_product}" method="post">
+            <form class="form-alta" id="productForm" action="{$base}edit-product/{$product->id_product}" method="put">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nombre del Producto</label>
                     <input class="form-control" placeholder="Nombre del producto" type="text" value="{$product->name}" name="name" id="name" required>      

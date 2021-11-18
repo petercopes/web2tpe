@@ -15,9 +15,10 @@ async function getCategorias() {
 }
 
 async function addCategory(e) {
-    console.log("as");
-    e.preventDefault();
-    alert("Si te animás hace el POST via fetch ;)");
+    
+}
+async function removeCategory(e) {
+    
 }
 
 getTareas();
