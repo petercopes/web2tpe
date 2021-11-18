@@ -16,7 +16,7 @@ class ProductView
         $this->smarty->assign('titulo', 'Productos');
         $this->smarty->assign('elements', $products);
         $this->smarty->assign('idKey', 'id_product');
-        $this->smarty->assign('elemType', 'product');
+        $this->smarty->assign('elemType', 'Product');
         $this->smarty->assign('isUserLogged', $isUserLogged);
         $this->smarty->assign('addText', 'Agregar Nuevo');
         $this->smarty->display('templates/productList.tpl');

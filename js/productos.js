@@ -2,7 +2,7 @@
 const API_PRODUCT_URL = "api/productos";
 
 document.getElementById("productForm").addEventListener("submit", addProduct);
-
+document.getElementById("removeProduct").addEventListener("click",removeProduct);
 async function getProducts() {
     try {
         let response = await fetch(API_PRODUCT_URL);
@@ -18,5 +18,7 @@ async function addProduct(e) {
     e.preventDefault();
     alert("Si te animás hace el POST via fetch ;)");
 }
-
+async function removeProduct(e){
+    
+}
 getTareas();

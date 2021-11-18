@@ -4,7 +4,7 @@
     <h1>{$titulo}</h1>
     <div class="card container-fluid d-flex justify-content-evenly p-4">
         {if $action eq "add"}
-            <form class="form-alta" action="{$base}add-category" method="post">
+            <form class="form-alta" id="categoryForm" action="{$baseApi}categories" method="post">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nombre de la Categoria</label>
                     <input placeholder="Nombre" type="text" name="name" id="name" class="form-control" required>
@@ -17,7 +17,7 @@
                 <input class="btn btn-primary" type="submit" value="Guardar">
             </form>
         {else}
-            <form class="form-alta" action="{$base}edit-category/{$category->id_category}"" method=" post">
+            <form class="form-alta"  id="categoryForm" action="{$baseApi}categories/{$category->id_category}" method="post">
             <div class="mb-3">
                 <label for="name" class="form-label">Nombre de la Categoria</label>
                 <input placeholder="Nombre" type="text" name="name" id="name" class="form-control"
