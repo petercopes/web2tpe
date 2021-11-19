@@ -7,10 +7,7 @@
             <h2 class="card-title">{$product->name}</h2>
             <h3 class="card-subtitle mb-2 text-muted">{$product->price}</h3>
             <p class="card-text">{$product->description}</p>
-            <div class="comments container">
-                <ul class="list-group">
-                </ul>
-            </div>
+            
             {if $isUserLogged eq true}
                 <div class="container-fluid d-flex justify-content-evenly flex-row">
                     <a href="edit-product-form/{$product->id_product}" class=" card-link btn btn-dark">
@@ -35,7 +32,17 @@
 
             {/if}
         </div>
+       { if $isUSerLogged eq true}
+            <div class="comments container" id="commentsContainer" user-data={$userToken} user-role={$userRole}>
+                {include file="templates/commentList.tpl"}
+            </div>
+        {else}
+            <div class="comments container" id="commentsContainer">
+                {include file="templates/commentList.tpl"}
+            </div>
+        {/if}
+   
     </div>
-
+    <script src='../js/comments.js'></script>
 </main>
 {include file='templates/footer.tpl'}
