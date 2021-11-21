@@ -16,7 +16,7 @@
                         {$user->name}
                     </td>
                     <td>
-                        <form class="form-alta" id="userRoleForm" action="{$baseApi}users/{$user->id}" method="update">
+                        <form class="form-alta" id="userRoleForm" action="{$baseApi}users/{$user->id}" method="put">
                             <select name="rating" id="rating" value={$user->role} class="form-control">'
                                 <option value=1>Admin</option>
                                 <option value=2>User</option>
