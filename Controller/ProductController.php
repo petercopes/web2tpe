@@ -1,7 +1,7 @@
 <?php
 require_once "./Model/ProductModel.php";
 require_once "./View/ProductView.php";
-require_once "./Helper/AuthHelper.php";
+require_once "./Helpers/AuthHelper.php";
 
 class ProductController
 {

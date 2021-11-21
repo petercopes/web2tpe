@@ -1,7 +1,7 @@
 <?php
 require_once './Model/CategoryModel.php';
 require_once "./View/CategoryView.php";
-require_once "./Helper/AuthHelper.php";
+require_once "./Helpers/AuthHelper.php";
 
 
 class CategoryController
