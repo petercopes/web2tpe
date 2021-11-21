@@ -38,6 +38,11 @@ class ProductModel
         $sentencia = $this->db->prepare("INSERT INTO product(name, description, price,id_category) VALUES(?, ?, ?, ?)");
         $sentencia->execute(array($name, $description, $price, $categoryId));
     }
+    function addProductWithImageToDB($name, $description, $price, $categoryId, $filepath)
+    {
+        $sentencia = $this->db->prepare("INSERT INTO product(name, description, price,id_category,image_path) VALUES(?, ?, ?, ?,?)");
+        $sentencia->execute(array($name, $description, $price, $categoryId));
+    }
     function deleteProductFromDB($id)
     {
         $sentencia = $this->db->prepare("DELETE FROM product WHERE id_product=?");

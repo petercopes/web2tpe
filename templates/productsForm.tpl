@@ -21,36 +21,36 @@
                 </div>
                 <div class="mb-3">
                     <label for="category" class="form-label">Categoria</label>
-    <select name="categoryId" id="categoryId" class="form-control">';
-                    {foreach from=$categories item=$category}
-                    <option value={$category->id_category}>{$category->name}</option>;
-                    {/foreach}
-                </select>
-            </div>
-            <input type="file" name="productImage" id="productImage">
-            <input type="submit" class="btn btn-primary" value="Añadir">
-        </form>
+                    <select name="categoryId" id="categoryId" class="form-control">
+                        {foreach from=$categories item=$category}
+                            <option value={$category->id_category}>{$category->name}</option>;
+                        {/foreach}
+                    </select>
+                </div>
+                <input type="file" name="productImage" accept="image/png, image/jpeg" id="productImage">
+                <input type="submit" class="btn btn-primary" value="Añadir">
+            </form>
 
         {else}
-        <form class="form-alta" id="productForm" action="{$base}edit-product/{$product->id_product}" method="put">
-            <div class="mb-3">
-                <label for="name" class="form-label">Nombre del Producto</label>
-                <input class="form-control" placeholder="Nombre del producto" type="text" value="{$product->name}"
-                    name="name" id="name" required>
-            </div>
-            <div class="mb-3">
-                <label for="description" class="form-label">Descripcion</label>
-                <textarea class="form-control" placeholder="descripcion" type="text" name="description" id="description"
-                    required>{$product->description}</textarea>
-            </div>
-            <div class="mb-3">
-                <label for="price" class="form-label">Precio</label>
-                <input class="form-control" placeholder="precio" type="number" value="{$product->price}" name="price"
-                    id="price" required>
-            </div>
-            <input type="file" name="productImage" id="productImage">
-            <input type="submit" class="btn btn-primary" value="Guardar">
-        </form>
+            <form class="form-alta" id="productForm" action="{$base}edit-product/{$product->id_product}" method="put">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nombre del Producto</label>
+                    <input class="form-control" placeholder="Nombre del producto" type="text" value="{$product->name}"
+                        name="name" id="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Descripcion</label>
+                    <textarea class="form-control" placeholder="descripcion" type="text" name="description" id="description"
+                        required>{$product->description}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Precio</label>
+                    <input class="form-control" placeholder="precio" type="number" value="{$product->price}" name="price"
+                        id="price" required>
+                </div>
+                <input type="file" name="productImage" accept="image/png, image/jpeg" id="productImage">
+                <input type="submit" class="btn btn-primary" value="Guardar">
+            </form>
         {/if}
     </div>
 </main>

@@ -36,6 +36,12 @@ class ProductController
     }
     function createProduct()
     {
+        if (isset($_FILES['productImage']) && ($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" || $_FILES['input_name']['type'] == "image/png")) {
+            $this->productModel->addProductWithImageToDB($_POST['name'], $_POST['description'], $_POST['price'], $_POST['categoryId'], $_FILES['productImage']['tmp_name']);
+            $filePath = "productFiles/" . uniqid("", true) . "." . strtolower(pathinfo($_FILES['input_name']['name'], PATHINFO_EXTENSION));
+            move_uploaded_file($_FILES['productImage']['tmp_name'], $filePath);
+            $this->authHelper->redirect('products');
+        }
         $this->productModel->addProductToDB($_POST['name'], $_POST['description'], $_POST['price'], $_POST['categoryId']);
         $this->authHelper->redirect('products');
     }
