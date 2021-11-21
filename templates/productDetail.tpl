@@ -9,6 +9,7 @@
             <p class="card-text">{$product->description}</p>
             <div class="comments container">
                 <ul class="list-group">
+                    {include file="templates/comments" }
                 </ul>
             </div>
             {if $isUserLogged eq true}
