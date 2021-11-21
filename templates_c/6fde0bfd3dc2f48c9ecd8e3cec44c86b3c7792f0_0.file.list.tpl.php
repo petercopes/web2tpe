@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-18 00:19:12
+/* Smarty version 3.1.39, created on 2021-11-21 21:39:34
   from 'C:\xampp\htdocs\web2tpe\templates\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61958df0d93727_52570581',
+  'unifunc' => 'content_619aae864f6ce5_22022741',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6fde0bfd3dc2f48c9ecd8e3cec44c86b3c7792f0' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\list.tpl',
-      1 => 1637190536,
+      1 => 1637526944,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61958df0d93727_52570581 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619aae864f6ce5_22022741 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="container mt-5">
     <h1><?php echo $_smarty_tpl->tpl_vars['titulo']->value;?>
 </h1>
@@ -48,7 +48,7 @@ $_smarty_tpl->tpl_vars['element']->do_else = false;
                                     <?php if ($_smarty_tpl->tpl_vars['isUserLogged']->value == true) {?>
                                         <div class="mx-2">
                                             <a class="text-secondary" href="edit-<?php echo $_smarty_tpl->tpl_vars['elemType']->value;?>
--form/<?php echo $_smarty_tpl->tpl_vars['element']->value->{$_smarty_tpl->tpl_vars['idKey']->value};?>
+/<?php echo $_smarty_tpl->tpl_vars['element']->value->{$_smarty_tpl->tpl_vars['idKey']->value};?>
 ">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                                     class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -60,8 +60,7 @@ $_smarty_tpl->tpl_vars['element']->do_else = false;
                                             </a>
                                         </div>
                                         <div class="mx-2">
-                                            <a class="text-secondary" href="remove-<?php echo $_smarty_tpl->tpl_vars['elemType']->value;?>
-/<?php echo $_smarty_tpl->tpl_vars['element']->value->{$_smarty_tpl->tpl_vars['idKey']->value};?>
+                                            <div class="text-secondary" id="remove<?php echo $_smarty_tpl->tpl_vars['elemType']->value;?>
 ">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                                     class="bi bi-trash" viewBox="0 0 16 16">
@@ -70,7 +69,7 @@ $_smarty_tpl->tpl_vars['element']->do_else = false;
                                                     <path fill-rule="evenodd"
                                                         d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
                                                 </svg>
-                                            </a>
+                                            </div>
                                         </div>
                                     <?php }?>
                                     <div>
