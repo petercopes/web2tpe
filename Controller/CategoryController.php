@@ -4,61 +4,70 @@ require_once "./View/CategoryView.php";
 require_once "./Helpers/AuthHelper.php";
 
 
-class CategoryController{
+class CategoryController
+{
     private $categoryModel;
-    private $categoryView;    
+    private $categoryView;
     private $authHelper;
 
-    function __construct(){
+    function __construct()
+    {
         $this->categoryModel = new CategoryModel();
         $this->categoryView = new CategoryView();
         $this->authHelper = new AuthHelper();
     }
 
-    function showCategories(){
+    function showCategories()
+    {
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        $categories = $this->categoryModel->getCategories();
+        $categories = $this->categoryModel->getCategoriesFromDB();
         $this->categoryView->showCategories($categories, $isUserLogged);
     }
 
-    function showAddCategoryForm(){
+    function showAddCategoryForm()
+    {
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        if(!$isUserLogged) {
+        if (!$isUserLogged) {
             $this->authHelper->redirect('login');
         }
         $this->categoryView->showAddCategoryForm();
     }
 
-    function addCategory() { 
-        $this->categoryModel->addCategory($_POST['name'], $_POST['description']);
+    function addCategory()
+    {
+        $this->categoryModel->addCategoryToDB($_POST['name'], $_POST['description']);
         $this->authHelper->redirect('categories');
     }
 
-    function deleteCategory($id) {
+    function deleteCategory($id)
+    {
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        if($isUserLogged) {
-            $this->categoryModel->deleteCategory($id);
+        if ($isUserLogged) {
+            $this->categoryModel->deleteCategoryFromDB($id);
             $this->authHelper->redirect('categories');
         }
     }
 
-    function showEditCategoryForm($id) {
+    function showEditCategoryForm($id)
+    {
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        if(!$isUserLogged) {
+        if (!$isUserLogged) {
             $this->authHelper->redirect('login');
         }
-        $category = $this->categoryModel->getCategory($id);
+        $category = $this->categoryModel->getCategoryFromDB($id);
         $this->categoryView->showEditCategoryForm($category);
     }
 
-    function editCategory($id) {
-        $this->categoryModel->editCategory($id, $_POST['name'], $_POST['description']);
+    function editCategory($id)
+    {
+        $this->categoryModel->editCategoryOnDB($id, $_POST['name'], $_POST['description']);
         $this->authHelper->redirect('categories');
     }
-    function showCategory($id){
+    function showCategory($id)
+    {
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        $category= $this->categoryModel->getCategory($id);
+        $category = $this->categoryModel->getCategoryFromDB($id);
         $products = $this->categoryModel->getCategoryProducts($id);
-        $this->categoryView->showCategory($category,$products, $isUserLogged);
+        $this->categoryView->showCategory($category, $products, $isUserLogged);
     }
 }

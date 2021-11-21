@@ -1,42 +1,52 @@
 <?php
+// require_once "./Model/UserModel.php";
 require_once "./View/ApiView.php";
 require_once "./Helpers/AuthApiHelper.php";
 
-class ApiUserController{
+class ApiUserController
+{
 
+    // private $model;
     private $view;
     private $authHelper;
 
-    function __construct(){
+    function __construct()
+    {
+        // $this->model = new UserModel();
         $this->view = new ApiView();
         $this->authHelper = new AuthApiHelper();
     }
 
-    function getToken($params = null) {
+    function getToken()
+    {
         $userpass = $this->authHelper->getBasic();
-        $user = array("user"=>$userpass["user"]);
-    
+        // Obtengo el usuario de la base de datos
+        // $user = $this->model->getUser($email);
+        $user = array("user" => $userpass["user"]);
+
         // Si el usuario existe y las contraseñas coinciden
         if (true/*$user && password_verify($password, $user->password)*/) {
             $token = $this->authHelper->createToken($user);
-            
-            $this->view->response(["token"=>$token], 200);
-        
-        }else{
+
+            // devolver un token
+            $this->view->response(["token" => $token], 200);
+        } else {
             $this->view->response("Usuario y contraseña incorrectos", 401);
         }
     }
 
-    function getUser($params = null){
+    function getUser($params = null)
+    {
+        // users/:ID
         $id = $params[":ID"];
         $user = $this->authHelper->getUser();
-        if($user)
-            if($id == $user->sub){
+        if ($user)
+            if ($id == $user->sub) {
                 $this->view->response($user, 200);
-            }else{
+            } else {
                 $this->view->response("Forbidden", 403);
             }
-        else{
+        else {
             $this->view->response("Unauthorized", 401);
         }
     }

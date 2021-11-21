@@ -31,12 +31,12 @@ class ProductController
         if (!$isUserLogged) {
             $this->authHelper->redirect('login');
         }
-        $categoriesAvailable = $this->categoryModel->getCategories();
+        $categoriesAvailable = $this->categoryModel->getCategoriesFromDB();
         $this->productView->showAddProductForm($categoriesAvailable);
     }
     function createProduct()
     {
-        $this->productModel->addProduct($_POST['name'], $_POST['description'], $_POST['price'], $_POST['categoryId']);
+        $this->productModel->addProductToDB($_POST['name'], $_POST['description'], $_POST['price'], $_POST['categoryId']);
         $this->authHelper->redirect('products');
     }
     function removeProduct($id)
@@ -53,17 +53,18 @@ class ProductController
         if (!$isUserLogged) {
             $this->authHelper->redirect('login');
         }
-        $product = $this->productModel->getProduct($id);
+        $product = $this->productModel->getProductFromDB($id);
         $this->productView->showEditProductForm($product);
     }
     function editProduct($id)
     {
-        $this->productModel->updateProductFromDB($id, $_POST['name'], $_POST['description'], $_POST['price']);
+        $this->productModel->updateProductOnDB($id, $_POST['name'], $_POST['description'], $_POST['price']);
         $this->authHelper->redirect('products');
     }
-    function showProduct($id){
+    function showProduct($id)
+    {
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        $product= $this->productModel->getProduct($id);
+        $product = $this->productModel->getProductFromDB($id);
         $this->productView->showProduct($product, $isUserLogged);
     }
 }
