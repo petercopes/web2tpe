@@ -7,6 +7,7 @@ async function getProducts() {
     try {
         let response = await fetch(API_PRODUCT_URL);
         let products = await response.json();
+        console.log("products", products);
         return products;
     } catch (e) {
         console.log(e);
