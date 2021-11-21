@@ -4,6 +4,7 @@ require_once "./Controller/ProductController.php";
 require_once "./Controller/UserController.php";
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
+define('BASE_API_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/api/');
 
 if (!empty($_GET["action"])) {
     $action = $_GET["action"];
@@ -27,12 +28,12 @@ switch ($params[0]) {
     case 'logout':
         $userController->logout();
         break;
-    case 'create-user-form':
+    case 'create-user':
         $userController->showCreateUserForm();
         break;
-    case 'create-user':
+        /* case 'create-user':
         $userController->createUser();
-        break;
+        break; */
     case 'verify-user':
         $userController->verifyLogin();
         break;
@@ -41,43 +42,49 @@ switch ($params[0]) {
         break;
     case "categories":
         $categoryController->showCategories();
-    break;
+        break;
     case "category":
         $categoryController->showCategory($params[1]);
-    break;
+        break;
     case "product":
         $productController->showProduct($params[1]);
-    break;
-    case "category-add-form":
-        $categoryController->showAddCategoryForm();
         break;
     case "add-category":
+        $categoryController->showAddCategoryForm();
+        break;
+    case "users":
+        $userController->showUsersTab();
+        break;
+    case "remove-user":
+        $userController->removeUser($params[1]);
+        break;
+        /* case "add-category":
         $categoryController->addCategory();
-        break;
-    case "remove-category":
+        break; */
+        /* case "remove-category":
         $categoryController->deleteCategory($params[1]);
-        break;
-    case "edit-category-form":
+        break; */
+    case "edit-category":
         $categoryController->showEditCategoryForm($params[1]);
         break;
-    case "edit-category":
+        /* case "edit-category":
         $categoryController->editCategory($params[1]);
-        break;
-    case "product-add-form":
+        break; */
+    case "add-product":
         $productController->showAddProduct();
         break;
-    case "remove-product":
+        /* case "remove-product":
         $productController->removeProduct($params[1]);
         break;
     case "add-product":
         $productController->createProduct();
-        break;
-    case "edit-product-form":
+        break; */
+    case "edit-product":
         $productController->showEditProductForm($params[1]);
         break;
-    case "edit-product":
+        /*  case "edit-product":
         $productController->editProduct($params[1]);
-        break;
+        break; */
     default:
         echo 'not found';
         break;
