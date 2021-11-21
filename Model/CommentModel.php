@@ -17,10 +17,10 @@ class CommentModel
         return $comments;
     }
 
-    function addCommentToDB($username, $description)
+    function addCommentToDB($username, $message, $rating, $productId)
     {
-        $sentencia = $this->db->prepare("INSERT INTO comment(name, description) VALUES(?, ?)");
-        $sentencia->execute(array($username, $description));
+        $sentencia = $this->db->prepare("INSERT INTO comment(name, message,rating,id_product) VALUES(?,?,?,?)");
+        $sentencia->execute(array($username, $message, $rating, $productId));
     }
 
     function deleteCommentFromDB($id)
@@ -35,11 +35,5 @@ class CommentModel
         $sentencia->execute(array($id));
         $comment = $sentencia->fetch(PDO::FETCH_OBJ);
         return $comment;
-    }
-
-    function editCommentOnDB($id, $name, $description)
-    {
-        $sentencia = $this->db->prepare("UPDATE comment SET name=?, description=? WHERE id_comment=?");
-        $sentencia->execute(array($name, $description, $id));
     }
 }
