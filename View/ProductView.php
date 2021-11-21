@@ -9,7 +9,7 @@ class ProductView
         $this->smarty = new Smarty();
     }
 
-    function showProducts($products, $userRole)
+    function showProducts($products, $isUserLogged)
     {
         $this->smarty->assign('tituloPagina', 'Productos');
         $this->smarty->assign('base', BASE_URL);
@@ -17,7 +17,7 @@ class ProductView
         $this->smarty->assign('elements', $products);
         $this->smarty->assign('idKey', 'id_product');
         $this->smarty->assign('elemType', 'Product');
-        $this->smarty->assign('userRole', $userRole);
+        $this->smarty->assign('isUserLogged', $isUserLogged);
         $this->smarty->assign('addText', 'Agregar Nuevo');
         $this->smarty->display('templates/productList.tpl');
     }

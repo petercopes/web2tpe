@@ -11,7 +11,7 @@ class CategoryView
         $this->smarty = new Smarty();
     }
 
-    function showCategories($categories, $userRole)
+    function showCategories($categories, $isUserLogged)
     {
         $this->smarty->assign('tituloPagina', 'Categorias');
         $this->smarty->assign('base', BASE_URL);
@@ -21,7 +21,7 @@ class CategoryView
         $this->smarty->assign('elemType', 'category');
         $this->smarty->assign('baseApi', BASE_API_URL);
         $this->smarty->assign('addText', 'Agregar Nueva');
-        $this->smarty->assign('userRole', $userRole);
+        $this->smarty->assign('isUserLogged', $isUserLogged);
         $this->smarty->display('templates/categoryList.tpl');
     }
 
