@@ -7,7 +7,13 @@
             <h2 class="card-title">{$product->name}</h2>
             <h3 class="card-subtitle mb-2 text-muted">{$product->price}</h3>
             <p class="card-text">{$product->description}</p>
-            
+
+            <div class="comments container">
+                <ul class="list-group">
+                    {include file="templates/comments" }
+                </ul>
+            </div>
+
             {if $isUserLogged eq true}
                 <div class="container-fluid d-flex justify-content-evenly flex-row">
                     <a href="edit-product-form/{$product->id_product}" class=" card-link btn btn-dark">
