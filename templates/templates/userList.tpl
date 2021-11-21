@@ -1,4 +1,7 @@
 <div class="mt-3 w-75">
+    <h2>
+        Listado de usuarios
+    </h2>
     <table class="table">
         <thead scope="row">
             <tr>
