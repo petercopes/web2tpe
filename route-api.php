@@ -8,6 +8,7 @@ require_once 'Controller/ApiUserController.php';
 $router = new Router();
 
 // define la tabla de ruteo
+
 $router->addRoute('categorias', 'GET', 'ApiCategoryController', 'obtenerCategorias');
 $router->addRoute('categorias/:ID', 'GET', 'ApiCategoryController', 'obtenerCategoria');
 $router->addRoute('categorias/:ID', 'DELETE', 'ApiCategoryController', 'eliminarCategoria');
@@ -19,6 +20,7 @@ $router->addRoute('productos/:ID', 'GET', 'ApiProductController', 'obtenerProduc
 $router->addRoute('productos/:ID', 'DELETE', 'ApiProductController', 'eliminarProducto');
 $router->addRoute('productos', 'POST', 'ApiProductController', 'insertarProducto');
 $router->addRoute('productos/:ID', 'PUT', 'ApiProductController', 'actualizarProducto');
+
 
 
 $router->addRoute('users/token', 'GET', 'ApiUserController', 'obtenerToken');
