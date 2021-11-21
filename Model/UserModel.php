@@ -38,4 +38,8 @@ class UserModel
         $sentencia = $this->db->prepare('SELECT * FROM user WHERE id = ?');
         $sentencia->execute([$id]);
     }
+    function editRoleOnDB($id, $role)
+    {
+        $sentencia = $this->db->prepare('UPDATE table_name SET column1 = value1 WHERE id=?');
+    }
 }
