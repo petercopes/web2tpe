@@ -16,16 +16,21 @@ class ApiCommentController
 
     function getComments($params = null)
     {
-        $tareas = $this->model->getCommentsFromDB();
-        return $this->view->response($tareas, 200);
+        $comments = $this->model->getCommentsFromDB();
+        if(isset($comments) && !empty($comments)){
+            return $this->view->response($comments, 200);
+        }
+        else{
+            return $this->view->response("No se han encontrado los comentarios", 404);
+        }
     }
 
     function getComment($params = null)
     {
         $idComment = $params[":ID"];
-        $tarea = $this->model->getCommentFromDB($idComment);
-        if ($tarea) {
-            return $this->view->response($tarea, 200);
+        $comment = $this->model->getCommentFromDB($idComment);
+        if ($comment) {
+            return $this->view->response($comment, 200);
         } else {
             return $this->view->response("No se ha encontrado el comentario con el id $idComment", 404);
         }
@@ -35,9 +40,9 @@ class ApiCommentController
     {
         //agregar verificacion de permiso???
         $idComment = $params[":ID"];
-        $product = $this->model->getCommentFromDB($idComment);
+        $comment = $this->model->getCommentFromDB($idComment);
 
-        if ($product) {
+        if ($comment) {
             $this->model->deleteCommentFromDB($idComment);
             return $this->view->response("El comentario con el id= $idComment fue borrada", 200);
         } else {
@@ -49,7 +54,6 @@ class ApiCommentController
     {
         // obtengo el body del request (json)
         $body = $this->getBody();
-        var_dump($body);
         // TODO: VALIDACIONES -> 400 (Bad Request)
 
         $id = $this->model->addCommentToDB($body->email, $body->message, $body->rating, $body->id_product);
