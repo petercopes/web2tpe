@@ -55,6 +55,7 @@ class CategoryController{
         $this->categoryModel->editCategory($id, $_POST['name'], $_POST['description']);
         $this->authHelper->redirect('categories');
     }
+    
     function showCategory($id){
         $userRole = $this->authHelper->getRole();
         $category= $this->categoryModel->getCategory($id);
