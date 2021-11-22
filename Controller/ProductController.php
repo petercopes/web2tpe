@@ -20,19 +20,19 @@ class ProductController
 
     function showProducts()
     {
-        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
+        $userRole = $this->authHelper->getRole();
         $products = $this->productModel->getProductsWithCategory();
-        $this->productView->showProducts($products, $isUserLogged);
+        $this->productView->showProducts($products, $userRole);
     }
 
     function showAddProduct()
     {
-        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        if (!$isUserLogged) {
+        $userRole = $this->authHelper->getRole();
+        if ($userRole !== "1") {
             $this->authHelper->redirect('login');
         }
         $categoriesAvailable = $this->categoryModel->getCategories();
-        $this->productView->showAddProductForm($categoriesAvailable);
+        $this->productView->showAddProductForm($categoriesAvailable, $userRole);
     }
     function createProduct()
     {
@@ -41,20 +41,20 @@ class ProductController
     }
     function removeProduct($id)
     {
-        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        if ($isUserLogged) {
+        $userRole = $this->authHelper->getRole();
+        if ($userRole === "1") {
             $this->productModel->deleteProductFromDB($id);
             $this->authHelper->redirect('products');
         }
     }
     function showEditProductForm($id)
     {
-        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        if (!$isUserLogged) {
+        $userRole = $this->authHelper->getRole();
+        if ($userRole !== "1") {
             $this->authHelper->redirect('login');
         }
         $product = $this->productModel->getProduct($id);
-        $this->productView->showEditProductForm($product);
+        $this->productView->showEditProductForm($product, $userRole);
     }
     function editProduct($id)
     {
@@ -63,9 +63,8 @@ class ProductController
     }
     function showProduct($id)
     {
-        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-
+        $userRole = $this->authHelper->getRole();
         $product = $this->productModel->getProduct($id);
-        $this->productView->showProduct($product, $isUserLogged);
+        $this->productView->showProduct($product, $userRole);
     }
 }
