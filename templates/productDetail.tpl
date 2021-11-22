@@ -32,7 +32,7 @@
             {/if}
         </div>
         { if $isUserLogged eq true}
-        <div class="comments container" id="commentsContainer" user-data={$userToken} user-role={$userRole}>
+        <div class="comments container" id="commentsContainer" user-role={$userRole}>
             {include file="templates/commentList.tpl"}
         </div>
         {else}
