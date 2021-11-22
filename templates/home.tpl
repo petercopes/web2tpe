@@ -1,6 +1,6 @@
 {include file='templates/header.tpl'}
 {include file='templates/nav.tpl'}
-<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column">
+<main class="d-flex container-fluid p-5 justify-content-between h-100  flex-xl-column" style="min-height: 85vh;">
     <section class="container flex center text-center">
         <h1>Bienvenido al catalogo de La Femme!</h1>
         <h2>

@@ -1,6 +1,6 @@
 {include file='templates/header.tpl'}
 {include file='templates/nav.tpl'}
-<div class="mt-3 w-75">
+<div class="mt-3 w-75" style="min-height: 85vh;>
     <h2>
         Listado de usuarios
     </h2>

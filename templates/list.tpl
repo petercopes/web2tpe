@@ -1,4 +1,5 @@
-<div class="container mt-5">
+<main style="min-height: 85vh;>
+<div class="container mt-5" >
     <h1>{$titulo}</h1>
     {if not $elements}
         <p>No hay elementos cargados</p>
@@ -56,3 +57,5 @@
         </div>
     {/if}
 </div>
+
+</main>
