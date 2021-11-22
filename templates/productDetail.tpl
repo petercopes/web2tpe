@@ -34,5 +34,7 @@
         <a href="comentarios/{$product->id_product}">Ver comentarios sobre este producto</a>
     </div>
 
+    </div>
+    <script src='../js/comments.js'></script>
 </main>
 {include file='templates/footer.tpl'}

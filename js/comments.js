@@ -1,15 +1,16 @@
 const API_URL = "/api/comments";
 const commentsContainer = document.getElementById('commentsContainer');
-const userToken = commentsContainer.hasAttribute('user-data')? commentsContainer.getAttribute('user-data') : "";
 const isAdmin = commentsContainer.hasAttribute('isAdmin')? commentsContainer.getAttribute('isAdmin') : false;
-const commentForm = document.getElementById('commentForm');
 const productId = commentsContainer.getAttribute('productId');
+const userRole = commentsContainer.hasAttribute('user-role')? commentsContainer.getAttribute('user-role') : "";
+const commentForm = document.getElementById('commentForm');
 let app = new Vue({
     el: "#app",
     data: {
         comments: [],
         token: userToken,
-        isAdmin:isAdmin
+        isAdmin:isAdmin,
+        userRole:userRole
     },
 }); 
 const getComments = async ()=>{
