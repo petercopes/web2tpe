@@ -12,11 +12,8 @@ const commentForm = document.getElementById('commentForm');
 });  */
 const getComments = async ()=>{
     try {
-        console.log("entra");
         let response = await fetch("api/comments");
-        console.log("res", response);
         let comments = await response.json();
-        console.log("comments", comments);
     } catch (e) {
         console.log(e);
     }
@@ -49,14 +46,12 @@ const deleteComment = async(id)=>{
 }
 const addComment = async (comment)=>{
     try {
-        console.log(comment);
         let res = await fetch("api/comments", {
             "method": "POST",
             "headers": { 'Content-Type': 'application/json'},
             "body": JSON.stringify(comment)
         });
-        console.log(res.status);
-        if (res.status == 201) {
+        if (res.status == 200) {
             console.log('añadido con exito');
         }
     } catch (error) {
