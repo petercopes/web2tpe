@@ -30,16 +30,7 @@ class AuthHelper
         if (isset($_SESSION["role"])) {
             return $_SESSION["role"];
         }
+        //return guest
         return 3;
-    }
-    function checkIfUserIsAdmin()
-    {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        if (isset($_SESSION["role"]) && $_SESSION["role"] === "1") {
-            return true;
-        }
-        return false;
     }
 }

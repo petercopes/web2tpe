@@ -16,18 +16,17 @@ class CategoryController{
     }
 
     function showCategories(){
-        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        $isUserAdmin = $this->authHelper->checkIfUserIsAdmin();
+        $userRole = $this->authHelper->getRole();
         $categories = $this->categoryModel->getCategories();
-        $this->categoryView->showCategories($categories, $isUserLogged, $isUserAdmin);
+        $this->categoryView->showCategories($categories, $userRole);
     }
 
     function showAddCategoryForm(){
-        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        if(!$isUserLogged) {
+        $userRole = $this->authHelper->getRole();
+        if($userRole !== "1") {
             $this->authHelper->redirect('login');
         }
-        $this->categoryView->showAddCategoryForm();
+        $this->categoryView->showAddCategoryForm($userRole);
     }
 
     function addCategory() { 
@@ -36,20 +35,20 @@ class CategoryController{
     }
 
     function deleteCategory($id) {
-        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        if($isUserLogged) {
+        $userRole = $this->authHelper->getRole();
+        if($userRole === "1") {
             $this->categoryModel->deleteCategory($id);
             $this->authHelper->redirect('categories');
         }
     }
 
     function showEditCategoryForm($id) {
-        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        if(!$isUserLogged) {
+        $userRole = $this->authHelper->getRole();
+        if($userRole !== "1") {
             $this->authHelper->redirect('login');
         }
         $category = $this->categoryModel->getCategory($id);
-        $this->categoryView->showEditCategoryForm($category);
+        $this->categoryView->showEditCategoryForm($category, $userRole);
     }
 
     function editCategory($id) {
@@ -57,10 +56,9 @@ class CategoryController{
         $this->authHelper->redirect('categories');
     }
     function showCategory($id){
-        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        $isUserAdmin = $this->authHelper->checkIfUserIsAdmin();
+        $userRole = $this->authHelper->getRole();
         $category= $this->categoryModel->getCategory($id);
         $products = $this->categoryModel->getCategoryProducts($id);
-        $this->categoryView->showCategory($category,$products, $isUserLogged,$isUserAdmin);
+        $this->categoryView->showCategory($category,$products, $userRole);
     }
 }
