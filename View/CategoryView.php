@@ -11,7 +11,7 @@ class CategoryView
         $this->smarty = new Smarty();
     }
 
-    function showCategories($categories, $isUserLogged)
+    function showCategories($categories, $userRole)
     {
         $this->smarty->assign('tituloPagina','Categorias');
         $this->smarty->assign('base',BASE_URL);
@@ -20,7 +20,7 @@ class CategoryView
         $this->smarty->assign('idKey','id_category');
         $this->smarty->assign('elemType','category');
         $this->smarty->assign('addText','Agregar Nueva');
-        $this->smarty->assign('isUserLogged', $isUserLogged);
+        $this->smarty->assign('userRole', $userRole);
         $this->smarty->display('templates/categoryList.tpl');  
     }
 
@@ -29,7 +29,7 @@ class CategoryView
         $this->smarty->assign('base',BASE_URL);
         $this->smarty->assign('titulo','Añadir una Categoria');
         $this->smarty->assign('action','add');
-        $this->smarty->assign('isUserLogged', true);
+        $this->smarty->assign('userRole', 1);
         $this->smarty->display('templates/categoryForm.tpl');  
     }
 
@@ -39,10 +39,10 @@ class CategoryView
         $this->smarty->assign('titulo','Editar Categoria');
         $this->smarty->assign('action','edit');
         $this->smarty->assign('category',$category);
-        $this->smarty->assign('isUserLogged', true);
+        $this->smarty->assign('userRole', 1);
         $this->smarty->display('templates/categoryForm.tpl');  
     }
-    function showCategory($category,$products, $isUserLogged){
+    function showCategory($category,$products, $userRole){
         $this->smarty->assign('category',$category);
         $this->smarty->assign('elements',$products);
         $this->smarty->assign('tituloPagina',"Categorias | $category->name ");
@@ -51,7 +51,7 @@ class CategoryView
         $this->smarty->assign('idKey','id_product');
         $this->smarty->assign('elemType','product');
         $this->smarty->assign('addText','Agregar Nuevo');
-        $this->smarty->assign('isUserLogged',$isUserLogged);
+        $this->smarty->assign('userRole',$userRole);
         $this->smarty->display('templates/categoryDetail.tpl');
     }
 

@@ -1,8 +1,8 @@
 <?php
 require_once './Model/CommentModel.php';
-require_once "./View/CommentView.php";
+require_once './View/CommentView.php';
 require_once "./Helper/AuthHelper.php";
-
+require_once "./Model/ProductModel.php";
 
 class CommentController
 {
@@ -15,7 +15,7 @@ class CommentController
     {
         $this->commentModel = new CommentModel();
         $this->productModel = new ProductModel();
-        $this->categoryView = new CommentView();
+        $this->commentView = new CommentView();
         $this->authHelper = new AuthHelper();
     }
 

@@ -3,7 +3,7 @@
         <li class='nav-item m-2'><a class='nav-link' href="{$base}home">Home</a></li>
         <li class='nav-item m-2'><a class='nav-link' href="{$base}products">Productos</a></li>
         <li class='nav-item m-2'><a class='nav-link' href="{$base}categories">Categorias</a></li>
-        {if $isUserLogged eq true}
+        {if $userRole neq 3}
             <li class='nav-item m-2'><a class='nav-link' href="{$base}logout">Log Out</a></li>
         {else}
             <li class='nav-item m-2'><a class='nav-link' href="{$base}login">Log In</a></li>

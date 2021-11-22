@@ -20,9 +20,9 @@ class ProductController
 
     function showProducts()
     {
-        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
+        $userRole = $this->authHelper->getRole();
         $products = $this->productModel->getProductsWithCategory();
-        $this->productView->showProducts($products, $isUserLogged);
+        $this->productView->showProducts($products, $userRole);
     }
 
     function showAddProduct()

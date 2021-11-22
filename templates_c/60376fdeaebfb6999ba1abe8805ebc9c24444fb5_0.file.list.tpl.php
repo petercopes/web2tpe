@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-14 02:27:21
+/* Smarty version 3.1.39, created on 2021-11-22 03:40:59
   from '/opt/lampp/htdocs/web2tpe/templates/list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61677969e5b4e5_92742665',
+  'unifunc' => 'content_619b033b4b6f22_25545918',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '60376fdeaebfb6999ba1abe8805ebc9c24444fb5' => 
     array (
       0 => '/opt/lampp/htdocs/web2tpe/templates/list.tpl',
-      1 => 1634171175,
+      1 => 1637548857,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61677969e5b4e5_92742665 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619b033b4b6f22_25545918 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="container mt-5">
     <h1><?php echo $_smarty_tpl->tpl_vars['titulo']->value;?>
 </h1>
@@ -45,7 +45,7 @@ $_smarty_tpl->tpl_vars['element']->do_else = false;
                             <?php }?>
                             <td>
                                 <div class="d-flex align-items-center justify-content-end">
-                                    <?php if ($_smarty_tpl->tpl_vars['isUserLogged']->value == true) {?>
+                                    <?php if ($_smarty_tpl->tpl_vars['userRole']->value == 1) {?>
                                         <div class="mx-2">
                                             <a class="text-secondary" href="edit-<?php echo $_smarty_tpl->tpl_vars['elemType']->value;?>
 -form/<?php echo $_smarty_tpl->tpl_vars['element']->value->{$_smarty_tpl->tpl_vars['idKey']->value};?>
@@ -90,7 +90,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             </table>
         </div>
     <?php }?>
-    <?php if ($_smarty_tpl->tpl_vars['isUserLogged']->value == true) {?>
+    <?php if ($_smarty_tpl->tpl_vars['userRole']->value == 1) {?>
         <div class="btn btn-light">
             <a class="mt-3 text-secondary text-decoration-none" href="<?php echo $_smarty_tpl->tpl_vars['base']->value;
 echo $_smarty_tpl->tpl_vars['elemType']->value;?>

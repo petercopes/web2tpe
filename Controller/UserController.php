@@ -64,8 +64,8 @@ class UserController{
         }
     }
     function showHome(){
-        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        $this->userView->showHome($isUserLogged);
+        $userRole = $this->authHelper->getRole();
+        $this->userView->showHome($userRole);
     }
 }
 

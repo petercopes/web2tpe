@@ -7,7 +7,7 @@
             <h2 class="card-title">{$product->name}</h2>
             <h3 class="card-subtitle mb-2 text-muted">{$product->price}</h3>
             <p class="card-text">{$product->description}</p>
-            {if $isUserAdmin eq true}
+            {if $userRole eq '1'}
                 <div class="container-fluid d-flex justify-content-evenly flex-row">
                     <a href="edit-product-form/{$product->id_product}" class=" card-link btn btn-dark">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

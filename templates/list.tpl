@@ -14,7 +14,7 @@
                             {/if}
                             <td>
                                 <div class="d-flex align-items-center justify-content-end">
-                                    {if $isUserLogged eq true}
+                                    {if $userRole eq 1}
                                         <div class="mx-2">
                                             <a class="text-secondary" href="edit-{$elemType}-form/{$element->{$idKey}}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -50,7 +50,7 @@
             </table>
         </div>
     {/if}
-    {if $isUserLogged eq true}
+    {if $userRole eq 1}
         <div class="btn btn-light">
             <a class="mt-3 text-secondary text-decoration-none" href="{$base}{$elemType}-add-form">{$addText}</a>
         </div>
