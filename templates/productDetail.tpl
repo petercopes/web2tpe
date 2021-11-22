@@ -31,7 +31,17 @@
 
             {/if}
         </div>
-    </div>
+        { if $isUserLogged eq true}
+        <div class="comments container" id="commentsContainer" user-data={$userToken} user-role={$userRole}>
+            {include file="templates/commentList.tpl"}
+        </div>
+        {else}
+        <div class="comments container" id="commentsContainer">
+            {include file="templates/commentList.tpl"}
+        </div>
+        {/if}
 
+    </div>
+    <script src='../js/comments.js'></script>
 </main>
 {include file='templates/footer.tpl'}
