@@ -3,20 +3,36 @@ const commentsContainer = document.getElementById('commentsContainer');
 const productId = commentsContainer.getAttribute('productId');
 const userRole = commentsContainer.hasAttribute('user-role')? commentsContainer.getAttribute('user-role') : "";
 const commentForm = document.getElementById('commentForm');
+
 let app = new Vue({
     el: "#app",
     data: {
         comments: [],
-        userRole:userRole
+        userRole:userRole,
+        filterError: ""
     },
 });  
-const getComments = async ()=>{
+const getComments = async (filter=null)=>{
     try {
-        let response = await fetch("api/comments");
+        let response;
+        if(!filter){
+           response = await fetch("api/comments");
+        }
+        else{
+            response = await fetch(`api/comments?rating=${filter}`);
+        }
         let comments = await response.json();
-        app.comments=comments;
+        if(Array.isArray(comments)){
+            app.comments=comments;
+            app.filterError="";
+        }
+        else{
+            app.filterError=comments;
+            app.comments=[];
+        }
     } catch (e) {
         console.log(e);
+        app.comments=[];
     }
 
 }
@@ -31,9 +47,16 @@ document.addEventListener('DOMContentLoaded',async()=>{
         const dButtonID = dButton.id.split('-')[1];
         console.log(dButtonID);
         await deleteComment(Number(dButtonID));
+    });
+    }
+    const commentRatingFilter = document.getElementById('commentRatingFilter');
+    commentRatingFilter.addEventListener('change',async(e)=>{
+        e.preventDefault();
+        const value = e.currentTarget.value;
+        console.log(value)
+        await getComments(value);
     })
-}
-})
+});
 
 const deleteComment = async(id)=>{
     try {

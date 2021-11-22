@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-22 21:00:54
+/* Smarty version 3.1.39, created on 2021-11-22 23:58:19
   from '/opt/lampp/htdocs/web2tpe/templates/commentList.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619bf6f6d94e25_19281083',
+  'unifunc' => 'content_619c208b6a4b07_14112835',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '79f574fee0aaae2f3c10345cc398e35c16cf89f7' => 
     array (
       0 => '/opt/lampp/htdocs/web2tpe/templates/commentList.tpl',
-      1 => 1637611253,
+      1 => 1637621876,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,20 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619bf6f6d94e25_19281083 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619c208b6a4b07_14112835 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
     <div id="app">
+        <div>
+            <select name="rating" id="commentRatingFilter">
+                <option name="rating" value="1">1</option>
+                <option name="rating" value="2">2</option>
+                <option name="rating" value="3">3</option>
+                <option name="rating" value="4">4</option>
+                <option name="rating" value="5">5</option>
+            </select>
+        </div>
         <ul id="lista-tareas" class="list-group">
+            <p>{{filterError}}</p>
             <li v-for="comment in comments" class="list-group-item" :id=comment.id_comment>
                 <div class="container">
                     <h4>

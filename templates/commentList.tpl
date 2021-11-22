@@ -1,6 +1,16 @@
 {literal}
     <div id="app">
+        <div>
+            <select name="rating" id="commentRatingFilter">
+                <option name="rating" value="1">1</option>
+                <option name="rating" value="2">2</option>
+                <option name="rating" value="3">3</option>
+                <option name="rating" value="4">4</option>
+                <option name="rating" value="5">5</option>
+            </select>
+        </div>
         <ul id="lista-tareas" class="list-group">
+            <p>{{filterError}}</p>
             <li v-for="comment in comments" class="list-group-item" :id=comment.id_comment>
                 <div class="container">
                     <h4>

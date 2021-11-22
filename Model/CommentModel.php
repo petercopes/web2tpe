@@ -16,6 +16,13 @@ class CommentModel
         $comments = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $comments;
     }
+    function getCommentsFromDBByRating($rating)
+    {
+        $sentencia = $this->db->prepare("select * from comment where rating = ?");
+        $sentencia->execute(array($rating));
+        $comments = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $comments;
+    }
 
     function addCommentToDB($email, $message, $rating, $productId)
     {
