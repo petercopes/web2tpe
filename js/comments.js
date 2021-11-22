@@ -1,6 +1,5 @@
-const API_URL = "/api/comments";
+const API_URL = "api/comments";
 const commentsContainer = document.getElementById('commentsContainer');
-const isAdmin = commentsContainer.hasAttribute('isAdmin')? commentsContainer.getAttribute('isAdmin') : false;
 const productId = commentsContainer.getAttribute('productId');
 const userRole = commentsContainer.hasAttribute('user-role')? commentsContainer.getAttribute('user-role') : "";
 const commentForm = document.getElementById('commentForm');
@@ -8,8 +7,6 @@ let app = new Vue({
     el: "#app",
     data: {
         comments: [],
-        token: userToken,
-        isAdmin:isAdmin,
         userRole:userRole
     },
 }); 

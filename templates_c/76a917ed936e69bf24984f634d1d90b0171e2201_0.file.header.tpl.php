@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-22 03:37:56
+/* Smarty version 3.1.39, created on 2021-11-22 04:06:23
   from '/opt/lampp/htdocs/web2tpe/templates/header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619b0284325eb8_35959467',
+  'unifunc' => 'content_619b092f74d1a0_43975740',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '76a917ed936e69bf24984f634d1d90b0171e2201' => 
     array (
       0 => '/opt/lampp/htdocs/web2tpe/templates/header.tpl',
-      1 => 1637548655,
+      1 => 1637550380,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619b0284325eb8_35959467 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619b092f74d1a0_43975740 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +32,9 @@ function content_619b0284325eb8_35959467 (Smarty_Internal_Template $_smarty_tpl)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+     <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"><?php echo '</script'; ?>
+>
     <title>La Femme | <?php echo $_smarty_tpl->tpl_vars['tituloPagina']->value;?>
  </title>
 

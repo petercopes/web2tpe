@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-22 03:49:01
+/* Smarty version 3.1.39, created on 2021-11-22 04:10:11
   from '/opt/lampp/htdocs/web2tpe/templates/productDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619b051d4ec895_09617847',
+  'unifunc' => 'content_619b0a131ba587_78692982',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5ae48105b87683eef193b91956ec84004807793a' => 
     array (
       0 => '/opt/lampp/htdocs/web2tpe/templates/productDetail.tpl',
-      1 => 1637549340,
+      1 => 1637550127,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_619b051d4ec895_09617847 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619b0a131ba587_78692982 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 $_smarty_tpl->_subTemplateRender('file:templates/nav.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -67,11 +67,6 @@ products" class="card-link text-secondary text-decoration-none mb-1">Volver</a>
         <a href="comentarios/<?php echo $_smarty_tpl->tpl_vars['product']->value->id_product;?>
 ">Ver comentarios sobre este producto</a>
     </div>
-
-    </div>
-    <?php echo '<script'; ?>
- src='../js/comments.js'><?php echo '</script'; ?>
->
 </main>
 <?php $_smarty_tpl->_subTemplateRender('file:templates/footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }
