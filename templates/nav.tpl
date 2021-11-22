@@ -8,5 +8,8 @@
         {else}
             <li class='nav-item m-2'><a class='nav-link' href="{$base}login">Log In</a></li>
         {/if}
+        {if $isUserAdmin eq true}
+            <li class='nav-item m-2'><a class='nav-link' href="{$base}backoffice">Back Office</a></li>
+        {/if}
     </ul>
 </nav>

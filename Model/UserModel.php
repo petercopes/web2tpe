@@ -18,4 +18,8 @@ class UserModel{
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 
+    function editRoleOnDB($id, $role)
+    {
+        $sentencia = $this->db->prepare('UPDATE table_name SET column1 = value1 WHERE id=?');
+    }
 }

@@ -41,13 +41,13 @@ switch ($params[0]) {
         break;
     case "categories":
         $categoryController->showCategories();
-    break;
+        break;
     case "category":
         $categoryController->showCategory($params[1]);
-    break;
+        break;
     case "product":
         $productController->showProduct($params[1]);
-    break;
+        break;
     case "category-add-form":
         $categoryController->showAddCategoryForm();
         break;
@@ -74,6 +74,9 @@ switch ($params[0]) {
         break;
     case "edit-product-form":
         $productController->showEditProductForm($params[1]);
+        break;
+    case "edit-product":
+        $productController->editProduct($params[1]);
         break;
     case "edit-product":
         $productController->editProduct($params[1]);

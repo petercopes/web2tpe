@@ -17,8 +17,9 @@ class CategoryController{
 
     function showCategories(){
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();
+        $isUserAdmin = $this->authHelper->checkIfUserIsAdmin();
         $categories = $this->categoryModel->getCategories();
-        $this->categoryView->showCategories($categories, $isUserLogged);
+        $this->categoryView->showCategories($categories, $isUserLogged, $isUserAdmin);
     }
 
     function showAddCategoryForm(){
@@ -57,8 +58,9 @@ class CategoryController{
     }
     function showCategory($id){
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();
+        $isUserAdmin = $this->authHelper->checkIfUserIsAdmin();
         $category= $this->categoryModel->getCategory($id);
         $products = $this->categoryModel->getCategoryProducts($id);
-        $this->categoryView->showCategory($category,$products, $isUserLogged);
+        $this->categoryView->showCategory($category,$products, $isUserLogged,$isUserAdmin);
     }
 }

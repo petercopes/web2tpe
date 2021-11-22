@@ -21,8 +21,9 @@ class ProductController
     function showProducts()
     {
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();
+        $isUserAdmin = $this->authHelper->checkIfUserIsAdmin();
         $products = $this->productModel->getProductsWithCategory();
-        $this->productView->showProducts($products, $isUserLogged);
+        $this->productView->showProducts($products, $isUserLogged, $isUserAdmin);
     }
 
     function showAddProduct()
@@ -64,8 +65,9 @@ class ProductController
     function showProduct($id)
     {
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();
+        $isUserAdmin = $this->authHelper->checkIfUserIsAdmin();
 
         $product = $this->productModel->getProduct($id);
-        $this->productView->showProduct($product, $isUserLogged);
+        $this->productView->showProduct($product, $isUserLogged, $isUserAdmin);
     }
 }
