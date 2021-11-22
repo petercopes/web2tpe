@@ -24,25 +24,25 @@ class CategoryView
         $this->smarty->display('templates/categoryList.tpl');  
     }
 
-    function showAddCategoryForm() {
+    function showAddCategoryForm($userRole) {
         $this->smarty->assign('tituloPagina','Añadir Categoria');
         $this->smarty->assign('base',BASE_URL);
         $this->smarty->assign('titulo','Añadir una Categoria');
         $this->smarty->assign('action','add');
-        $this->smarty->assign('userRole', 1);
+        $this->smarty->assign('userRole', $userRole);
         $this->smarty->display('templates/categoryForm.tpl');  
     }
 
-    function showEditCategoryForm($category) {
+    function showEditCategoryForm($category, $userRole) {
         $this->smarty->assign('tituloPagina','Editar Categoria');
         $this->smarty->assign('base',BASE_URL);
         $this->smarty->assign('titulo','Editar Categoria');
         $this->smarty->assign('action','edit');
         $this->smarty->assign('category',$category);
-        $this->smarty->assign('userRole', 1);
+        $this->smarty->assign('userRole', $userRole);
         $this->smarty->display('templates/categoryForm.tpl');  
     }
-    function showCategory($category,$products, $userRole){
+    function showCategory($category, $products, $userRole){
         $this->smarty->assign('category',$category);
         $this->smarty->assign('elements',$products);
         $this->smarty->assign('tituloPagina',"Categorias | $category->name ");

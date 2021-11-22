@@ -26,7 +26,7 @@ class CategoryController{
         if($userRole!=1) {
             $this->authHelper->redirect('login');
         }
-        $this->categoryView->showAddCategoryForm();
+        $this->categoryView->showAddCategoryForm($userRole);
     }
 
     function addCategory() { 
@@ -48,7 +48,7 @@ class CategoryController{
             $this->authHelper->redirect('login');
         }
         $category = $this->categoryModel->getCategory($id);
-        $this->categoryView->showEditCategoryForm($category);
+        $this->categoryView->showEditCategoryForm($category, $userRole);
     }
 
     function editCategory($id) {

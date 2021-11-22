@@ -78,6 +78,15 @@ switch ($params[0]) {
     case "edit-product":
         $productController->editProduct($params[1]);
         break;
+    case "backoffice":
+        $userController->showBackoffice();
+        break;
+    case "delete-user":
+        $userController->deleteUser($params[1]);
+        break;
+    case "edit-user":
+        $userController->editUserRole($params[1]);
+        break;
     default:
         echo 'not found';
         break;

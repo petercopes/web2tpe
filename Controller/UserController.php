@@ -63,9 +63,31 @@ class UserController{
             $this->userView->showLoginForm(true, "Por favor complete los campos requeridos", "failure");
         }
     }
+
+    function deleteUser($email){
+        if (!empty($email)) {
+            $this->userModel->deleteUser($email);
+            
+            $this->authHelper->redirect('backoffice');
+        }
+    }
+
+    function editUserRole($email){
+    if (!empty($email) && !empty($_POST['role'])) {
+            $this->userModel->editUserRole($email, $_POST['role']);
+            $this->authHelper->redirect('backoffice');
+        }
+    }
+
     function showHome(){
         $userRole = $this->authHelper->getRole();
         $this->userView->showHome($userRole);
+    }
+
+    function showBackoffice(){
+        $userRole = $this->authHelper->getRole();
+        $users = $this->userModel->getUsers();
+        $this->userView->showBackoffice($users, $userRole);
     }
 }
 

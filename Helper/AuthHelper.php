@@ -42,14 +42,4 @@ class AuthHelper
         }
         return null;
     }
-    function checkIfUserIsAdmin()
-    {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        if (isset($_SESSION["role"]) && $_SESSION["role"] === "1") {
-            return true;
-        }
-        return false;
-    }
 }

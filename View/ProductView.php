@@ -22,25 +22,25 @@ class ProductView
         $this->smarty->display('templates/productList.tpl');        
     }
     
-    function showAddProductForm($categories){
+    function showAddProductForm($categories, $userRole){
         $this->smarty->assign('tituloPagina','Añadir Producto');
         $this->smarty->assign('base',BASE_URL);
         $this->smarty->assign('titulo','Añadir un Producto');
         $this->smarty->assign('categories',$categories);
         $this->smarty->assign('act','add');
-        $this->smarty->assign('userRole',1);
+        $this->smarty->assign('userRole', $userRole);
         $this->smarty->display('templates/productsForm.tpl'); 
     }
-    function showEditProductForm($product){
+    function showEditProductForm($product, $userRole){
         $this->smarty->assign('tituloPagina','Editar Producto');
         $this->smarty->assign('base',BASE_URL);
         $this->smarty->assign('titulo','Editar Producto');
         $this->smarty->assign('product',$product);
         $this->smarty->assign('act','edit');
-        $this->smarty->assign('userRole',1);
+        $this->smarty->assign('userRole', $userRole);
         $this->smarty->display('templates/productsForm.tpl'); 
     }
-    function showProduct($product,$userRole,$email){
+    function showProduct($product, $userRole, $email){
         $this->smarty->assign('tituloPagina',$product->name);
         $this->smarty->assign('product',$product);
         $this->smarty->assign('base',BASE_URL);

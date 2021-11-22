@@ -31,7 +31,8 @@
 
             {/if}
         </div>
-        
+    </div>
+
     </div>
     {if $userRole neq '3'}
         <div class="card container-fluid d-flex justify-content-evenly" id="commentsContainer" user-role={$userRole}>
