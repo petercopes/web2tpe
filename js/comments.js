@@ -53,7 +53,6 @@ const deleteComment = async(id)=>{
 }
 const addComment = async (comment)=>{
     try {
-        console.log(comment);
         let res = await fetch("api/comments", {
             "method": "POST",
             "headers": { 'Content-Type': 'application/json'},

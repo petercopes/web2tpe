@@ -2,6 +2,7 @@
 require_once "./Model/ProductModel.php";
 require_once "./View/ProductView.php";
 require_once "./Helper/AuthHelper.php";
+require_once "./Model/CategoryModel.php";
 
 class ProductController
 {
@@ -34,11 +35,17 @@ class ProductController
         $categoriesAvailable = $this->categoryModel->getCategories();
         $this->productView->showAddProductForm($categoriesAvailable, $userRole);
     }
+
     function createProduct()
     {
-        $this->productModel->addProduct($_POST['name'], $_POST['description'], $_POST['price'], $_POST['categoryId']);
+        if (isset($_FILES['productImage']['tmp_name']) && !empty($_FILES['productImage']['tmp_name'])) {
+            $this->productModel->addProduct($_POST['name'], $_POST['description'], $_POST['price'], $_POST['categoryId'], $_FILES['productImage']['tmp_name']);
+        } else {
+            $this->productModel->addProduct($_POST['name'], $_POST['description'], $_POST['price'], $_POST['categoryId'], '');
+        }
         $this->authHelper->redirect('products');
     }
+
     function removeProduct($id)
     {
         $userRole = $this->authHelper->getRole();
@@ -68,21 +75,22 @@ class ProductController
         $product = $this->productModel->getProduct($id);
         $this->productView->showEditProductForm($product, $userRole);
     }
+
     function editProduct($id)
     {
-        $this->productModel->updateProductFromDB($id, $_POST['name'], $_POST['description'], $_POST['price']);
+        $this->productModel->updateProductFromDB($id, $_POST['name'], $_POST['description'], $_POST['price'], $_FILES['productImage']['tmp_name']);
         $this->authHelper->redirect('products');
     }
+
     function showProduct($id)
     {
         $userRole = $this->authHelper->getRole();
         $product = $this->productModel->getProduct($id);
         $user = $this->authHelper->getUser();
-        if($user){
-            $this->productView->showProduct($product,$userRole,$user);
-        }
-        else{
-            $this->productView->showProduct($product,$userRole,'');
+        if ($user) {
+            $this->productView->showProduct($product, $userRole, $user);
+        } else {
+            $this->productView->showProduct($product, $userRole, '');
         }
     }
 }

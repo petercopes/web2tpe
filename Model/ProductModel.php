@@ -1,33 +1,38 @@
 <?php
 
-class ProductModel{
+class ProductModel
+{
 
     private $db;
-    function __construct(){
-         $this->db = new PDO('mysql:host=localhost;'.'dbname=tp-web-2;charset=utf8', 'root', '');
+    function __construct()
+    {
+        $this->db = new PDO('mysql:host=localhost;' . 'dbname=tp-web-2;charset=utf8', 'root', '');
     }
 
-    function getProducts(){
-        $sentencia = $this->db->prepare( "select * from product");
+    function getProducts()
+    {
+        $sentencia = $this->db->prepare("select * from product");
         $sentencia->execute();
         $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $products;
-    } 
+    }
 
-    function getProduct($id){
-        $sentencia = $this->db->prepare( "select * from product WHERE id_product=?");
+    function getProduct($id)
+    {
+        $sentencia = $this->db->prepare("select * from product WHERE id_product=?");
         $sentencia->execute(array($id));
         $product = $sentencia->fetch(PDO::FETCH_OBJ);
         return $product;
     }
 
-    function getProductsWithCategory(){
-        $sentencia = $this->db->prepare( 'select p.*, c.name as "category_name" from product p join category c on (p.id_category = c.id_category)');
+    function getProductsWithCategory()
+    {
+        $sentencia = $this->db->prepare('select p.*, c.name as "category_name" from product p join category c on (p.id_category = c.id_category)');
         $sentencia->execute();
         $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $products;
     }
-    function getFilteredProducts($minPrice,$maxPrice,$keyword){
+    /* function getFilteredProducts($minPrice,$maxPrice,$keyword){
         $sentencia = $this->db->prepare("SELECT *  
         FROM product  
         WHERE  
@@ -37,27 +42,50 @@ class ProductModel{
         AND 
             (@Age IS NULL OR Age = @Age) ")
     }
-    function addProduct($name, $description, $price,$categoryId){
-        $sentencia = $this->db->prepare("INSERT INTO product(name, description, price,id_category) VALUES(?, ?, ?, ?)");
-        $sentencia->execute(array($name,$description,$price, $categoryId));
+     */
+    function addProduct($name, $description, $price, $categoryId, $imagePath)
+    {
+        if (isset($imagePath) && !empty($imagePath)) {
+            $newImgPath = $this->uploadImage($imagePath);
+            $sentencia = $this->db->prepare("INSERT INTO product(name, description, price,id_category, image_path) VALUES(?, ?, ?, ?, ?)");
+            $sentencia->execute(array($name, $description, $price, $categoryId, $newImgPath));
+        } else {
+            $sentencia = $this->db->prepare("INSERT INTO product(name, description, price,id_category, image_path) VALUES(?, ?, ?, ?, '')");
+            $sentencia->execute(array($name, $description, $price, $categoryId));
+        }
     }
-    function deleteProductFromDB($id){
+
+    function deleteProductFromDB($id)
+    {
         $sentencia = $this->db->prepare("DELETE FROM product WHERE id_product=?");
         $sentencia->execute(array($id));
     }
 
-    function updateProductFromDB($id,$name,$description,$price){
-        if((isset($name)&&(!empty($name)))){
+    function updateProductFromDB($id, $name, $description, $price, $imagePath)
+    {
+        if (isset($name) && !empty($name)) {
             $sentencia = $this->db->prepare("UPDATE product SET name=? WHERE id_product=?");
-            $sentencia->execute(array($name,$id));
+            $sentencia->execute(array($name, $id));
         }
-        if((isset($description)&&(!empty($description)))){
+        if (isset($description) && !empty($description)) {
             $sentencia = $this->db->prepare("UPDATE product SET description=? WHERE id_product=?");
-            $sentencia->execute(array($description,$id));
+            $sentencia->execute(array($description, $id));
         }
-        if((isset($price)&&(!empty($price)))){
+        if (isset($price) && !empty($price)) {
             $sentencia = $this->db->prepare("UPDATE product SET price=? WHERE id_product=?");
-            $sentencia->execute(array($price,$id));
+            $sentencia->execute(array($price, $id));
         }
+        if (isset($imagePath) && !empty($imagePath)) {
+            $newImgPath = $this->uploadImage($imagePath);
+            $sentencia = $this->db->prepare("UPDATE product SET image_path=? WHERE id_product=?");
+            $sentencia->execute(array($newImgPath, $id));
+        }
+    }
+
+    function uploadImage($image)
+    {
+        $target = './assets/uploadedProductImgs/' . uniqid() . '.jpg';
+        move_uploaded_file($image, $target);
+        return $target;
     }
 }
