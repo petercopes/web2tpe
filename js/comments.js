@@ -53,14 +53,12 @@ const deleteComment = async(id)=>{
 }
 const addComment = async (comment)=>{
     try {
-        console.log(comment);
         let res = await fetch("api/comments", {
             "method": "POST",
             "headers": { 'Content-Type': 'application/json'},
             "body": JSON.stringify(comment)
         });
-        console.log(res.status);
-        if (res.status == 201) {
+        if (res.status == 200) {
             console.log('añadido con exito');
             getComments();
         }
