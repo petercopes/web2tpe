@@ -31,14 +31,14 @@
 
             {/if}
         </div>
-        { if $isUserLogged eq true}
-        <div class="comments container" id="commentsContainer" user-role={$userRole}>
-            {include file="templates/commentList.tpl"}
-        </div>
+        {if $isUserLogged eq true}
+            <div class="comments container" id="commentsContainer" user-role={$userRole}>
+                {include file="templates/commentList.tpl"}
+            </div>
         {else}
-        <div class="comments container" id="commentsContainer">
-            {include file="templates/commentList.tpl"}
-        </div>
+            <div class="comments container" id="commentsContainer">
+                {include file="templates/commentList.tpl"}
+            </div>
         {/if}
 
     </div>
