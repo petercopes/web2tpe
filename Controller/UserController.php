@@ -41,6 +41,7 @@ class UserController{
 
                 session_start();
                 $_SESSION["email"] = $email;
+                $_SESSION["role"] = $user->id_role;
                 
                 $this->authHelper->redirect('home');
                 //$this->userView->showHome(true, true, "Iniciaste sesión!", "success");
