@@ -23,7 +23,7 @@ class CategoryController{
 
     function showAddCategoryForm(){
         $userRole = $this->authHelper->getRole();
-        if($userRole !== "1") {
+        if($userRole!=1) {
             $this->authHelper->redirect('login');
         }
         $this->categoryView->showAddCategoryForm($userRole);
@@ -36,7 +36,7 @@ class CategoryController{
 
     function deleteCategory($id) {
         $userRole = $this->authHelper->getRole();
-        if($userRole === "1") {
+        if($userRole==1) {
             $this->categoryModel->deleteCategory($id);
             $this->authHelper->redirect('categories');
         }
@@ -44,7 +44,7 @@ class CategoryController{
 
     function showEditCategoryForm($id) {
         $userRole = $this->authHelper->getRole();
-        if($userRole !== "1") {
+        if($userRole!=1) {
             $this->authHelper->redirect('login');
         }
         $category = $this->categoryModel->getCategory($id);

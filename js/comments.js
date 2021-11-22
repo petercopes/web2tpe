@@ -1,37 +1,38 @@
-const API_URL = "/api/comments";
+const API_URL = "api/comments";
 const commentsContainer = document.getElementById('commentsContainer');
-const isAdmin = commentsContainer.hasAttribute('isAdmin')? commentsContainer.getAttribute('isAdmin') : false;
 const productId = commentsContainer.getAttribute('productId');
 const userRole = commentsContainer.hasAttribute('user-role')? commentsContainer.getAttribute('user-role') : "";
 const commentForm = document.getElementById('commentForm');
-let app = new Vue({
+/* let app = new Vue({
     el: "#app",
     data: {
         comments: [],
-        token: userToken,
-        isAdmin:isAdmin,
         userRole:userRole
     },
-}); 
+});  */
 const getComments = async ()=>{
     try {
-        let response = await fetch(API_URL);
+        console.log("entra");
+        let response = await fetch("api/comments");
+        console.log("res", response);
         let comments = await response.json();
-
-        app.comments = comments;
+        console.log("comments", comments);
     } catch (e) {
         console.log(e);
     }
 
 }
+document.addEventListener('DOMContentLoaded',async()=>{
+    await getComments();
+})
 const deleteButtons = document.getElementsByClassName('deleteButton');
 for(const dButton of deleteButtons){
-    dButton.addEventListener('click',()=>{
+    dButton.addEventListener('click',async()=>{
         const dButtonID = dButton.id.split('-')[1];
-        deleteComment(dButtonID);
+        await deleteComment(dButtonID);
     })
 }
-const deleteComment = (id)=>{
+const deleteComment = async(id)=>{
     try {
         let res = await fetch(`${API_URL}/${id}`, {
             "method": "DELETE"
@@ -46,9 +47,10 @@ const deleteComment = (id)=>{
     }
 
 }
-const addComment = (comment)=>{
+const addComment = async (comment)=>{
     try {
-        let res = await fetch(API_URL, {
+        console.log(comment);
+        let res = await fetch("api/comments", {
             "method": "POST",
             "headers": { 'Content-Type': 'application/json'},
             "body": JSON.stringify(comment)
@@ -61,14 +63,15 @@ const addComment = (comment)=>{
         console.log('error');
     }
 }
-commentForm.addEventListener('submit',(e)=>{
+commentForm.addEventListener('submit',async(e)=>{
     e.preventDefault();
     const formdata = new FormData(commentForm);
     const comment = {
-        email: formdata.get('email'),
-        message: formdata.get('message'),
-        rating: formdata.get('rating'),
-        id_product: productId
+        "email": formdata.get('email'),
+        "message": formdata.get('message'),
+        "rating": formdata.get('rating'),
+        "id_product": Number(formdata.get('id_product'))
     }
-    addComment(comment);
+    await addComment(comment);
+    getComments();
 })

@@ -2,7 +2,6 @@
 require_once "./Controller/CategoryController.php";
 require_once "./Controller/ProductController.php";
 require_once "./Controller/UserController.php";
-require_once "./Controller/CommentController.php";
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
@@ -17,7 +16,6 @@ $params = explode('/', $action);
 $categoryController = new CategoryController();
 $productController = new ProductController();
 $userController = new UserController();
-$commentController = new CommentController();
 
 switch ($params[0]) {
     case 'home':
@@ -79,9 +77,6 @@ switch ($params[0]) {
         break;
     case "edit-product":
         $productController->editProduct($params[1]);
-        break;
-    case "comentarios":
-        $commentController->showComments($params[1]);
         break;
     case "backoffice":
         $userController->showBackoffice();

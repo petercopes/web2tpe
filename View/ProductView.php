@@ -40,11 +40,12 @@ class ProductView
         $this->smarty->assign('userRole', $userRole);
         $this->smarty->display('templates/productsForm.tpl'); 
     }
-    function showProduct($product, $userRole){
+    function showProduct($product, $userRole, $email){
         $this->smarty->assign('tituloPagina',$product->name);
         $this->smarty->assign('product',$product);
         $this->smarty->assign('base',BASE_URL);
         $this->smarty->assign('userRole',$userRole);
+        $this->smarty->assign('email',$email);
         $this->smarty->display('templates/productDetail.tpl');
     }
 

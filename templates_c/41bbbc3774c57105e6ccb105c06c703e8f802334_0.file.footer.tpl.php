@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-22 02:02:16
+/* Smarty version 3.1.39, created on 2021-11-22 19:42:36
   from 'C:\xampp\htdocs\web2tpe\templates\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619aec1895ae10_13285501',
+  'unifunc' => 'content_619be49ca30597_58805314',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619aec1895ae10_13285501 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619be49ca30597_58805314 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="bg-dark d-flex justify-content-evenly align-items-center p-5 w-100 position-absolute bottom-0">
     <div class="text-light">Tel: +541147567879</div>
     <div class="text-light">Correo: contacto@lafemme.com.ar</div>

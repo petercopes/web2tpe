@@ -65,6 +65,12 @@ class ProductController
     {
         $userRole = $this->authHelper->getRole();
         $product = $this->productModel->getProduct($id);
-        $this->productView->showProduct($product, $userRole);
+        $user = $this->authHelper->getUser();
+        if($user){
+            $this->productView->showProduct($product,$userRole,$user);
+        }
+        else{
+            $this->productView->showProduct($product,$userRole,'');
+        }
     }
 }

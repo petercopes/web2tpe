@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-22 17:41:05
+/* Smarty version 3.1.39, created on 2021-11-22 20:11:04
   from 'C:\xampp\htdocs\web2tpe\templates\productDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619bc8210edda5_22909352',
+  'unifunc' => 'content_619beb4868e847_34270724',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5a1369f2612dab5f1bffa514917cacfd4f37469b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\productDetail.tpl',
-      1 => 1637548161,
+      1 => 1637608260,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
     'file:templates/header.tpl' => 1,
     'file:templates/nav.tpl' => 1,
+    'file:templates/commentList.tpl' => 2,
+    'file:templates/commentForm.tpl' => 1,
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_619bc8210edda5_22909352 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619beb4868e847_34270724 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 $_smarty_tpl->_subTemplateRender('file:templates/nav.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -38,7 +40,7 @@ products" class="card-link text-secondary text-decoration-none mb-1">Volver</a>
 </h3>
             <p class="card-text"><?php echo $_smarty_tpl->tpl_vars['product']->value->description;?>
 </p>
-            <?php if ($_smarty_tpl->tpl_vars['isUserAdmin']->value == true) {?>
+            <?php if ($_smarty_tpl->tpl_vars['userRole']->value == '1') {?>
                 <div class="container-fluid d-flex justify-content-evenly flex-row">
                     <a href="edit-product-form/<?php echo $_smarty_tpl->tpl_vars['product']->value->id_product;?>
 " class=" card-link btn btn-dark">
@@ -64,15 +66,27 @@ products" class="card-link text-secondary text-decoration-none mb-1">Volver</a>
 
             <?php }?>
         </div>
-        <a href="comentarios/<?php echo $_smarty_tpl->tpl_vars['product']->value->id_product;?>
-">Ver comentarios sobre este producto</a>
     </div>
 
     </div>
-    <?php echo '<script'; ?>
- src='../js/comments.js'><?php echo '</script'; ?>
+    <?php if ($_smarty_tpl->tpl_vars['userRole']->value != '3') {?>
+        <div class="card container-fluid d-flex justify-content-evenly" id="commentsContainer" user-role=<?php echo $_smarty_tpl->tpl_vars['userRole']->value;?>
 >
+            <?php $_smarty_tpl->_subTemplateRender("file:templates/commentList.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+            <?php $_smarty_tpl->_subTemplateRender("file:templates/commentForm.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?> 
+        </div>
+    <?php } else { ?>
+    <div class="card container-fluid d-flex justify-content-evenly "  id="commentsContainer">
+        <?php $_smarty_tpl->_subTemplateRender("file:templates/commentList.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+?>
+    </div>
+    <?php }?>
 </main>
+<?php echo '<script'; ?>
+ src='js/comments.js'><?php echo '</script'; ?>
+>
 <?php $_smarty_tpl->_subTemplateRender('file:templates/footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }
 }
