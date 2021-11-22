@@ -54,13 +54,27 @@ class ApiCommentController
     {
         // obtengo el body del request (json)
         $body = $this->getBody();
+        var_dump($body);
         // TODO: VALIDACIONES -> 400 (Bad Request)
-
-        $id = $this->model->addCommentToDB($body->email, $body->message, $body->rating, $body->id_product);
-        if ($id != 0) {
-            $this->view->response("El comentario se insertó con el id= $id", 200);
-        } else {
-            $this->view->response("El comentario no se pudo insertar", 500);
+        if(isset($body) && !empty($body)){
+            if(isset($body->email) && !empty($body->email)){
+                if(isset($body->message) && !empty($body->message)){
+                    if(isset($body->rating) && !empty($body->rating)){
+                        if(isset($body->id_product) && !empty($body->id_product)){
+                            $id = $this->model->addCommentToDB($body->email, $body->message, $body->rating, $body->id_product);
+                            if ($id != 0) {
+                                $this->view->response("El comentario se insertó con el id= $id", 200);
+                            } else {$this->view->response("El comentario no se pudo insertar",503);}
+                        }else{$this->view->response("El comentario no se pudo insertar porque no se encontro el id de producto",500 );}
+                        
+                    } else {$this->view->response("El comentario no se pudo insertar porque no se encontro el rating", 400);}
+                }else{$this->view->response("El comentario no se pudo insertar porque no se encontro el mensaje", 400);}
+            }else{
+                $this->view->response("El comentario no se pudo insertar porque no se encontro el email", 400);
+            }
+        }else{
+        
+            $this->view->response("El comentario no se pudo insertar porque no se obtuvo ningun dato", 500);
         }
     }
 

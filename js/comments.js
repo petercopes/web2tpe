@@ -65,10 +65,10 @@ commentForm.addEventListener('submit',async(e)=>{
     e.preventDefault();
     const formdata = new FormData(commentForm);
     const comment = {
-        email: formdata.get('email'),
-        message: formdata.get('message'),
-        rating: formdata.get('rating'),
-        id_product: formdata.get('id_product')
+        "email": formdata.get('email'),
+        "message": formdata.get('message'),
+        "rating": formdata.get('rating'),
+        "id_product": Number(formdata.get('id_product'))
     }
     await addComment(comment);
     getComments();
