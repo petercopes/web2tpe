@@ -1,14 +1,15 @@
 const API_URL = "/api/comments";
 const commentsContainer = document.getElementById('commentsContainer');
 const userToken = commentsContainer.hasAttribute('user-data')? commentsContainer.getAttribute('user-data') : "";
-const userRole = commentsContainer.hasAttribute('user-role')? commentsContainer.getAttribute('user-role') : "";
+const isAdmin = commentsContainer.hasAttribute('isAdmin')? commentsContainer.getAttribute('isAdmin') : false;
 const commentForm = document.getElementById('commentForm');
+const productId = commentsContainer.getAttribute('productId');
 let app = new Vue({
     el: "#app",
     data: {
         comments: [],
         token: userToken,
-        role:userRole
+        isAdmin:isAdmin
     },
 }); 
 const getComments = async ()=>{
@@ -63,9 +64,10 @@ commentForm.addEventListener('submit',(e)=>{
     e.preventDefault();
     const formdata = new FormData(commentForm);
     const comment = {
-        username: formdata.get('name'),
+        email: formdata.get('email'),
         message: formdata.get('message'),
-        rating: formdata.get('rating')
+        rating: formdata.get('rating'),
+        id_product: productId
     }
     addComment(comment);
 })

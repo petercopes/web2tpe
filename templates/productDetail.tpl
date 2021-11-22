@@ -7,7 +7,7 @@
             <h2 class="card-title">{$product->name}</h2>
             <h3 class="card-subtitle mb-2 text-muted">{$product->price}</h3>
             <p class="card-text">{$product->description}</p>
-            {if $isUserLogged eq true}
+            {if $isUserAdmin eq true}
                 <div class="container-fluid d-flex justify-content-evenly flex-row">
                     <a href="edit-product-form/{$product->id_product}" class=" card-link btn btn-dark">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -31,17 +31,8 @@
 
             {/if}
         </div>
-        {if $isUserLogged eq true}
-            <div class="comments container" id="commentsContainer" user-role={$userRole}>
-                {include file="templates/commentList.tpl"}
-            </div>
-        {else}
-            <div class="comments container" id="commentsContainer">
-                {include file="templates/commentList.tpl"}
-            </div>
-        {/if}
-
+        <a href="comentarios/{$product->id_product}">Ver comentarios sobre este producto</a>
     </div>
-    <script src='../js/comments.js'></script>
+
 </main>
 {include file='templates/footer.tpl'}

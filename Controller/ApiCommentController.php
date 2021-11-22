@@ -52,7 +52,7 @@ class ApiCommentController
 
         // TODO: VALIDACIONES -> 400 (Bad Request)
 
-        $id = $this->model->addCommentToDB($body->username, $body->message, $body->rating, $body->id_product);
+        $id = $this->model->addCommentToDB($body->email, $body->message, $body->rating, $body->id_product);
         if ($id != 0) {
             $this->view->response("El comentario se insertó con el id= $id", 200);
         } else {

@@ -2,6 +2,7 @@
 require_once "./Controller/CategoryController.php";
 require_once "./Controller/ProductController.php";
 require_once "./Controller/UserController.php";
+require_once "./Controller/CommentController.php";
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
@@ -16,6 +17,7 @@ $params = explode('/', $action);
 $categoryController = new CategoryController();
 $productController = new ProductController();
 $userController = new UserController();
+$commentController = new CommentController();
 
 switch ($params[0]) {
     case 'home':
@@ -41,13 +43,13 @@ switch ($params[0]) {
         break;
     case "categories":
         $categoryController->showCategories();
-    break;
+        break;
     case "category":
         $categoryController->showCategory($params[1]);
-    break;
+        break;
     case "product":
         $productController->showProduct($params[1]);
-    break;
+        break;
     case "category-add-form":
         $categoryController->showAddCategoryForm();
         break;
@@ -77,6 +79,9 @@ switch ($params[0]) {
         break;
     case "edit-product":
         $productController->editProduct($params[1]);
+        break;
+    case "comentarios":
+        $commentController->showComments($params[1]);
         break;
     default:
         echo 'not found';
