@@ -36,6 +36,7 @@
     {if $userRole neq '3'}
         <div class="card container-fluid d-flex justify-content-evenly" id="commentsContainer" user-role={$userRole}>
             {include file="templates/commentList.tpl"}
+            {include file="templates/commentForm.tpl"} 
         </div>
     {else}
     <div class="card container-fluid d-flex justify-content-evenly "  id="commentsContainer">

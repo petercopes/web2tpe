@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-22 17:02:14
+/* Smarty version 3.1.39, created on 2021-11-22 17:42:02
   from '/opt/lampp/htdocs/web2tpe/templates/productDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619bbf0618d677_85749556',
+  'unifunc' => 'content_619bc85a2b79b5_31225959',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5ae48105b87683eef193b91956ec84004807793a' => 
     array (
       0 => '/opt/lampp/htdocs/web2tpe/templates/productDetail.tpl',
-      1 => 1637596932,
+      1 => 1637598546,
       2 => 'file',
     ),
   ),
@@ -21,10 +21,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/header.tpl' => 1,
     'file:templates/nav.tpl' => 1,
     'file:templates/commentList.tpl' => 2,
+    'file:templates/commentForm.tpl' => 1,
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_619bbf0618d677_85749556 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619bc85a2b79b5_31225959 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 $_smarty_tpl->_subTemplateRender('file:templates/nav.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -72,6 +73,8 @@ products" class="card-link text-secondary text-decoration-none mb-1">Volver</a>
 >
             <?php $_smarty_tpl->_subTemplateRender("file:templates/commentList.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
+            <?php $_smarty_tpl->_subTemplateRender("file:templates/commentForm.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?> 
         </div>
     <?php } else { ?>
     <div class="card container-fluid d-flex justify-content-evenly "  id="commentsContainer">

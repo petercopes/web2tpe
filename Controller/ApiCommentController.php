@@ -14,7 +14,7 @@ class ApiCommentController
         $this->view = new ApiView();
     }
 
-    function getComments()
+    function getComments($params = null)
     {
         $tareas = $this->model->getCommentsFromDB();
         return $this->view->response($tareas, 200);
@@ -45,11 +45,11 @@ class ApiCommentController
         }
     }
 
-    function addComment()
+    function addComment($params = null)
     {
         // obtengo el body del request (json)
         $body = $this->getBody();
-
+        var_dump($body);
         // TODO: VALIDACIONES -> 400 (Bad Request)
 
         $id = $this->model->addCommentToDB($body->email, $body->message, $body->rating, $body->id_product);

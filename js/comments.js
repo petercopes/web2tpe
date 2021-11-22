@@ -20,6 +20,9 @@ const getComments = async ()=>{
     }
 
 }
+document.addEventListener('DOMContentLoaded',async()=>{
+    await getComments();
+})
 const deleteButtons = document.getElementsByClassName('deleteButton');
 for(const dButton of deleteButtons){
     dButton.addEventListener('click',async()=>{
@@ -42,8 +45,9 @@ const deleteComment = async(id)=>{
     }
 
 }
-const addComment = async(comment)=>{
+const addComment = async (comment)=>{
     try {
+        console.log(comment);
         let res = await fetch(API_URL, {
             "method": "POST",
             "headers": { 'Content-Type': 'application/json'},
@@ -64,7 +68,7 @@ commentForm.addEventListener('submit',async(e)=>{
         email: formdata.get('email'),
         message: formdata.get('message'),
         rating: formdata.get('rating'),
-        id_product: productId
+        id_product: formdata.get('id_product')
     }
     await addComment(comment);
     getComments();

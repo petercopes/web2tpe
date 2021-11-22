@@ -63,9 +63,14 @@ class ProductController
     }
     function showProduct($id)
     {
-        $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-
         $product = $this->productModel->getProduct($id);
-        $this->productView->showProduct($product, $isUserLogged);
+        $user = $this->authHelper->getUser();
+        $userRole = $this->authHelper->getUser();
+        if($user){
+            $this->productView->showProduct($product,$userRole,$user);
+        }
+        else{
+            $this->productView->showProduct($product,$userRole,'');
+        }
     }
 }

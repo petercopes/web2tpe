@@ -32,6 +32,16 @@ class AuthHelper
         }
         return 3;
     }
+    function getUser()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (isset($_SESSION["email"])) {
+            return $_SESSION["email"];
+        }
+        return null;
+    }
     function checkIfUserIsAdmin()
     {
         if (session_status() === PHP_SESSION_NONE) {
