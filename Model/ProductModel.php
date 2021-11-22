@@ -27,7 +27,16 @@ class ProductModel{
         $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $products;
     }
-
+    function getFilteredProducts($minPrice,$maxPrice,$keyword){
+        $sentencia = $this->db->prepare("SELECT *  
+        FROM product  
+        WHERE  
+            (@City IS NULL OR City = @City)
+        AND 
+            (@Gender IS NULL OR Gender = @Gender)
+        AND 
+            (@Age IS NULL OR Age = @Age) ")
+    }
     function addProduct($name, $description, $price,$categoryId){
         $sentencia = $this->db->prepare("INSERT INTO product(name, description, price,id_category) VALUES(?, ?, ?, ?)");
         $sentencia->execute(array($name,$description,$price, $categoryId));

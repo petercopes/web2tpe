@@ -47,6 +47,18 @@ class ProductController
             $this->authHelper->redirect('products');
         }
     }
+    function getFilteredProducts(){
+        $userRole = $this->authHelper->getRole();
+        $minPrice = $_POST['minPrice'];
+        settype($minPrice,"integer");
+        $maxPrice = $_POST['maxPrice'];
+        settype($maxPrice,"integer");
+        $keyword = $_POST['keyword'];
+        settype($maxPrice,"string");
+        $keyword = explode(' ', $keyword)[0];
+        $products = $this->productModel->getFilteredProducts($minPrice,$maxPrice,$keyword);
+        $this->productView->showProducts($products, $userRole);
+    }
     function showEditProductForm($id)
     {
         $userRole = $this->authHelper->getRole();

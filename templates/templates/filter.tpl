@@ -1,8 +1,8 @@
 
 <div class="card container-fluid d-flex justify-content-evenly p-4">
-    <form class="form-alta" action="{$base}edit-category/{$category->id_category}" method=" post">
+    <form class="form-alta" action="{$base}get-filtered-products" method="post">
         <div class="mb-3">
-            <label for="name" class="form-label">Palabras Clave</label>
+            <label for="name" class="form-label">Palabra Clave</label>
             <input placeholder="Nombre" type="text" name="keywords" id="keywords" class="form-control">
         </div>
         <div class="mb-3">
