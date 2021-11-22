@@ -21,6 +21,8 @@ class CommentModel
     {
         $sentencia = $this->db->prepare("INSERT INTO comment(name, message,rating,id_product) VALUES(?,?,?,?)");
         $sentencia->execute(array($username, $message, $rating, $productId));
+        $id = $this->db->lastInsertId();
+        return $id;
     }
 
     function deleteCommentFromDB($id)
