@@ -8,7 +8,7 @@
                 <p>
                     {{comment.message}}
                 </p>
-                <button v-if="userRole == 'admin'" id="deleteButton-{{comment.id}}" class="btn btn-danger deleteButton">
+                <button v-if="userRole == '1'" id="deleteButton-{{comment.id}}" class="btn btn-danger deleteButton">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
                         viewBox="0 0 16 16">
                         <path
@@ -19,7 +19,7 @@
                 </button>
             </li>
         </ul>
-        <div v-if="userRole == 'user'" class="comment-form container" id="commentsFormContainer">
+        <div v-if="userRole == '2'" class="comment-form container" id="commentsFormContainer">
             {include file="templates/commentForm.tpl"}
         </div>
 

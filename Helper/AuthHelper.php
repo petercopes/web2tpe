@@ -14,19 +14,32 @@ class AuthHelper
 
     function checkIfUserIsLogged()
     {
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         if (!isset($_SESSION["email"])) {
             return false;
         }
         return true;
     }
-
+    function getRole()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (isset($_SESSION["role"])) {
+            return $_SESSION["role"];
+        }
+        return 3;
+    }
     function checkIfUserIsAdmin()
     {
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         if (isset($_SESSION["role"]) && $_SESSION["role"] === "1") {
             return true;
-        } 
+        }
         return false;
     }
 }
