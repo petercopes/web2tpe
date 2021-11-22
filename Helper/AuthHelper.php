@@ -20,4 +20,13 @@ class AuthHelper
         }
         return true;
     }
+
+    function checkIfUserIsAdmin()
+    {
+        session_start();
+        if (isset($_SESSION["role"]) && $_SESSION["role"] === "1") {
+            return true;
+        } 
+        return false;
+    }
 }
