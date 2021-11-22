@@ -12,9 +12,11 @@ const commentForm = document.getElementById('commentForm');
 });  */
 const getComments = async ()=>{
     try {
-        let response = await fetch(API_URL);
+        console.log("entra");
+        let response = await fetch("api/comments");
+        console.log("res", response);
         let comments = await response.json();
-        console.log(comments);
+        console.log("comments", comments);
     } catch (e) {
         console.log(e);
     }
@@ -48,7 +50,7 @@ const deleteComment = async(id)=>{
 const addComment = async (comment)=>{
     try {
         console.log(comment);
-        let res = await fetch(API_URL, {
+        let res = await fetch("api/comments", {
             "method": "POST",
             "headers": { 'Content-Type': 'application/json'},
             "body": JSON.stringify(comment)
@@ -65,10 +67,10 @@ commentForm.addEventListener('submit',async(e)=>{
     e.preventDefault();
     const formdata = new FormData(commentForm);
     const comment = {
-        email: formdata.get('email'),
-        message: formdata.get('message'),
-        rating: formdata.get('rating'),
-        id_product: formdata.get('id_product')
+        "email": formdata.get('email'),
+        "message": formdata.get('message'),
+        "rating": formdata.get('rating'),
+        "id_product": Number(formdata.get('id_product'))
     }
     await addComment(comment);
     getComments();

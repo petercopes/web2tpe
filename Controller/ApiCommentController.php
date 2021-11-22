@@ -17,10 +17,9 @@ class ApiCommentController
     function getComments($params = null)
     {
         $comments = $this->model->getCommentsFromDB();
-        if(isset($comments) && !empty($comments)){
+        if (isset($comments) && !empty($comments)) {
             return $this->view->response($comments, 200);
-        }
-        else{
+        } else {
             return $this->view->response("No se han encontrado los comentarios", 404);
         }
     }
@@ -54,16 +53,17 @@ class ApiCommentController
     {
         // obtengo el body del request (json)
         $body = $this->getBody();
-        // TODO: VALIDACIONES -> 400 (Bad Request)
-
-        $id = $this->model->addCommentToDB($body->email, $body->message, $body->rating, $body->id_product);
-        if ($id != 0) {
-            $this->view->response("El comentario se insertó con el id= $id", 200);
+        if (isset($body) && isset($body->email) && isset($body->message) && isset($body->rating) && !empty($body->email) && !empty($body->message) &&  !empty($body->rating)) {
+            $id = $this->model->addCommentToDB($body->email, $body->message, $body->rating, $body->id_product);
+            if ($id != 0) {
+                $this->view->response("El comentario se insertó con el id= $id", 200);
+            } else {
+                $this->view->response("El comentario no se pudo insertar", 500);
+            }
         } else {
-            $this->view->response("El comentario no se pudo insertar", 500);
+            $this->view->response("El comentario no se pudo insertar porque faltan datos", 400);
         }
     }
-
 
     /**
      * Devuelve el body del request

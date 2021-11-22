@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-22 18:09:07
-  from '/opt/lampp/htdocs/web2tpe/templates/commentForm.tpl' */
+/* Smarty version 3.1.39, created on 2021-11-22 18:38:16
+  from 'C:\xampp\htdocs\web2tpe\templates\commentForm.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619bceb38c7a17_53658797',
+  'unifunc' => 'content_619bd5884cbd16_78718003',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'ba753d4fa4461009f6331c8c7e82884bca906e5b' => 
+    '0073fdd4c2c206f2efdf9012bbd00e0a0874ee35' => 
     array (
-      0 => '/opt/lampp/htdocs/web2tpe/templates/commentForm.tpl',
-      1 => 1637600842,
+      0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\commentForm.tpl',
+      1 => 1637602100,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619bceb38c7a17_53658797 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619bd5884cbd16_78718003 (Smarty_Internal_Template $_smarty_tpl) {
 ?><form class="form-alta" id="commentForm" action="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
 /api/comments" method="POST">
     <div class="mb-3">

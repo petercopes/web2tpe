@@ -17,10 +17,10 @@ class CommentModel
         return $comments;
     }
 
-    function addCommentToDB($username, $message, $rating, $productId)
+    function addCommentToDB($email, $message, $rating, $productId)
     {
-        $sentencia = $this->db->prepare("INSERT INTO comment(name, message,rating,id_product) VALUES(?,?,?,?)");
-        $sentencia->execute(array($username, $message, $rating, $productId));
+        $sentencia = $this->db->prepare("INSERT INTO comment(email, message,rating,id_product) VALUES(?,?,?,?)");
+        $sentencia->execute(array($email, $message, $rating, $productId));
         $id = $this->db->lastInsertId();
         return $id;
     }
