@@ -61,9 +61,11 @@ class ProductController
         $this->productModel->updateProductFromDB($id, $_POST['name'], $_POST['description'], $_POST['price']);
         $this->authHelper->redirect('products');
     }
-    function showProduct($id){
+    function showProduct($id)
+    {
         $isUserLogged = $this->authHelper->checkIfUserIsLogged();
-        $product= $this->productModel->getProduct($id);
+
+        $product = $this->productModel->getProduct($id);
         $this->productView->showProduct($product, $isUserLogged);
     }
 }
