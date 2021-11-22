@@ -3,19 +3,18 @@ const commentsContainer = document.getElementById('commentsContainer');
 const productId = commentsContainer.getAttribute('productId');
 const userRole = commentsContainer.hasAttribute('user-role')? commentsContainer.getAttribute('user-role') : "";
 const commentForm = document.getElementById('commentForm');
-let app = new Vue({
+/* let app = new Vue({
     el: "#app",
     data: {
         comments: [],
         userRole:userRole
     },
-}); 
+});  */
 const getComments = async ()=>{
     try {
         let response = await fetch(API_URL);
         let comments = await response.json();
-
-        app.comments = comments;
+        console.log(comments);
     } catch (e) {
         console.log(e);
     }
@@ -23,12 +22,12 @@ const getComments = async ()=>{
 }
 const deleteButtons = document.getElementsByClassName('deleteButton');
 for(const dButton of deleteButtons){
-    dButton.addEventListener('click',()=>{
+    dButton.addEventListener('click',async()=>{
         const dButtonID = dButton.id.split('-')[1];
-        deleteComment(dButtonID);
+        await deleteComment(dButtonID);
     })
 }
-const deleteComment = (id)=>{
+const deleteComment = async(id)=>{
     try {
         let res = await fetch(`${API_URL}/${id}`, {
             "method": "DELETE"
@@ -43,7 +42,7 @@ const deleteComment = (id)=>{
     }
 
 }
-const addComment = (comment)=>{
+const addComment = async(comment)=>{
     try {
         let res = await fetch(API_URL, {
             "method": "POST",
@@ -58,7 +57,7 @@ const addComment = (comment)=>{
         console.log('error');
     }
 }
-commentForm.addEventListener('submit',(e)=>{
+commentForm.addEventListener('submit',async(e)=>{
     e.preventDefault();
     const formdata = new FormData(commentForm);
     const comment = {
@@ -67,5 +66,6 @@ commentForm.addEventListener('submit',(e)=>{
         rating: formdata.get('rating'),
         id_product: productId
     }
-    addComment(comment);
+    await addComment(comment);
+    getComments();
 })

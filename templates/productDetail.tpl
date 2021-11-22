@@ -31,7 +31,17 @@
 
             {/if}
         </div>
-        <a href="comentarios/{$product->id_product}">Ver comentarios sobre este producto</a>
+        
     </div>
+    {if $userRole neq '3'}
+        <div class="card container-fluid d-flex justify-content-evenly" id="commentsContainer" user-role={$userRole}>
+            {include file="templates/commentList.tpl"}
+        </div>
+    {else}
+    <div class="card container-fluid d-flex justify-content-evenly "  id="commentsContainer">
+        {include file="templates/commentList.tpl"}
+    </div>
+    {/if}
 </main>
+<script src='js/comments.js'></script>
 {include file='templates/footer.tpl'}
