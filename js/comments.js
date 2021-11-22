@@ -31,7 +31,7 @@ for(const dButton of deleteButtons){
 }
 const deleteComment = (id)=>{
     try {
-        let res = await fetch(`${url}/${id}`, {
+        let res = await fetch(`${API_URL}/${id}`, {
             "method": "DELETE"
         });
         if (res.status == 200) {
@@ -44,11 +44,11 @@ const deleteComment = (id)=>{
     }
 
 }
-const addComment = (comment,userToken)=>{
+const addComment = (comment)=>{
     try {
-        let res = await fetch(url, {
+        let res = await fetch(API_URL, {
             "method": "POST",
-            "headers": { 'Content-Type': 'application/json','Authorization:':userToken},
+            "headers": { 'Content-Type': 'application/json'},
             "body": JSON.stringify(comment)
         });
         console.log(res.status);
@@ -67,5 +67,5 @@ commentForm.addEventListener('submit',(e)=>{
         message: formdata.get('message'),
         rating: formdata.get('rating')
     }
-    addComment(comment,userToken);
+    addComment(comment);
 })
