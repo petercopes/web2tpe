@@ -1,7 +1,9 @@
 {literal}
     <div id="app">
-        <div>
-            <select name="rating" id="commentRatingFilter">
+        <div>  
+            <label for="rating">Filtrar por puntaje</label>
+            <select name="rating"  id="commentRatingFilter">
+                <option value="" selected disabled hidden>Seleccione un valor</option>
                 <option name="rating" value="1">1</option>
                 <option name="rating" value="2">2</option>
                 <option name="rating" value="3">3</option>
@@ -9,6 +11,17 @@
                 <option name="rating" value="5">5</option>
             </select>
         </div>
+        <div>
+            <label for="sorting">Ordenar por:</label>
+            <select name="sorting"  id="commentSorting">
+                <option value="" selected disabled hidden>Seleccione un valor</option>
+                <option name="sorting" value="id_comment.asc">Antiguedad Ascendente</option>
+                <option name="sorting" value="id_comment.desc">Antiguedad Descendente</option>
+                <option name="sorting" value="rating.asc">Puntaje Ascendente</option>
+                <option name="sorting" value="rating.desc">Puntaje Descendente</option>
+            </select>
+        </div>
+
         <ul id="lista-tareas" class="list-group">
             <p>{{filterError}}</p>
             <li v-for="comment in comments" class="list-group-item" :id=comment.id_comment>

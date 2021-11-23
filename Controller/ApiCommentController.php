@@ -16,8 +16,18 @@ class ApiCommentController
 
     function getComments($params = null)
     {   
-        if(isset($_GET['rating'])){
-            $comments = $this->model->getCommentsFromDBByRating($_GET['rating']);
+         if(isset($_GET['rating']) && isset($_GET['sort_by'])){
+            $attribute = explode('.', $_GET['sort_by'])[0];
+            $order = explode('.', $_GET['sort_by'])[1];
+            $comments = $this->model->getCommentsFromDBFilteredAndSorted($_GET['rating'],$attribute,$order);
+        }
+        else if(isset($_GET['rating'])){
+            $comments = $this->model->getCommentsFromDBFilteredByRating($_GET['rating']);
+        }
+        else if(isset($_GET['sort_by'])){
+            $attribute = explode('.', $_GET['sort_by'])[0];
+            $order = explode('.', $_GET['sort_by'])[1];
+            $comments = $this->model->getCommentsFromDBSorted($attribute,$order);
         } 
         else{
             $comments = $this->model->getCommentsFromDB();
