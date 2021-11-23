@@ -43,7 +43,7 @@ class UserModel
     {
         $sentencia = $this->db->prepare("UPDATE user SET id_role=? WHERE email=?");
         $sentencia->bindParam(1, $role, PDO::PARAM_INT);
-        $sentencia->bindParam(2, $description, PDO::PARAM_STR, 50);
+        $sentencia->bindParam(2, $email, PDO::PARAM_STR, 50);
         $sentencia->execute();
     }
 }

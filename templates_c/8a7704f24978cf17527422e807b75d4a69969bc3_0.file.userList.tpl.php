@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-22 19:43:21
+/* Smarty version 3.1.39, created on 2021-11-23 02:42:53
   from 'C:\xampp\htdocs\web2tpe\templates\userList.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619be4c9b26c46_31454419',
+  'unifunc' => 'content_619c471d401831_48842414',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8a7704f24978cf17527422e807b75d4a69969bc3' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\userList.tpl',
-      1 => 1637606132,
+      1 => 1637618783,
       2 => 'file',
     ),
   ),
@@ -23,12 +23,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_619be4c9b26c46_31454419 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619c471d401831_48842414 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\web2tpe\\libs\\smarty-3.1.39\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 $_smarty_tpl->_subTemplateRender('file:templates/nav.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-<div class="mt-3 w-75">
+<div class="mt-3 w-75" style="min-height: 85vh;>
     <h2>
         Listado de usuarios
     </h2>

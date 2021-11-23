@@ -36,18 +36,19 @@ class ProductModel
     function getFilteredProducts($minPrice, $maxPrice, $keyword)
     {
         unset($queryParams);
-
-        if ($minPrice) {
-            $queryParams[] = " price >= '$minPrice' ";
+        if (!empty($keyword)) {
+            $queryParams[] = " name LIKE :keyword ";
         }
 
-        if ($maxPrice) {
-            $queryParams[] = " price <= '$maxPrice' ";
+
+        if (!empty($minPrice)) {
+            $queryParams[] = " price >= :minPrice ";
         }
 
-        if ($keyword) {
-            $queryParams[] = " name LIKE '%$keyword%' ";
+        if (!empty($maxPrice)) {
+            $queryParams[] = " price <= :maxPrice ";
         }
+
 
         $query = "SELECT * FROM product";
 
@@ -56,6 +57,18 @@ class ProductModel
         }
 
         $sentencia = $this->db->prepare($query);
+
+        if (!empty($keyword)) {
+            $formattedKeyword = '%' . $keyword . '%';
+            $sentencia->bindParam(":keyword", $formattedKeyword, PDO::PARAM_STR, 10);
+        }
+        if (!empty($minPrice)) {
+            $sentencia->bindParam(":minPrice", $minPrice, PDO::PARAM_INT);
+        }
+        if (!empty($maxPrice)) {
+            $sentencia->bindParam(":maxPrice", $maxPrice, PDO::PARAM_INT);
+        }
+        
         $sentencia->execute();
         $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $products;
@@ -85,7 +98,7 @@ class ProductModel
     function deleteProductFromDB($id)
     {
         $sentencia = $this->db->prepare("DELETE FROM product WHERE id_product=?");
-        $sentencia->bindParam(1, $categoryId, PDO::PARAM_INT);
+        $sentencia->bindParam(1, $id, PDO::PARAM_INT);
         $sentencia->execute();
     }
 
