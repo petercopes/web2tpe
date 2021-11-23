@@ -81,7 +81,8 @@ const addComment = async (comment)=>{
             "headers": { 'Content-Type': 'application/json'},
             "body": JSON.stringify(comment)
         });
-        if (res.status == 200) {
+        console.log(res.status);
+        if (res.status == 201 || res.status == 200) {
             console.log('añadido con exito');
             getComments();
         }

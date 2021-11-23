@@ -48,6 +48,9 @@ switch ($params[0]) {
     case "product":
         $productController->showProduct($params[1]);
         break;
+    case "get-filtered-products":
+        $productController->getFilteredProducts();
+        break;
     case "category-add-form":
         $categoryController->showAddCategoryForm();
         break;

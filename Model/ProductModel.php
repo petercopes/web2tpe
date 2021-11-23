@@ -33,6 +33,34 @@ class ProductModel
         return $products;
     }
 
+    function getFilteredProducts($minPrice, $maxPrice, $keyword)
+    {
+        unset($queryParams);
+
+        if ($minPrice) {
+            $queryParams[] = " price >= '$minPrice' ";
+        }
+
+        if ($maxPrice) {
+            $queryParams[] = " price <= '$maxPrice' ";
+        }
+
+        if ($keyword) {
+            $queryParams[] = " name LIKE '%$keyword%' ";
+        }
+
+        $query = "SELECT * FROM product";
+
+        if (!empty($queryParams)) {
+            $query .= ' WHERE ' . implode(' AND ', $queryParams);
+        }
+
+        $sentencia = $this->db->prepare($query);
+        $sentencia->execute();
+        $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $products;
+    }
+
     function addProduct($name, $description, $price, $categoryId, $imagePath)
     {
         if (isset($imagePath) && !empty($imagePath)) {
