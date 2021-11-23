@@ -15,8 +15,13 @@ class ApiCommentController
     }
 
     function getComments($params = null)
-    {
-        $comments = $this->model->getCommentsFromDB();
+    {   
+        if(isset($_GET['rating'])){
+            $comments = $this->model->getCommentsFromDBByRating($_GET['rating']);
+        } 
+        else{
+            $comments = $this->model->getCommentsFromDB();
+        }
         if (isset($comments) && !empty($comments)) {
             return $this->view->response($comments, 200);
         } else {
