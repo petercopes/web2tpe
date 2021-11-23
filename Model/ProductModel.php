@@ -66,37 +66,55 @@ class ProductModel
         if (isset($imagePath) && !empty($imagePath)) {
             $newImgPath = $this->uploadImage($imagePath);
             $sentencia = $this->db->prepare("INSERT INTO product(name, description, price,id_category, image_path) VALUES(?, ?, ?, ?, ?)");
-            $sentencia->execute(array($name, $description, $price, $categoryId, $newImgPath));
+            $sentencia->bindParam(1, $name, PDO::PARAM_STR, 50);
+            $sentencia->bindParam(2, $description, PDO::PARAM_STR, 50);
+            $sentencia->bindParam(3, $price, PDO::PARAM_INT);
+            $sentencia->bindParam(4, $categoryId, PDO::PARAM_INT);
+            $sentencia->bindParam(5, $newImgPath, PDO::PARAM_STR, 150);
+            $sentencia->execute();
         } else {
             $sentencia = $this->db->prepare("INSERT INTO product(name, description, price,id_category, image_path) VALUES(?, ?, ?, ?, '')");
-            $sentencia->execute(array($name, $description, $price, $categoryId));
+            $sentencia->bindParam(1, $name, PDO::PARAM_STR, 50);
+            $sentencia->bindParam(2, $description, PDO::PARAM_STR, 50);
+            $sentencia->bindParam(3, $price, PDO::PARAM_INT);
+            $sentencia->bindParam(4, $categoryId, PDO::PARAM_INT);
+            $sentencia->execute();
         }
     }
 
     function deleteProductFromDB($id)
     {
         $sentencia = $this->db->prepare("DELETE FROM product WHERE id_product=?");
-        $sentencia->execute(array($id));
+        $sentencia->bindParam(1, $categoryId, PDO::PARAM_INT);
+        $sentencia->execute();
     }
 
     function updateProductFromDB($id, $name, $description, $price, $imagePath)
     {
         if (isset($name) && !empty($name)) {
             $sentencia = $this->db->prepare("UPDATE product SET name=? WHERE id_product=?");
-            $sentencia->execute(array($name, $id));
+            $sentencia->bindParam(1, $name, PDO::PARAM_STR, 50);
+            $sentencia->bindParam(2, $id, PDO::PARAM_INT);
+            $sentencia->execute();
         }
         if (isset($description) && !empty($description)) {
             $sentencia = $this->db->prepare("UPDATE product SET description=? WHERE id_product=?");
-            $sentencia->execute(array($description, $id));
+            $sentencia->bindParam(1, $description, PDO::PARAM_STR, 50);
+            $sentencia->bindParam(2, $id, PDO::PARAM_INT);
+            $sentencia->execute();
         }
         if (isset($price) && !empty($price)) {
             $sentencia = $this->db->prepare("UPDATE product SET price=? WHERE id_product=?");
-            $sentencia->execute(array($price, $id));
+            $sentencia->bindParam(1, $price, PDO::PARAM_INT);
+            $sentencia->bindParam(2, $id, PDO::PARAM_INT);
+            $sentencia->execute();
         }
         if (isset($imagePath) && !empty($imagePath)) {
             $newImgPath = $this->uploadImage($imagePath);
             $sentencia = $this->db->prepare("UPDATE product SET image_path=? WHERE id_product=?");
-            $sentencia->execute(array($newImgPath, $id));
+            $sentencia->bindParam(1, $newImgPath, PDO::PARAM_STR, 150);
+            $sentencia->bindParam(2, $id, PDO::PARAM_INT);
+            $sentencia->execute();
         }
     }
 
