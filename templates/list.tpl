@@ -50,17 +50,21 @@
             </tbody>
         </table>
     </div>
+    {if $elemType eq "product"}
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             {for $page = 1 to $pageCount}
             {if $minPrice != null || $maxPrice != null || $keyword != null }
-            <li class="page-item"><a class="page-link" href="{$base}get-filtered-products?minPrice={$minPrice}&maxPrice={$maxPrice}&keyword={$keyword}&page={$page}">{$page}</a></li>
+            <li class="page-item"><a class="page-link"
+                    href="{$base}get-filtered-products?minPrice={$minPrice}&maxPrice={$maxPrice}&keyword={$keyword}&page={$page}">{$page}</a>
+            </li>
             {else}
             <li class="page-item"><a class="page-link" href="{$base}products?page={$page}">{$page}</a></li>
             {/if}
             {/for}
         </ul>
     </nav>
+    {/if}
     {/if}
     {if $userRole eq 1}
     <div class="btn btn-light">
