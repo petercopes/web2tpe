@@ -39,7 +39,11 @@ class CommentModel
     function addCommentToDB($email, $message, $rating, $productId)
     {
         $sentencia = $this->db->prepare("INSERT INTO comment(email, message,rating,id_product) VALUES(?,?,?,?)");
-        $sentencia->execute(array($email, $message, $rating, $productId));
+        $sentencia->bindParam(1, $email, PDO::PARAM_STR, 50);
+        $sentencia->bindParam(2, $message, PDO::PARAM_STR, 50);
+        $sentencia->bindParam(3, $rating, PDO::PARAM_INT);
+        $sentencia->bindParam(4, $productId, PDO::PARAM_INT);
+        $sentencia->execute();
         $id = $this->db->lastInsertId();
         return $id;
     }
@@ -47,13 +51,15 @@ class CommentModel
     function deleteCommentFromDB($id)
     {
         $sentencia = $this->db->prepare("DELETE FROM comment WHERE id_comment=?");
-        $sentencia->execute(array($id));
+        $sentencia->bindParam(1, $id, PDO::PARAM_INT);
+        $sentencia->execute();
     }
 
     function getCommentFromDB($id)
     {
         $sentencia = $this->db->prepare("SELECT * FROM comment WHERE id_comment=?");
-        $sentencia->execute(array($id));
+        $sentencia->bindParam(1, $id, PDO::PARAM_INT);
+        $sentencia->execute();
         $comment = $sentencia->fetch(PDO::FETCH_OBJ);
         return $comment;
     }

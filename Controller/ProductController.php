@@ -2,6 +2,7 @@
 require_once "./Model/ProductModel.php";
 require_once "./View/ProductView.php";
 require_once "./Helper/AuthHelper.php";
+require_once "./Model/CategoryModel.php";
 
 class ProductController
 {
@@ -22,7 +23,7 @@ class ProductController
     {
         $userRole = $this->authHelper->getRole();
         $products = $this->productModel->getProductsWithCategory();
-        $this->productView->showProducts($products, $userRole);
+        $this->productView->showProducts($products, $userRole, '', '', '');
     }
 
     function showAddProduct()
@@ -52,6 +53,22 @@ class ProductController
             $this->productModel->deleteProductFromDB($id);
             $this->authHelper->redirect('products');
         }
+    }
+
+    function getFilteredProducts(){
+        $userRole = $this->authHelper->getRole();
+        $minPrice = $_POST['minPrice'];
+        $maxPrice = $_POST['maxPrice'];
+        $keyword = $_POST['keyword'];
+        $keyword = explode(' ', $keyword)[0];
+        if(!empty($minPrice)) {
+            settype($minPrice,"integer");
+        }
+        if(!empty($maxPrice)) {
+            settype($maxPrice,"integer");
+        }
+        $products = $this->productModel->getFilteredProducts($minPrice, $maxPrice, $keyword);
+        $this->productView->showProducts($products, $userRole, $minPrice, $maxPrice, $keyword);
     }
 
     function showEditProductForm($id)

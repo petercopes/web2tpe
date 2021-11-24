@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-22 20:29:59
+/* Smarty version 3.1.39, created on 2021-11-23 02:42:17
   from 'C:\xampp\htdocs\web2tpe\templates\categoryForm.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619befb7db5881_42595810',
+  'unifunc' => 'content_619c46f9e66262_49629916',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ba0087b9a37ef6de6cde2a58a63de3fe40a0fc3b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\categoryForm.tpl',
-      1 => 1637609395,
+      1 => 1637618783,
       2 => 'file',
     ),
   ),
@@ -23,11 +23,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_619befb7db5881_42595810 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619c46f9e66262_49629916 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 $_smarty_tpl->_subTemplateRender('file:templates/nav.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column">
+<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column" style="min-height: 85vh;>
     <h1><?php echo $_smarty_tpl->tpl_vars['titulo']->value;?>
 </h1>
     <div class="card container-fluid d-flex justify-content-evenly p-4">
