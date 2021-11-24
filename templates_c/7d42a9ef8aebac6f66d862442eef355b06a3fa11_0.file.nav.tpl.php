@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-22 19:42:36
+/* Smarty version 3.1.39, created on 2021-11-24 02:51:34
   from 'C:\xampp\htdocs\web2tpe\templates\nav.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619be49ca282b7_81447762',
+  'unifunc' => 'content_619d9aa63c3638_11848074',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619be49ca282b7_81447762 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619d9aa63c3638_11848074 (Smarty_Internal_Template $_smarty_tpl) {
 ?><nav class="navbar  navbar-dark bg-dark justify-content-start">
     <ul class=' navbar-nav flex-row '>
         <li class='nav-item m-2'><a class='nav-link' href="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>

@@ -8,23 +8,35 @@ class CommentModel
     {
         $this->db = new PDO('mysql:host=localhost;' . 'dbname=tp-web-2;charset=utf8', 'root', '');
     }
-
-    function getCommentsFromDB()
-    {
-        $sentencia = $this->db->prepare("select * from comment");
+    function getCommentsFromDB($productId,$rating,$sorter,$order){
+        $query = "SELECT * FROM comment WHERE id_product= :idproduct";
+        if(isset($rating)) {
+            $query .= " AND rating = :rating ";
+        }
+        if(isset($sorter) && isset($order)) {
+            if($sorter=='rating'){
+                $query .= " ORDER BY rating";
+            }
+            else{
+                $query .= " ORDER BY id_comment";
+            }
+            if($order=='asc'){
+                $query .= " asc";
+            }
+            else{
+                $query .= " desc";
+            }
+        }
+        $sentencia = $this->db->prepare($query);
+        $sentencia->bindParam(":idproduct", $productId, PDO::PARAM_INT);
+        if (isset($rating)) {
+            $sentencia->bindParam(":rating", $rating, PDO::PARAM_INT);
+        }
         $sentencia->execute();
         $comments = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $comments;
     }
-    function getCommentsFromDBByRating($rating)
-    {
-        $sentencia = $this->db->prepare("select * from comment where rating = ?");
-        $sentencia->bindParam(1, $rating, PDO::PARAM_INT);
-        $sentencia->execute();
-        $comments = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        return $comments;
-    }
-
+    
     function addCommentToDB($email, $message, $rating, $productId)
     {
         $sentencia = $this->db->prepare("INSERT INTO comment(email, message,rating,id_product) VALUES(?,?,?,?)");

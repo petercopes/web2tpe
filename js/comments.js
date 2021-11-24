@@ -1,9 +1,8 @@
 const API_URL = "api/comments";
 const commentsContainer = document.getElementById('commentsContainer');
-const productId = commentsContainer.getAttribute('productId');
+const productId = document.getElementById('idProductForm').value;
 const userRole = commentsContainer.hasAttribute('user-role')? commentsContainer.getAttribute('user-role') : "";
 const commentForm = document.getElementById('commentForm');
-
 let app = new Vue({
     el: "#app",
     data: {
@@ -12,16 +11,24 @@ let app = new Vue({
         filterError: ""
     },
 });  
-const getComments = async (filter=null)=>{
+const getComments = async (rating=null,sorting=null)=>{
     try {
+        console.log(productId);
         let response;
-        if(!filter){
-           response = await fetch("api/comments");
+        if(!rating && !sorting){
+           response = await fetch(`api/comments?id_product=${productId}`);
+        }
+        else if(!sorting){
+            response = await fetch(`api/comments?id_product=${productId}&rating=${rating}`);
+        }
+        else if(!rating){
+            response = await fetch(`api/comments?id_product=${productId}&sort_by=${sorting}`);
         }
         else{
-            response = await fetch(`api/comments?rating=${filter}`);
+            response = await fetch(`api/comments?id_product=${productId}&sort_by=${sorting}&rating=${rating}`);
         }
         let comments = await response.json();
+        
         if(Array.isArray(comments)){
             app.comments=comments;
             app.filterError="";
@@ -37,7 +44,9 @@ const getComments = async (filter=null)=>{
 
 }
 document.addEventListener('DOMContentLoaded',async()=>{
-    console.log(userRole);
+    let rating = null;
+    let sorting = null;
+    console.log(productId);
     await getComments();
     const deleteButtons = document.getElementsByClassName('deleteButton');
     for(const dButton of deleteButtons){
@@ -52,9 +61,16 @@ document.addEventListener('DOMContentLoaded',async()=>{
     const commentRatingFilter = document.getElementById('commentRatingFilter');
     commentRatingFilter.addEventListener('change',async(e)=>{
         e.preventDefault();
-        const value = e.currentTarget.value;
-        console.log(value)
-        await getComments(value);
+        rating = e.currentTarget.value;
+        console.log(rating);
+        await getComments(rating,sorting);
+    })
+    const commentSorting = document.getElementById('commentSorting');
+    commentSorting.addEventListener('change',async(e)=>{
+        e.preventDefault();
+        sorting = e.currentTarget.value;
+        console.log(sorting);
+        await getComments(rating,sorting);
     })
 });
 
@@ -99,5 +115,6 @@ commentForm.addEventListener('submit',async(e)=>{
         "rating": formdata.get('rating'),
         "id_product": Number(formdata.get('id_product'))
     }
+    console.log(comment);
     await addComment(comment);
 })

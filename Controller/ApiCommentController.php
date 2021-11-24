@@ -16,12 +16,18 @@ class ApiCommentController
 
     function getComments($params = null)
     {   
+        $productId= $_GET['id_product'];
+        $rating = null;
+        $attribute = null;
+        $order = null;
         if(isset($_GET['rating'])){
-            $comments = $this->model->getCommentsFromDBByRating($_GET['rating']);
-        } 
-        else{
-            $comments = $this->model->getCommentsFromDB();
+            $rating = $_GET['rating'];
         }
+        if(isset($_GET['sort_by'])){
+            $attribute = explode('.', $_GET['sort_by'])[0];
+            $order = explode('.', $_GET['sort_by'])[1];
+        } 
+        $comments = $this->model->getCommentsFromDB($productId,$rating,$attribute,$order);
         if (isset($comments) && !empty($comments)) {
             return $this->view->response($comments, 200);
         } else {
