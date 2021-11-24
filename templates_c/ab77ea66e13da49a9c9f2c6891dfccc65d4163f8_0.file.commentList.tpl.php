@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-23 02:16:30
+/* Smarty version 3.1.39, created on 2021-11-24 02:51:34
   from 'C:\xampp\htdocs\web2tpe\templates\commentList.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619c40ee6b6612_42870651',
+  'unifunc' => 'content_619d9aa63cbda2_81449998',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ab77ea66e13da49a9c9f2c6891dfccc65d4163f8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\commentList.tpl',
-      1 => 1637626952,
+      1 => 1637718604,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,40 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619c40ee6b6612_42870651 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619d9aa63cbda2_81449998 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
-    <div id="app">
-        <div>
-            <select name="rating" id="commentRatingFilter">
-                <option name="rating" value="1">1</option>
-                <option name="rating" value="2">2</option>
-                <option name="rating" value="3">3</option>
-                <option name="rating" value="4">4</option>
-                <option name="rating" value="5">5</option>
-            </select>
+    <div class="container p-3 m-3 " id="app">
+        <div class="container">
+            <div class="row ">
+                <div class="col-7 d-flex align-items-end">
+                <h3 class="mb-0">Comentarios</h3>
+                </div>
+                <div class="col">  
+                    <label for="rating">Filtrar por puntaje</label>
+                    <select name="rating"  id="commentRatingFilter">
+                        <option value="" selected disabled hidden>Seleccione un valor</option>
+                        <option name="rating" value="1">1</option>
+                        <option name="rating" value="2">2</option>
+                        <option name="rating" value="3">3</option>
+                        <option name="rating" value="4">4</option>
+                        <option name="rating" value="5">5</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="sorting">Ordenar por:</label>
+                    <select name="sorting"  id="commentSorting">
+                        <option value="" selected disabled hidden>Seleccione un valor</option>
+                        <option name="sorting" value="id_comment.asc">Antiguedad Ascendente</option>
+                        <option name="sorting" value="id_comment.desc">Antiguedad Descendente</option>
+                        <option name="sorting" value="rating.asc">Puntaje Ascendente</option>
+                        <option name="sorting" value="rating.desc">Puntaje Descendente</option>
+                    </select>
+                </div>
+            </div>
+            
         </div>
+        
+
         <ul id="lista-tareas" class="list-group">
             <p>{{filterError}}</p>
             <li v-for="comment in comments" class="list-group-item" :id=comment.id_comment>

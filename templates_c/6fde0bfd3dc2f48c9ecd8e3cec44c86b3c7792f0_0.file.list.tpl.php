@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-24 02:26:51
+/* Smarty version 3.1.39, created on 2021-11-24 02:52:16
   from 'C:\xampp\htdocs\web2tpe\templates\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619d94db1bf6b4_13830812',
+  'unifunc' => 'content_619d9ad02f4dd8_02794314',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6fde0bfd3dc2f48c9ecd8e3cec44c86b3c7792f0' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\list.tpl',
-      1 => 1637717204,
+      1 => 1637718604,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619d94db1bf6b4_13830812 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619d9ad02f4dd8_02794314 (Smarty_Internal_Template $_smarty_tpl) {
 ?><main style="min-height: 85vh;>
 <div class=" container mt-5">
     <h1><?php echo $_smarty_tpl->tpl_vars['titulo']->value;?>
