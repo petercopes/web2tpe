@@ -9,7 +9,7 @@ class ProductView
         $this->smarty = new Smarty();
     }
 
-    function showProducts($products, $userRole, $minPrice = "", $maxPrice = "", $keyword = "")
+    function showProducts($products, $userRole, $minPrice = "", $maxPrice = "", $keyword = "", $pageCount = "")
     {
         $this->smarty->assign('tituloPagina','Productos');
         $this->smarty->assign('base',BASE_URL);
@@ -21,6 +21,7 @@ class ProductView
         $this->smarty->assign('minPrice',$minPrice);
         $this->smarty->assign('maxPrice',$maxPrice);
         $this->smarty->assign('keyword',$keyword);
+        $this->smarty->assign('pageCount',$pageCount);
         $this->smarty->assign('addText','Agregar Nuevo');
         $this->smarty->display('templates/productList.tpl');        
     }

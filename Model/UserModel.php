@@ -12,7 +12,7 @@ class UserModel
     function createUser($email, $password)
     {
         $sentencia = $this->db->prepare("INSERT INTO user(email, password) VALUES(?, ?)");
-        $sentencia->bindParam(1, $name, PDO::PARAM_STR, 50);
+        $sentencia->bindParam(1, $email, PDO::PARAM_STR, 50);
         $sentencia->bindParam(2, $password, PDO::PARAM_STR, 150);
         $sentencia->execute();
     }
@@ -20,7 +20,7 @@ class UserModel
     function getUser($email)
     {
         $sentencia = $this->db->prepare('SELECT * FROM user WHERE email = ?');
-        $sentencia->bindParam(1, $name, PDO::PARAM_STR, 50);
+        $sentencia->bindParam(1, $email, PDO::PARAM_STR, 50);
         $sentencia->execute();
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
