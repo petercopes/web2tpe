@@ -16,6 +16,7 @@ class ApiCommentController
 
     function getComments($params = null)
     {   
+        $productId= $_GET['id_product'];
         $rating = null;
         $attribute = null;
         $order = null;
@@ -26,7 +27,7 @@ class ApiCommentController
             $attribute = explode('.', $_GET['sort_by'])[0];
             $order = explode('.', $_GET['sort_by'])[1];
         } 
-        $comments = $this->model->getCommentsFromDB($rating,$attribute,$order);
+        $comments = $this->model->getCommentsFromDB($productId,$rating,$attribute,$order);
         if (isset($comments) && !empty($comments)) {
             return $this->view->response($comments, 200);
         } else {

@@ -1,9 +1,8 @@
 const API_URL = "api/comments";
 const commentsContainer = document.getElementById('commentsContainer');
-const productId = commentsContainer.getAttribute('productId');
+const productId = document.getElementById('idProductForm').value;
 const userRole = commentsContainer.hasAttribute('user-role')? commentsContainer.getAttribute('user-role') : "";
 const commentForm = document.getElementById('commentForm');
-
 let app = new Vue({
     el: "#app",
     data: {
@@ -14,18 +13,19 @@ let app = new Vue({
 });  
 const getComments = async (rating=null,sorting=null)=>{
     try {
+        console.log(productId);
         let response;
         if(!rating && !sorting){
-           response = await fetch("api/comments");
+           response = await fetch(`api/comments?id_product=${productId}`);
         }
         else if(!sorting){
-            response = await fetch(`api/comments?rating=${rating}`);
+            response = await fetch(`api/comments?id_product=${productId}&rating=${rating}`);
         }
         else if(!rating){
-            response = await fetch(`api/comments?sort_by=${sorting}`);
+            response = await fetch(`api/comments?id_product=${productId}&sort_by=${sorting}`);
         }
         else{
-            response = await fetch(`api/comments?sort_by=${sorting}&rating=${rating}`);
+            response = await fetch(`api/comments?id_product=${productId}&sort_by=${sorting}&rating=${rating}`);
         }
         let comments = await response.json();
         
@@ -46,7 +46,7 @@ const getComments = async (rating=null,sorting=null)=>{
 document.addEventListener('DOMContentLoaded',async()=>{
     let rating = null;
     let sorting = null;
-    console.log(userRole);
+    console.log(productId);
     await getComments();
     const deleteButtons = document.getElementsByClassName('deleteButton');
     for(const dButton of deleteButtons){
@@ -115,5 +115,6 @@ commentForm.addEventListener('submit',async(e)=>{
         "rating": formdata.get('rating'),
         "id_product": Number(formdata.get('id_product'))
     }
+    console.log(comment);
     await addComment(comment);
 })

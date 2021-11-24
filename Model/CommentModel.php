@@ -8,10 +8,10 @@ class CommentModel
     {
         $this->db = new PDO('mysql:host=localhost;' . 'dbname=tp-web-2;charset=utf8', 'root', '');
     }
-    function getCommentsFromDB($rating,$sorter,$order){
-        $query = "SELECT * FROM comment";
+    function getCommentsFromDB($productId,$rating,$sorter,$order){
+        $query = "SELECT * FROM comment WHERE id_product= :idproduct";
         if(isset($rating)) {
-            $query .= " WHERE rating = :rating";
+            $query .= " AND rating = :rating ";
         }
         if(isset($sorter) && isset($order)) {
             if($sorter=='rating'){
@@ -28,6 +28,7 @@ class CommentModel
             }
         }
         $sentencia = $this->db->prepare($query);
+        $sentencia->bindParam(":idproduct", $productId, PDO::PARAM_INT);
         if (isset($rating)) {
             $sentencia->bindParam(":rating", $rating, PDO::PARAM_INT);
         }
