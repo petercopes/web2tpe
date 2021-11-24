@@ -25,15 +25,37 @@ class ProductModel
         return $product;
     }
 
-    function getProductsWithCategory()
+    function getProductsWithCategory($limit = null, $resultsPerPage = null)
     {
-        $sentencia = $this->db->prepare('select p.*, c.name as "category_name" from product p join category c on (p.id_category = c.id_category)');
+        $query = 'select p.*, c.name as "category_name" from product p join category c on (p.id_category = c.id_category)';
+
+        if (isset($limit) && isset($resultsPerPage)) {
+            $query .= 'LIMIT  ? , ?';
+        }
+
+        $sentencia = $this->db->prepare($query);
+
+        if (isset($limit) && isset($resultsPerPage)) {
+            $sentencia->bindParam(1, $limit, PDO::PARAM_INT);
+            $sentencia->bindParam(2, $resultsPerPage, PDO::PARAM_INT);
+        }
+
         $sentencia->execute();
         $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $products;
     }
 
-    function getFilteredProducts($minPrice, $maxPrice, $keyword)
+    // function getProductsWithCategoryForPage($limit, $resultsPerPage)
+    // {
+    //     $sentencia = $this->db->prepare('select p.*, c.name as "category_name" from product p join category c on (p.id_category = c.id_category) LIMIT  ? , ?');
+    //     $sentencia->bindParam(1, $limit, PDO::PARAM_INT);
+    //     $sentencia->bindParam(2, $resultsPerPage, PDO::PARAM_INT);
+    //     $sentencia->execute();
+    //     $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
+    //     return $products;
+    // }
+
+    function getFilteredProducts($minPrice, $maxPrice, $keyword, $limit = null, $resultsPerPage = null)
     {
         unset($queryParams);
         if (!empty($keyword)) {
@@ -56,6 +78,10 @@ class ProductModel
             $query .= ' WHERE ' . implode(' AND ', $queryParams);
         }
 
+        if (isset($limit) && isset($resultsPerPage)) {
+            $query .= ' LIMIT  :limit , :resultsPerPage';
+        }
+
         $sentencia = $this->db->prepare($query);
 
         if (!empty($keyword)) {
@@ -68,7 +94,12 @@ class ProductModel
         if (!empty($maxPrice)) {
             $sentencia->bindParam(":maxPrice", $maxPrice, PDO::PARAM_INT);
         }
-        
+
+        if (isset($limit) && isset($resultsPerPage)) {
+            $sentencia->bindParam(":limit", $limit, PDO::PARAM_INT);
+            $sentencia->bindParam(":resultsPerPage", $resultsPerPage, PDO::PARAM_INT);
+        }
+
         $sentencia->execute();
         $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $products;
