@@ -41,7 +41,7 @@
         </div>
     </div>
     </div>
-    {if $userRole neq '3'}
+    {if $userRole eq '2'}
         <div class="card container-fluid d-flex justify-content-evenly" id="commentsContainer" user-role={$userRole}>
             {include file="templates/commentList.tpl"}
             {include file="templates/commentForm.tpl"}

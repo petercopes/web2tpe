@@ -122,7 +122,7 @@ class ProductController
 
     function editProduct($id)
     {
-        $this->productModel->updateProductFromDB($id, $_POST['name'], $_POST['description'], $_POST['price'], $_FILES['productImage']['tmp_name']);
+        $this->productModel->updateProductFromDB($id, $_POST['name'], $_POST['description'], $_POST['price'], $_FILES['productImage']['tmp_name'], $_POST['delete-image']);
         $this->authHelper->redirect('products');
     }
 

@@ -46,6 +46,9 @@
                     <input  class="form-control"placeholder="precio" type="number" value="{$product->price}" name="price" id="price" required>
                 </div>
                 <input type="file" name="productImage" accept="image/png, image/jpeg" id="productImage">
+                {if $product->image_path}
+                    <input type="checkbox" id="delete-image" name="delete-image" default={false}> <label for="cbox2">Borrar imagen</label>
+                {/if}
                 <input type="submit" class="btn btn-primary" value="Guardar">
             </form>
         {/if}
