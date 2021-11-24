@@ -22,16 +22,16 @@ class ProductController
     function showProducts()
     {
         $userRole = $this->authHelper->getRole();
-        if (!isset ($_GET['page']) ) {  
-            $page = 1;  
-        } else {  
-            $page = $_GET['page'];  
-        }  
+        if (!isset($_GET['page'])) {
+            $page = 1;
+        } else {
+            $page = $_GET['page'];
+        }
         $resultsPerPage = 3;
         $pageCount = ceil(count($this->productModel->getProductsWithCategory(null, null)) / $resultsPerPage);
         $limit = ($page - 1) * $resultsPerPage;
         $productsForPage =  $this->productModel->getProductsWithCategory($limit, $resultsPerPage);
-        
+
         $this->productView->showProducts($productsForPage, $userRole, '', '', '', $pageCount);
     }
 
@@ -64,47 +64,48 @@ class ProductController
         }
     }
 
-    function getFilteredProducts(){
+    function getFilteredProducts()
+    {
         $userRole = $this->authHelper->getRole();
 
-        if(isset($_POST['minPrice'])) {
+        if (isset($_POST['minPrice'])) {
             $minPrice = $_POST['minPrice'];
-        } else if(isset($_GET['minPrice'])) {
+        } else if (isset($_GET['minPrice'])) {
             $minPrice = $_GET['minPrice'];
         } else {
             $minPrice = null;
         }
 
-        if(isset($_POST['maxPrice'])) {
+        if (isset($_POST['maxPrice'])) {
             $maxPrice = $_POST['maxPrice'];
-        } else if(isset($_GET['maxPrice'])) {
+        } else if (isset($_GET['maxPrice'])) {
             $maxPrice = $_GET['maxPrice'];
         } else {
             $maxPrice = null;
         }
 
-        if(isset($_POST['keyword'])) {
+        if (isset($_POST['keyword'])) {
             $keyword = $_POST['keyword'];
-        } else if(isset($_GET['keyword'])) {
+        } else if (isset($_GET['keyword'])) {
             $keyword = $_GET['keyword'];
         } else {
             $keyword = null;
         }
-        
+
         $keyword = explode(' ', $keyword)[0];
-        if(!empty($minPrice)) {
-            settype($minPrice,"integer");
+        if (!empty($minPrice)) {
+            settype($minPrice, "integer");
         }
-        if(!empty($maxPrice)) {
-            settype($maxPrice,"integer");
+        if (!empty($maxPrice)) {
+            settype($maxPrice, "integer");
         }
         $resultsPerPage = 3;
         $pageCount = ceil(count($this->productModel->getFilteredProducts($minPrice, $maxPrice, $keyword, null, null)) / $resultsPerPage);
-        if (!isset ($_GET['page']) ) {  
-            $page = 1;  
-        } else {  
-            $page = $_GET['page'];  
-        }  
+        if (!isset($_GET['page'])) {
+            $page = 1;
+        } else {
+            $page = $_GET['page'];
+        }
         $limit = ($page - 1) * $resultsPerPage;
         $productsForPage = $this->productModel->getFilteredProducts($minPrice, $maxPrice, $keyword, $limit, $resultsPerPage);
         $this->productView->showProducts($productsForPage, $userRole, $minPrice, $maxPrice, $keyword, $pageCount);
@@ -122,7 +123,7 @@ class ProductController
 
     function editProduct($id)
     {
-        $this->productModel->updateProductFromDB($id, $_POST['name'], $_POST['description'], $_POST['price'], $_FILES['productImage']['tmp_name']);
+        $this->productModel->updateProductFromDB($id, $_POST['name'], $_POST['description'], $_POST['price'], $_FILES['productImage']['tmp_name'], $_POST['delete-image']);
         $this->authHelper->redirect('products');
     }
 

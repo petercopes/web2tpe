@@ -37,15 +37,12 @@ const getComments = async (filter=null)=>{
 
 }
 document.addEventListener('DOMContentLoaded',async()=>{
-    console.log(userRole);
     await getComments();
     const deleteButtons = document.getElementsByClassName('deleteButton');
     for(const dButton of deleteButtons){
-        console.log(dButton);
     dButton.addEventListener('click',async()=>{
     
         const dButtonID = dButton.id.split('-')[1];
-        console.log(dButtonID);
         await deleteComment(Number(dButtonID));
     });
     }
@@ -53,7 +50,6 @@ document.addEventListener('DOMContentLoaded',async()=>{
     commentRatingFilter.addEventListener('change',async(e)=>{
         e.preventDefault();
         const value = e.currentTarget.value;
-        console.log(value)
         await getComments(value);
     })
 });
@@ -81,7 +77,6 @@ const addComment = async (comment)=>{
             "headers": { 'Content-Type': 'application/json'},
             "body": JSON.stringify(comment)
         });
-        console.log(res.status);
         if (res.status == 201 || res.status == 200) {
             console.log('añadido con exito');
             getComments();

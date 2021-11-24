@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-22 22:49:19
+/* Smarty version 3.1.39, created on 2021-11-25 00:21:24
   from 'C:\xampp\htdocs\web2tpe\templates\productsForm.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619c105f8f46d7_42362129',
+  'unifunc' => 'content_619ec8f4cbc0a9_54654288',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c61aa0979c2b78f6e7807cb69621ab13ea39c2c1' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\productsForm.tpl',
-      1 => 1637617577,
+      1 => 1637796059,
       2 => 'file',
     ),
   ),
@@ -23,11 +23,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_619c105f8f46d7_42362129 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619ec8f4cbc0a9_54654288 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 $_smarty_tpl->_subTemplateRender('file:templates/nav.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column">
+<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column" style="min-height: 85vh;>
     <h1><?php echo $_smarty_tpl->tpl_vars['titulo']->value;?>
 </h1>
     <div class="card container-fluid d-flex justify-content-evenly p-4" >
@@ -89,6 +89,10 @@ edit-product/<?php echo $_smarty_tpl->tpl_vars['product']->value->id_product;?>
 " name="price" id="price" required>
                 </div>
                 <input type="file" name="productImage" accept="image/png, image/jpeg" id="productImage">
+                <?php if ($_smarty_tpl->tpl_vars['product']->value->image_path) {?>
+                    <input type="checkbox" id="delete-image" name="delete-image" default=<?php echo false;?>
+> <label for="cbox2">Borrar imagen</label>
+                <?php }?>
                 <input type="submit" class="btn btn-primary" value="Guardar">
             </form>
         <?php }?>

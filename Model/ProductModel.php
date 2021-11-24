@@ -133,7 +133,7 @@ class ProductModel
         $sentencia->execute();
     }
 
-    function updateProductFromDB($id, $name, $description, $price, $imagePath)
+    function updateProductFromDB($id, $name, $description, $price, $imagePath, $deleteImg)
     {
         if (isset($name) && !empty($name)) {
             $sentencia = $this->db->prepare("UPDATE product SET name=? WHERE id_product=?");
@@ -158,6 +158,13 @@ class ProductModel
             $sentencia = $this->db->prepare("UPDATE product SET image_path=? WHERE id_product=?");
             $sentencia->bindParam(1, $newImgPath, PDO::PARAM_STR, 150);
             $sentencia->bindParam(2, $id, PDO::PARAM_INT);
+            $sentencia->execute();
+        }
+
+        if (isset($deleteImg)) {
+            $newImgPath = $this->uploadImage($imagePath);
+            $sentencia = $this->db->prepare("UPDATE product SET image_path=null WHERE id_product=?");
+            $sentencia->bindParam(1, $id, PDO::PARAM_INT);
             $sentencia->execute();
         }
     }
