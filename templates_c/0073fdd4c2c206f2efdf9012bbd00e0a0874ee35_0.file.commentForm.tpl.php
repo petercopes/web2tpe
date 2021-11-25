@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-25 01:23:21
+/* Smarty version 3.1.39, created on 2021-11-25 01:28:25
   from 'C:\xampp\htdocs\web2tpe\templates\commentForm.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619ed77995da14_41400178',
+  'unifunc' => 'content_619ed8a99448a3_78315092',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0073fdd4c2c206f2efdf9012bbd00e0a0874ee35' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\commentForm.tpl',
-      1 => 1637799799,
+      1 => 1637799813,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619ed77995da14_41400178 (Smarty_Internal_Template $_smarty_tpl) {
-?><div class="container p-3 card" style="max-width: 95%;">
+function content_619ed8a99448a3_78315092 (Smarty_Internal_Template $_smarty_tpl) {
+?><div class="container p-3 card" style="max-width: 90%;">
     <h3>Agregar un Comentario</h3>
     <form class="form-alta" id="commentForm" action="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
 /api/comments" method="POST">
