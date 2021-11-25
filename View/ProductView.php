@@ -22,6 +22,7 @@ class ProductView
         $this->smarty->assign('maxPrice',$maxPrice);
         $this->smarty->assign('keyword',$keyword);
         $this->smarty->assign('pageCount',$pageCount);
+        $this->smarty->assign('pagination',true);
         $this->smarty->assign('addText','Agregar Nuevo');
         $this->smarty->display('templates/productList.tpl');        
     }
