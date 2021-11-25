@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-24 02:52:16
+/* Smarty version 3.1.39, created on 2021-11-25 01:00:50
   from 'C:\xampp\htdocs\web2tpe\templates\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619d9ad02f4dd8_02794314',
+  'unifunc' => 'content_619ed232779c88_25372606',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6fde0bfd3dc2f48c9ecd8e3cec44c86b3c7792f0' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\list.tpl',
-      1 => 1637718604,
+      1 => 1637798425,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_619d9ad02f4dd8_02794314 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619ed232779c88_25372606 (Smarty_Internal_Template $_smarty_tpl) {
 ?><main style="min-height: 85vh;>
 <div class=" container mt-5">
     <h1><?php echo $_smarty_tpl->tpl_vars['titulo']->value;?>
@@ -28,7 +28,7 @@ function content_619d9ad02f4dd8_02794314 (Smarty_Internal_Template $_smarty_tpl)
     <?php if (!$_smarty_tpl->tpl_vars['elements']->value) {?>
     <p>No hay elementos cargados</p>
     <?php } else { ?>
-    <div class="mt-3 w-75">
+    <div class="mt-3 w-75 center">
         <table class="table">
             <tbody>
                 <?php
@@ -90,7 +90,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             </tbody>
         </table>
     </div>
-    <nav aria-label="Page navigation example">
+    <?php if ($_smarty_tpl->tpl_vars['elemType']->value == "product") {?>
+    <nav aria-label="Page navigation example" class="center fit-content">
         <ul class="pagination">
             <?php
 $_smarty_tpl->tpl_vars['page'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);$_smarty_tpl->tpl_vars['page']->step = 1;$_smarty_tpl->tpl_vars['page']->total = (int) ceil(($_smarty_tpl->tpl_vars['page']->step > 0 ? $_smarty_tpl->tpl_vars['pageCount']->value+1 - (1) : 1-($_smarty_tpl->tpl_vars['pageCount']->value)+1)/abs($_smarty_tpl->tpl_vars['page']->step));
@@ -116,6 +117,7 @@ products?page=<?php echo $_smarty_tpl->tpl_vars['page']->value;?>
 ?>
         </ul>
     </nav>
+    <?php }?>
     <?php }?>
     <?php if ($_smarty_tpl->tpl_vars['userRole']->value == 1) {?>
     <div class="btn btn-light">
