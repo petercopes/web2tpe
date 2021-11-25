@@ -1,10 +1,10 @@
 {include file='templates/header.tpl'}
 {include file='templates/nav.tpl'}
-<div class="mt-3 w-75" style="min-height: 85vh;>
+<div class="mt-3 w-75" style="min-height: 85vh;">
     <h2>
         Listado de usuarios
     </h2>
-    <table class="table">
+    <table class="table" style="margin-left: 150px;">
         <thead scope="row">
             <tr>
                 <td>Username</td>

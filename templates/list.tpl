@@ -4,7 +4,7 @@
     {if not $elements}
     <p>No hay elementos cargados</p>
     {else}
-    <div class="mt-3 w-75">
+    <div class="mt-3 w-75 center">
         <table class="table">
             <tbody>
                 {foreach from=$elements item=$element}
@@ -50,7 +50,8 @@
             </tbody>
         </table>
     </div>
-    <nav aria-label="Page navigation example">
+    {if $elemType eq "product"}
+    <nav aria-label="Page navigation example" class="center fit-content">
         <ul class="pagination">
             {for $page = 1 to $pageCount}
             {if $minPrice != null || $maxPrice != null || $keyword != null }
@@ -61,6 +62,7 @@
             {/for}
         </ul>
     </nav>
+    {/if}
     {/if}
     {if $userRole eq 1}
     <div class="btn btn-light">

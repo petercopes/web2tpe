@@ -1,4 +1,4 @@
-<div class="container p-3 m-3 card">
+<div class="container p-3 card" style="max-width: 90%;">
     <h3>Agregar un Comentario</h3>
     <form class="form-alta" id="commentForm" action="{$base}/api/comments" method="POST">
         <div class="mb-3">

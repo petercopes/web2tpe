@@ -20,7 +20,7 @@ class UserView
         $this->smarty->assign('result', $result);
         $this->smarty->assign('titulo', 'Log In');
         $this->smarty->assign('action', 'log-in');
-        $this->smarty->assign('isUserLogged', false);
+        $this->smarty->assign('userRole', 3);
         $this->smarty->display('templates/authForm.tpl');
     }
 
@@ -33,7 +33,7 @@ class UserView
         $this->smarty->assign('result', $result);
         $this->smarty->assign('action', 'create-user');
         $this->smarty->assign('titulo', 'Crear Usuario');
-        $this->smarty->assign('isUserLogged', false);
+        $this->smarty->assign('userRole', 3);
         $this->smarty->display('templates/authForm.tpl');
     }
 

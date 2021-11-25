@@ -1,8 +1,8 @@
 {include file='templates/header.tpl'}
 {include file='templates/nav.tpl'}
-<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column" style="min-height: 85vh;">
+<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-column" style="min-height: 85vh;">
     <a href="{$base}products" class="card-link text-secondary text-decoration-none mb-1">Volver</a>
-    <div class="card mb-3" style="max-width: 540px;">
+    <div class="card mb-3 center" style="max-width: 700px;">
         <div class="row g-0">
             {if !empty($product->image_path)}
                 <div class="col-md-4">
@@ -15,7 +15,7 @@
                     <h6 class="card-subtitle mb-2 text-muted">{$product->price}</h6>
                     <p class="card-text">{$product->description}</p>
                     {if $userRole eq '1'}
-                        <div class="container-fluid d-flex justify-content-evenly flex-row">
+                        <div class="container-fluid d-flex justify-content-evenly flex-row" style="margin-top: 130px;">
                             <a href="edit-product-form/{$product->id_product}" class=" card-link btn btn-dark">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -41,13 +41,13 @@
         </div>
     </div>
     </div>
-    {if $userRole neq '3'}
-        <div class="card container-fluid d-flex justify-content-evenly" id="commentsContainer" user-role={$userRole}>
+    {if $userRole eq '2'}
+        <div class="card container-fluid d-flex justify-content-evenly center" id="commentsContainer" user-role={$userRole} product-id={$product->id_product} style="max-width: 700px;">
             {include file="templates/commentList.tpl"}
             {include file="templates/commentForm.tpl"}
         </div>
     {else}
-        <div class="card container-fluid d-flex justify-content-evenly " id="commentsContainer">
+        <div class="card container-fluid d-flex justify-content-evenly " id="commentsContainer" product-id={$product->id_product} style="max-width: 700px;">
             {include file="templates/commentList.tpl"}
         </div>
     {/if}

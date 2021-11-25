@@ -1,7 +1,7 @@
 const API_URL = "api/comments";
 const commentsContainer = document.getElementById('commentsContainer');
-const productId = document.getElementById('idProductForm').value;
 const userRole = commentsContainer.hasAttribute('user-role')? commentsContainer.getAttribute('user-role') : "";
+const productId = commentsContainer.getAttribute('product-id');
 const commentForm = document.getElementById('commentForm');
 let app = new Vue({
     el: "#app",
@@ -13,7 +13,6 @@ let app = new Vue({
 });  
 const getComments = async (rating=null,sorting=null)=>{
     try {
-        console.log(productId);
         let response;
         if(!rating && !sorting){
            response = await fetch(`api/comments?id_product=${productId}`);
@@ -46,15 +45,12 @@ const getComments = async (rating=null,sorting=null)=>{
 document.addEventListener('DOMContentLoaded',async()=>{
     let rating = null;
     let sorting = null;
-    console.log(productId);
     await getComments();
     const deleteButtons = document.getElementsByClassName('deleteButton');
     for(const dButton of deleteButtons){
-        console.log(dButton);
     dButton.addEventListener('click',async()=>{
     
         const dButtonID = dButton.id.split('-')[1];
-        console.log(dButtonID);
         await deleteComment(Number(dButtonID));
     });
     }
@@ -62,15 +58,24 @@ document.addEventListener('DOMContentLoaded',async()=>{
     commentRatingFilter.addEventListener('change',async(e)=>{
         e.preventDefault();
         rating = e.currentTarget.value;
-        console.log(rating);
         await getComments(rating,sorting);
     })
     const commentSorting = document.getElementById('commentSorting');
     commentSorting.addEventListener('change',async(e)=>{
         e.preventDefault();
         sorting = e.currentTarget.value;
-        console.log(sorting);
         await getComments(rating,sorting);
+    })
+    commentForm.addEventListener('submit',async(e)=>{
+        e.preventDefault();
+        const formdata = new FormData(commentForm);
+        const comment = {
+            "email": formdata.get('email'),
+            "message": formdata.get('message'),
+            "rating": formdata.get('rating'),
+            "id_product": Number(formdata.get('id_product'))
+        }
+        await addComment(comment);
     })
 });
 
@@ -106,15 +111,3 @@ const addComment = async (comment)=>{
         console.log('error');
     }
 }
-commentForm.addEventListener('submit',async(e)=>{
-    e.preventDefault();
-    const formdata = new FormData(commentForm);
-    const comment = {
-        "email": formdata.get('email'),
-        "message": formdata.get('message'),
-        "rating": formdata.get('rating'),
-        "id_product": Number(formdata.get('id_product'))
-    }
-    console.log(comment);
-    await addComment(comment);
-})

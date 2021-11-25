@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-11-24 02:51:34
+/* Smarty version 3.1.39, created on 2021-11-25 01:16:48
   from 'C:\xampp\htdocs\web2tpe\templates\productDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_619d9aa63ae020_61476916',
+  'unifunc' => 'content_619ed5f06391b9_03124682',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5a1369f2612dab5f1bffa514917cacfd4f37469b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\productDetail.tpl',
-      1 => 1637622984,
+      1 => 1637799405,
       2 => 'file',
     ),
   ),
@@ -25,14 +25,14 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_619d9aa63ae020_61476916 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619ed5f06391b9_03124682 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 $_smarty_tpl->_subTemplateRender('file:templates/nav.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column" style="min-height: 85vh;">
+<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-column" style="min-height: 85vh;">
     <a href="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
 products" class="card-link text-secondary text-decoration-none mb-1">Volver</a>
-    <div class="card mb-3" style="max-width: 540px;">
+    <div class="card mb-3 center" style="max-width: 700px;">
         <div class="row g-0">
             <?php if (!empty($_smarty_tpl->tpl_vars['product']->value->image_path)) {?>
                 <div class="col-md-4">
@@ -50,7 +50,7 @@ products" class="card-link text-secondary text-decoration-none mb-1">Volver</a>
                     <p class="card-text"><?php echo $_smarty_tpl->tpl_vars['product']->value->description;?>
 </p>
                     <?php if ($_smarty_tpl->tpl_vars['userRole']->value == '1') {?>
-                        <div class="container-fluid d-flex justify-content-evenly flex-row">
+                        <div class="container-fluid d-flex justify-content-evenly flex-row" style="margin-top: 130px;">
                             <a href="edit-product-form/<?php echo $_smarty_tpl->tpl_vars['product']->value->id_product;?>
 " class=" card-link btn btn-dark">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -78,16 +78,18 @@ products" class="card-link text-secondary text-decoration-none mb-1">Volver</a>
         </div>
     </div>
     </div>
-    <?php if ($_smarty_tpl->tpl_vars['userRole']->value != '3') {?>
-        <div class="card container-fluid d-flex justify-content-evenly" id="commentsContainer" user-role=<?php echo $_smarty_tpl->tpl_vars['userRole']->value;?>
->
+    <?php if ($_smarty_tpl->tpl_vars['userRole']->value == '2') {?>
+        <div class="card container-fluid d-flex justify-content-evenly center" id="commentsContainer" user-role=<?php echo $_smarty_tpl->tpl_vars['userRole']->value;?>
+ product-id=<?php echo $_smarty_tpl->tpl_vars['product']->value->id_product;?>
+ style="max-width: 700px;">
             <?php $_smarty_tpl->_subTemplateRender("file:templates/commentList.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
             <?php $_smarty_tpl->_subTemplateRender("file:templates/commentForm.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
         </div>
     <?php } else { ?>
-        <div class="card container-fluid d-flex justify-content-evenly " id="commentsContainer">
+        <div class="card container-fluid d-flex justify-content-evenly " id="commentsContainer" product-id=<?php echo $_smarty_tpl->tpl_vars['product']->value->id_product;?>
+ style="max-width: 700px;">
             <?php $_smarty_tpl->_subTemplateRender("file:templates/commentList.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
         </div>
