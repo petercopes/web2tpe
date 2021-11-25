@@ -2,14 +2,14 @@
 {include file='templates/nav.tpl'}
 <main class="d-flex container-fluid p-5 justify-content-between h-100 flex-column" style="min-height: 85vh;">
     <a href="{$base}products" class="card-link text-secondary text-decoration-none mb-1">Volver</a>
-    <div class="card mb-3 center" style="max-width: 700px;">
+    <div class="card mb-3 center" style="max-width: 700px; width: 90%;">
         <div class="row g-0">
             {if !empty($product->image_path)}
                 <div class="col-md-4">
                     <img src="{$product->image_path}" class="card-img-top" alt="{$product->name}-img">
                 </div>
             {/if}
-            <div class="col-md-8">
+            <div class="col">
                 <div class="card-body">
                     <h5 class="card-title">{$product->name}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{$product->price}</h6>
@@ -41,16 +41,13 @@
         </div>
     </div>
     </div>
-    {if $userRole eq '2'}
-        <div class="card container-fluid d-flex justify-content-evenly center" id="commentsContainer" user-role={$userRole} product-id={$product->id_product} style="max-width: 700px;">
-            {include file="templates/commentList.tpl"}
+    <div class="card container-fluid d-flex justify-content-evenly center" id="commentsContainer" user-role={$userRole}
+        product-id={$product->id_product} style="max-width: 700px;">
+        {include file="templates/commentList.tpl"}
+        {if $userRole eq '2'}
             {include file="templates/commentForm.tpl"}
-        </div>
-    {else}
-        <div class="card container-fluid d-flex justify-content-evenly " id="commentsContainer" product-id={$product->id_product} style="max-width: 700px;">
-            {include file="templates/commentList.tpl"}
-        </div>
-    {/if}
+        {/if}
+    </div>
 </main>
 <script src='js/comments.js'></script>
 {include file='templates/footer.tpl'}

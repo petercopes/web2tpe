@@ -45,16 +45,6 @@ class ProductModel
         return $products;
     }
 
-    // function getProductsWithCategoryForPage($limit, $resultsPerPage)
-    // {
-    //     $sentencia = $this->db->prepare('select p.*, c.name as "category_name" from product p join category c on (p.id_category = c.id_category) LIMIT  ? , ?');
-    //     $sentencia->bindParam(1, $limit, PDO::PARAM_INT);
-    //     $sentencia->bindParam(2, $resultsPerPage, PDO::PARAM_INT);
-    //     $sentencia->execute();
-    //     $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
-    //     return $products;
-    // }
-
     function getFilteredProducts($minPrice, $maxPrice, $keyword, $limit = null, $resultsPerPage = null)
     {
         unset($queryParams);
