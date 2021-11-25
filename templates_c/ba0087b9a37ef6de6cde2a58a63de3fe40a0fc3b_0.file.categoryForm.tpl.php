@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-13 20:04:43
-  from '/opt/lampp/htdocs/web2tpe/templates/categoryForm.tpl' */
+/* Smarty version 3.1.39, created on 2021-11-25 01:41:45
+  from 'C:\xampp\htdocs\web2tpe\templates\categoryForm.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61671fbbc08775_10171413',
+  'unifunc' => 'content_619edbc97e25e6_63531821',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '67439bf9212b37d0468d61dc1e13598e6232dbc6' => 
+    'ba0087b9a37ef6de6cde2a58a63de3fe40a0fc3b' => 
     array (
-      0 => '/opt/lampp/htdocs/web2tpe/templates/categoryForm.tpl',
-      1 => 1634147480,
+      0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\categoryForm.tpl',
+      1 => 1637618783,
       2 => 'file',
     ),
   ),
@@ -23,11 +23,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_61671fbbc08775_10171413 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619edbc97e25e6_63531821 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 $_smarty_tpl->_subTemplateRender('file:templates/nav.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column">
+<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column" style="min-height: 85vh;>
     <h1><?php echo $_smarty_tpl->tpl_vars['titulo']->value;?>
 </h1>
     <div class="card container-fluid d-flex justify-content-evenly p-4">
@@ -48,7 +48,7 @@ add-category" method="post">
         <?php } else { ?>
             <form class="form-alta" action="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
 edit-category/<?php echo $_smarty_tpl->tpl_vars['category']->value->id_category;?>
-"" method=" post">
+" method="post">
             <div class="mb-3">
                 <label for="name" class="form-label">Nombre de la Categoria</label>
                 <input placeholder="Nombre" type="text" name="name" id="name" class="form-control"

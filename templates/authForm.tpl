@@ -1,6 +1,6 @@
 {include file='templates/header.tpl'}
 {include file='templates/nav.tpl'}
-<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column">
+<main class="d-flex container-fluid p-5 h-100 flex-column" style="min-height: 85vh; max-width: 600px;">
     <h1>{$titulo}</h1>
     <div class="card container-fluid d-flex justify-content-evenly p-4 mb-4">
         {if $action === 'create-user'}

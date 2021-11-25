@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-14 00:16:09
-  from '/opt/lampp/htdocs/web2tpe/templates/productsForm.tpl' */
+/* Smarty version 3.1.39, created on 2021-11-25 00:59:35
+  from 'C:\xampp\htdocs\web2tpe\templates\productsForm.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61675aa9d38554_24106717',
+  'unifunc' => 'content_619ed1e76d50f2_68218457',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '707587810a4d1f11bf85412b693ae2de1d9465b4' => 
+    'c61aa0979c2b78f6e7807cb69621ab13ea39c2c1' => 
     array (
-      0 => '/opt/lampp/htdocs/web2tpe/templates/productsForm.tpl',
-      1 => 1634163362,
+      0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\productsForm.tpl',
+      1 => 1637797210,
       2 => 'file',
     ),
   ),
@@ -23,17 +23,17 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_61675aa9d38554_24106717 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619ed1e76d50f2_68218457 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 $_smarty_tpl->_subTemplateRender('file:templates/nav.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column">
+<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column" style="min-height: 85vh;>
     <h1><?php echo $_smarty_tpl->tpl_vars['titulo']->value;?>
 </h1>
     <div class="card container-fluid d-flex justify-content-evenly p-4" >
         <?php if ($_smarty_tpl->tpl_vars['act']->value == 'add') {?>
             <form class="form-alta" action="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
-add-product" method="post">
+add-product" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nombre del Producto</label>
                     <input  type="text" class="form-control" name="name" id="name" required>
@@ -64,13 +64,14 @@ $_smarty_tpl->tpl_vars['category']->do_else = false;
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </select>
                 </div>
+                <input type="file" name="productImage" accept="image/png, image/jpeg" id="productImage">
                 <input type="submit" class="btn btn-primary" value="Añadir">
             </form>
 
         <?php } else { ?>
             <form class="form-alta" action="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
 edit-product/<?php echo $_smarty_tpl->tpl_vars['product']->value->id_product;?>
-" method="post">
+" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nombre del Producto</label>
                     <input class="form-control" placeholder="Nombre del producto" type="text" value="<?php echo $_smarty_tpl->tpl_vars['product']->value->name;?>
@@ -87,6 +88,11 @@ edit-product/<?php echo $_smarty_tpl->tpl_vars['product']->value->id_product;?>
                     <input  class="form-control"placeholder="precio" type="number" value="<?php echo $_smarty_tpl->tpl_vars['product']->value->price;?>
 " name="price" id="price" required>
                 </div>
+                <input type="file" name="productImage" accept="image/png, image/jpeg" id="productImage">
+                <?php if ($_smarty_tpl->tpl_vars['product']->value->image_path) {?>
+                    <input type="checkbox" id="delete-image" name="delete-image" default=<?php echo false;?>
+> <label for="cbox2">Borrar imagen</label>
+                <?php }?>
                 <input type="submit" class="btn btn-primary" value="Guardar">
             </form>
         <?php }?>

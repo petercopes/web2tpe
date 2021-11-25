@@ -1,7 +1,7 @@
 {include file='templates/header.tpl'}
 {include file='templates/nav.tpl'}
 
-<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column">
+<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column" style="min-height: 85vh;">
     <a href="{$base}categories" class="card-link text-secondary text-decoration-none mb-1">Volver</a>
     <div class="card container-fluid d-flex justify-content-evenly">
         <div class="card-body">

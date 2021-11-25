@@ -1,54 +1,168 @@
 <?php
 
-class ProductModel{
+class ProductModel
+{
 
     private $db;
-    function __construct(){
-         $this->db = new PDO('mysql:host=localhost;'.'dbname=tp-web-2;charset=utf8', 'root', '');
+    function __construct()
+    {
+        $this->db = new PDO('mysql:host=localhost;' . 'dbname=tp-web-2;charset=utf8', 'root', '');
     }
 
-    function getProducts(){
-        $sentencia = $this->db->prepare( "select * from product");
+    function getProducts()
+    {
+        $sentencia = $this->db->prepare("select * from product");
         $sentencia->execute();
         $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $products;
-    } 
+    }
 
-    function getProduct($id){
-        $sentencia = $this->db->prepare( "select * from product WHERE id_product=?");
+    function getProduct($id)
+    {
+        $sentencia = $this->db->prepare("select * from product WHERE id_product=?");
         $sentencia->execute(array($id));
         $product = $sentencia->fetch(PDO::FETCH_OBJ);
         return $product;
     }
 
-    function getProductsWithCategory(){
-        $sentencia = $this->db->prepare( 'select p.*, c.name as "category_name" from product p join category c on (p.id_category = c.id_category)');
+    function getProductsWithCategory($limit = null, $resultsPerPage = null)
+    {
+        $query = 'select p.*, c.name as "category_name" from product p join category c on (p.id_category = c.id_category)';
+
+        if (isset($limit) && isset($resultsPerPage)) {
+            $query .= 'LIMIT  ? , ?';
+        }
+
+        $sentencia = $this->db->prepare($query);
+
+        if (isset($limit) && isset($resultsPerPage)) {
+            $sentencia->bindParam(1, $limit, PDO::PARAM_INT);
+            $sentencia->bindParam(2, $resultsPerPage, PDO::PARAM_INT);
+        }
+
         $sentencia->execute();
         $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $products;
     }
 
-    function addProduct($name, $description, $price,$categoryId){
-        $sentencia = $this->db->prepare("INSERT INTO product(name, description, price,id_category) VALUES(?, ?, ?, ?)");
-        $sentencia->execute(array($name,$description,$price, $categoryId));
-    }
-    function deleteProductFromDB($id){
-        $sentencia = $this->db->prepare("DELETE FROM product WHERE id_product=?");
-        $sentencia->execute(array($id));
+    function getFilteredProducts($minPrice, $maxPrice, $keyword, $limit = null, $resultsPerPage = null)
+    {
+        unset($queryParams);
+        if (!empty($keyword)) {
+            $queryParams[] = " name LIKE :keyword ";
+        }
+
+
+        if (!empty($minPrice)) {
+            $queryParams[] = " price >= :minPrice ";
+        }
+
+        if (!empty($maxPrice)) {
+            $queryParams[] = " price <= :maxPrice ";
+        }
+
+
+        $query = "SELECT * FROM product";
+
+        if (!empty($queryParams)) {
+            $query .= ' WHERE ' . implode(' AND ', $queryParams);
+        }
+
+        if (isset($limit) && isset($resultsPerPage)) {
+            $query .= ' LIMIT  :limit , :resultsPerPage';
+        }
+
+        $sentencia = $this->db->prepare($query);
+
+        if (!empty($keyword)) {
+            $formattedKeyword = '%' . $keyword . '%';
+            $sentencia->bindParam(":keyword", $formattedKeyword, PDO::PARAM_STR, 10);
+        }
+        if (!empty($minPrice)) {
+            $sentencia->bindParam(":minPrice", $minPrice, PDO::PARAM_INT);
+        }
+        if (!empty($maxPrice)) {
+            $sentencia->bindParam(":maxPrice", $maxPrice, PDO::PARAM_INT);
+        }
+
+        if (isset($limit) && isset($resultsPerPage)) {
+            $sentencia->bindParam(":limit", $limit, PDO::PARAM_INT);
+            $sentencia->bindParam(":resultsPerPage", $resultsPerPage, PDO::PARAM_INT);
+        }
+
+        $sentencia->execute();
+        $products = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $products;
     }
 
-    function updateProductFromDB($id,$name,$description,$price){
-        if((isset($name)&&(!empty($name)))){
+    function addProduct($name, $description, $price, $categoryId, $imagePath)
+    {
+        if (isset($imagePath) && !empty($imagePath)) {
+            $newImgPath = $this->uploadImage($imagePath);
+            $sentencia = $this->db->prepare("INSERT INTO product(name, description, price,id_category, image_path) VALUES(?, ?, ?, ?, ?)");
+            $sentencia->bindParam(1, $name, PDO::PARAM_STR, 50);
+            $sentencia->bindParam(2, $description, PDO::PARAM_STR, 50);
+            $sentencia->bindParam(3, $price, PDO::PARAM_INT);
+            $sentencia->bindParam(4, $categoryId, PDO::PARAM_INT);
+            $sentencia->bindParam(5, $newImgPath, PDO::PARAM_STR, 150);
+            $sentencia->execute();
+        } else {
+            $sentencia = $this->db->prepare("INSERT INTO product(name, description, price,id_category, image_path) VALUES(?, ?, ?, ?, '')");
+            $sentencia->bindParam(1, $name, PDO::PARAM_STR, 50);
+            $sentencia->bindParam(2, $description, PDO::PARAM_STR, 50);
+            $sentencia->bindParam(3, $price, PDO::PARAM_INT);
+            $sentencia->bindParam(4, $categoryId, PDO::PARAM_INT);
+            $sentencia->execute();
+        }
+    }
+
+    function deleteProductFromDB($id)
+    {
+        $sentencia = $this->db->prepare("DELETE FROM product WHERE id_product=?");
+        $sentencia->bindParam(1, $id, PDO::PARAM_INT);
+        $sentencia->execute();
+    }
+
+    function updateProductFromDB($id, $name, $description, $price, $imagePath, $deleteImg)
+    {
+        if (isset($name) && !empty($name)) {
             $sentencia = $this->db->prepare("UPDATE product SET name=? WHERE id_product=?");
-            $sentencia->execute(array($name,$id));
+            $sentencia->bindParam(1, $name, PDO::PARAM_STR, 50);
+            $sentencia->bindParam(2, $id, PDO::PARAM_INT);
+            $sentencia->execute();
         }
-        if((isset($description)&&(!empty($description)))){
+        if (isset($description) && !empty($description)) {
             $sentencia = $this->db->prepare("UPDATE product SET description=? WHERE id_product=?");
-            $sentencia->execute(array($description,$id));
+            $sentencia->bindParam(1, $description, PDO::PARAM_STR, 50);
+            $sentencia->bindParam(2, $id, PDO::PARAM_INT);
+            $sentencia->execute();
         }
-        if((isset($price)&&(!empty($price)))){
+        if (isset($price) && !empty($price)) {
             $sentencia = $this->db->prepare("UPDATE product SET price=? WHERE id_product=?");
-            $sentencia->execute(array($price,$id));
+            $sentencia->bindParam(1, $price, PDO::PARAM_INT);
+            $sentencia->bindParam(2, $id, PDO::PARAM_INT);
+            $sentencia->execute();
         }
+        if (isset($imagePath) && !empty($imagePath)) {
+            $newImgPath = $this->uploadImage($imagePath);
+            $sentencia = $this->db->prepare("UPDATE product SET image_path=? WHERE id_product=?");
+            $sentencia->bindParam(1, $newImgPath, PDO::PARAM_STR, 150);
+            $sentencia->bindParam(2, $id, PDO::PARAM_INT);
+            $sentencia->execute();
+        }
+
+        if (isset($deleteImg)) {
+            $newImgPath = $this->uploadImage($imagePath);
+            $sentencia = $this->db->prepare("UPDATE product SET image_path=null WHERE id_product=?");
+            $sentencia->bindParam(1, $id, PDO::PARAM_INT);
+            $sentencia->execute();
+        }
+    }
+
+    function uploadImage($image)
+    {
+        $target = './assets/uploadedProductImgs/' . uniqid() . '.jpg';
+        move_uploaded_file($image, $target);
+        return $target;
     }
 }

@@ -41,13 +41,16 @@ switch ($params[0]) {
         break;
     case "categories":
         $categoryController->showCategories();
-    break;
+        break;
     case "category":
         $categoryController->showCategory($params[1]);
-    break;
+        break;
     case "product":
         $productController->showProduct($params[1]);
-    break;
+        break;
+    case "get-filtered-products":
+        $productController->getFilteredProducts();
+        break;
     case "category-add-form":
         $categoryController->showAddCategoryForm();
         break;
@@ -77,6 +80,15 @@ switch ($params[0]) {
         break;
     case "edit-product":
         $productController->editProduct($params[1]);
+        break;
+    case "backoffice":
+        $userController->showBackoffice();
+        break;
+    case "delete-user":
+        $userController->deleteUser($params[1]);
+        break;
+    case "edit-user":
+        $userController->editUserRole($params[1]);
         break;
     default:
         echo 'not found';

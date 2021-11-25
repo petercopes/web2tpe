@@ -1,22 +1,26 @@
 {include file='templates/header.tpl'}
 {include file='templates/nav.tpl'}
-<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-column" style="min-height: 85vh;">
-    <a href="{$base}products" class="card-link text-secondary text-decoration-none mb-1">Volver</a>
-    <div class="card mb-3 center" style="max-width: 700px; width: 90%;">
-        <div class="row g-0">
-            {if !empty($product->image_path)}
-                <div class="col-md-4">
-                    <img src="{$product->image_path}" class="card-img-top" alt="{$product->name}-img">
-                </div>
-            {/if}
-            <div class="col">
-                <div class="card-body">
-                    <h5 class="card-title">{$product->name}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{$product->price}</h6>
-                    <p class="card-text">{$product->description}</p>
-                    {if $userRole eq '1'}
-                        <div class="container-fluid d-flex justify-content-evenly flex-row" style="margin-top: 130px;">
-                            <a href="edit-product-form/{$product->id_product}" class=" card-link btn btn-dark">
+<div class="mt-3 w-75" style="min-height: 85vh;">
+    <h2>
+        Listado de usuarios
+    </h2>
+    <table class="table" style="margin-left: 150px;">
+        <thead scope="row">
+            <tr>
+                <td>Username</td>
+                <td>Rol</td>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach from=$users item=$user}
+                <tr>
+                    <td>
+                        {$user->email}
+                    </td>
+                    <td>
+                        <form class="form-alta" id="userRoleForm" action="{$base}edit-user/{$user->email}" method="post">
+                            {html_options name=role options=$roleOptions selected=(int)$user->id_role}
+                            <button type="submit" class="btn btn-link">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path
@@ -24,8 +28,12 @@
                                     <path fill-rule="evenodd"
                                         d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                                 </svg>
-                            </a>
-                            <a href="remove-product/{$product->id_product}" class="btn btn-danger card-link">
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <div class="text-secondary">
+                            <a href="{$base}delete-user/{$user->email}" class="btn btn-link">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-trash" viewBox="0 0 16 16">
                                     <path
@@ -35,19 +43,10 @@
                                 </svg>
                             </a>
                         </div>
-                    {/if}
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="card container-fluid d-flex justify-content-evenly center" id="commentsContainer" user-role={$userRole}
-        product-id={$product->id_product} style="max-width: 700px;">
-        {include file="templates/commentList.tpl"}
-        {if $userRole eq '2'}
-            {include file="templates/commentForm.tpl"}
-        {/if}
-    </div>
-</main>
-<script src='js/comments.js'></script>
+                    </td>
+                </tr>
+            {/foreach}
+        </tbody>
+    </table>
+</div>
 {include file='templates/footer.tpl'}

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-13 19:53:14
-  from '/opt/lampp/htdocs/web2tpe/templates/categoryDetail.tpl' */
+/* Smarty version 3.1.39, created on 2021-11-25 01:43:12
+  from 'C:\xampp\htdocs\web2tpe\templates\categoryDetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61671d0a4c1ea4_79553688',
+  'unifunc' => 'content_619edc20f18416_91566199',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '3413d40398b9da101ff30499f1e0fddeb075402d' => 
+    '6f15633127d0e774b53fa75e08417b378e8f4960' => 
     array (
-      0 => '/opt/lampp/htdocs/web2tpe/templates/categoryDetail.tpl',
-      1 => 1634147587,
+      0 => 'C:\\xampp\\htdocs\\web2tpe\\templates\\categoryDetail.tpl',
+      1 => 1637800986,
       2 => 'file',
     ),
   ),
@@ -24,12 +24,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:templates/footer.tpl' => 1,
   ),
 ),false)) {
-function content_61671d0a4c1ea4_79553688 (Smarty_Internal_Template $_smarty_tpl) {
+function content_619edc20f18416_91566199 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:templates/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 $_smarty_tpl->_subTemplateRender('file:templates/nav.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
-<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column">
+<main class="d-flex container-fluid p-5 justify-content-between h-100 flex-xl-column" style="min-height: 85vh;">
     <a href="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
 categories" class="card-link text-secondary text-decoration-none mb-1">Volver</a>
     <div class="card container-fluid d-flex justify-content-evenly">
