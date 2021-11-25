@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2021 a las 02:01:34
+-- Tiempo de generación: 25-11-2021 a las 02:08:19
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.12
 
@@ -38,9 +38,9 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id_category`, `name`, `description`) VALUES
-(1, 'pantalon edit 2', ' Jeans, pantalones sastreros, shorts, etc'),
-(8, 'test edit', 'test '),
-(9, 'test 2', ' test 2');
+(1, 'Pantalon', ' Jeans, pantalones sastreros, shorts, etc'),
+(12, 'Remera', 'Remeras, blusas, tops, etc'),
+(13, 'Abrigo', 'Sweaters, tapados, camperas, buzos, etc');
 
 -- --------------------------------------------------------
 
@@ -55,6 +55,18 @@ CREATE TABLE `comment` (
   `rating` int(11) NOT NULL,
   `id_product` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `comment`
+--
+
+INSERT INTO `comment` (`id_comment`, `email`, `message`, `rating`, `id_product`) VALUES
+(2, 'not-admin.dulce@test.com', 'malardo', 1, 1),
+(3, 'not-admin.dulce@test.com', 'buenardo', 5, 1),
+(5, 'not-admin.dulce@test.com', 'muy buen jean', 5, 1),
+(6, 'admin.dulce@test.com', 'tremendos jeansssss', 5, 1),
+(7, 'not-admin.dulce@test.com', 'malardo mal', 1, 1),
+(8, 'not-admin.dulce@test.com', 'Muy linda la calidad de la prenda', 4, 39);
 
 -- --------------------------------------------------------
 
@@ -77,7 +89,10 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`id_product`, `name`, `description`, `price`, `image_path`, `id_category`) VALUES
 (1, 'Jean Ana Paula ', ' Jean mom celeste con roturas  ', 3500, '', 1),
-(7, 'test prod', 'test ', 1500, '', 1);
+(37, 'Remera Chloe', ' Remera con transparencias color negro ', 2000, '', 12),
+(38, 'Remera Alex', ' Remera de lino con escote en la espalda', 1750, '', 12),
+(39, 'Remera Estampa Tropi', ' Remera con estampa de hojas tropicales', 1200, './assets/uploadedProductImgs/619ed4b789e77.jpg', 12),
+(40, 'Remera Winx', ' Remera cottage core', 1400, '', 12);
 
 -- --------------------------------------------------------
 
@@ -115,7 +130,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`email`, `password`, `id_role`) VALUES
-('admin.dulce@test.com', '$2y$10$d/Qht/iO6goZye.hoHhMTuAK7ZQSmjdx4/RBsnFCz7TXei3Q6evYO', 1);
+('admin.dulce@test.com', '$2y$10$d/Qht/iO6goZye.hoHhMTuAK7ZQSmjdx4/RBsnFCz7TXei3Q6evYO', 1),
+('not-admin.dulce@test.com', '$2y$10$sDOAKb9RB5kf7OoD/bCWYurhIP1etgIp4Q2u1j5H76aMGKJ81eVaW', 2);
 
 --
 -- Índices para tablas volcadas
@@ -162,19 +178,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `product`
 --
 ALTER TABLE `product`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `role`
@@ -196,7 +212,7 @@ ALTER TABLE `comment`
 -- Filtros para la tabla `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `category` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `category` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`);
 
 --
 -- Filtros para la tabla `user`
