@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-11-2021 a las 02:08:19
+-- Tiempo de generación: 25-11-2021 a las 02:23:28
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.12
 
@@ -178,7 +178,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `comment`
@@ -206,7 +206,7 @@ ALTER TABLE `role`
 -- Filtros para la tabla `comment`
 --
 ALTER TABLE `comment`
-  ADD CONSTRAINT `foreign-key product` FOREIGN KEY (`id_product`) REFERENCES `product` (`id_product`);
+  ADD CONSTRAINT `foreign-key product` FOREIGN KEY (`id_product`) REFERENCES `product` (`id_product`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `product`

@@ -37,8 +37,12 @@ class CategoryController{
     function deleteCategory($id) {
         $userRole = $this->authHelper->getRole();
         if($userRole==1) {
-            $this->categoryModel->deleteCategory($id);
-            $this->authHelper->redirect('categories');
+            try {
+                $this->categoryModel->deleteCategory($id);
+                $this->authHelper->redirect('categories');
+            } catch(Exception $e) {
+                $this->authHelper->redirect('categories');
+            }
         }
     }
 
