@@ -50,7 +50,7 @@
             </tbody>
         </table>
     </div>
-    {if $elemType eq "product"}
+    {if $pagination eq true}
     <nav aria-label="Page navigation example" class="center fit-content">
         <ul class="pagination">
             {for $page = 1 to $pageCount}

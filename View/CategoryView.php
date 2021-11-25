@@ -21,6 +21,7 @@ class CategoryView
         $this->smarty->assign('elemType','category');
         $this->smarty->assign('addText','Agregar Nueva');
         $this->smarty->assign('userRole', $userRole);
+        $this->smarty->assign('pagination',false);
         $this->smarty->display('templates/categoryList.tpl');  
     }
 
@@ -52,6 +53,7 @@ class CategoryView
         $this->smarty->assign('elemType','product');
         $this->smarty->assign('addText','Agregar Nuevo');
         $this->smarty->assign('userRole',$userRole);
+        $this->smarty->assign('pagination',false);
         $this->smarty->display('templates/categoryDetail.tpl');
     }
 
