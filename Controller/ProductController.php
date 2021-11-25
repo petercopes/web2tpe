@@ -28,6 +28,7 @@ class ProductController
             $page = $_GET['page'];  
         }  
         $resultsPerPage = 3;
+        //sending params limit and results per page as null to get all products
         $pageCount = ceil(count($this->productModel->getProductsWithCategory(null, null)) / $resultsPerPage);
         $limit = ($page - 1) * $resultsPerPage;
         $productsForPage =  $this->productModel->getProductsWithCategory($limit, $resultsPerPage);
@@ -91,7 +92,7 @@ class ProductController
             $keyword = null;
         }
         
-        $keyword = explode(' ', $keyword)[0];
+        //$keyword = explode(' ', $keyword)[0];
         if(!empty($minPrice)) {
             settype($minPrice,"integer");
         }
@@ -99,6 +100,7 @@ class ProductController
             settype($maxPrice,"integer");
         }
         $resultsPerPage = 3;
+        //sending params limit and results per page as null to get all products
         $pageCount = ceil(count($this->productModel->getFilteredProducts($minPrice, $maxPrice, $keyword, null, null)) / $resultsPerPage);
         if (!isset ($_GET['page']) ) {  
             $page = 1;  
